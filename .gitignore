@@ -38,5 +38,6 @@ obj/
 *.log
 *.idb
 *.opendb
+*.meta
 WSATestCertificate.pfx
 WSATestCertificate.pfx.meta
