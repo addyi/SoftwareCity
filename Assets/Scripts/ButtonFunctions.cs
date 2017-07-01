@@ -5,6 +5,8 @@ using Webservice.UriBuilding;
 using Webservice.Response.Project;
 using Webservice.Response.ComponentTree;
 using System.Collections.Generic;
+using DataModel;
+using DataModel.ProjectTree;
 
 
 //calls to generate a test enviroment
@@ -25,7 +27,7 @@ public class ButtonFunctions : MonoBehaviour
         const string metricKeys = "ncloc,bugs,vulnerabilities,code_smells,violations,functions,coverage,test_success_density,comment_lines_density";
         const string projectKey = "geo-quiz-app";
 
-        // TODO paging
+        // TODO ADDYI REMOVE DEBUG LOGS
         StartCoroutine(WebInterface.FuckingUnityRequest<Auth>(
             new SqAuthValidationUriBuilder(baseUri, username, pw).GetSqUri(),
             (res, err) =>
@@ -72,6 +74,10 @@ public class ButtonFunctions : MonoBehaviour
                    case 200:
                        Debug.Log(res.baseComponent.ToString());
                        Debug.Log(res.paging.ToString());
+                       IProjectTree ProjectTree = new Model();
+                       ProjectTree.BuildProjectTree(res.baseComponent, res.components);
+                       Debug.LogWarning("ADDYI COMPONENT_TYPE: "+ProjectTree.GetProjectInfos().ComponentType.ToString());
+
                        break;
                    default:
                        Debug.Log("Addyi ResponseCode: " + err);

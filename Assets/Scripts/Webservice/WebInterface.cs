@@ -9,7 +9,7 @@ namespace Webservice
 {
     public static class WebInterface
     {
-
+        // TODO ADDYI RENAME METHODE FuckingUnityRequest
         public static IEnumerator FuckingUnityRequest<T>(Uri uri, Action<T, long> callback)
         {
             UnityWebRequest www = UnityWebRequest.Get(uri.ToString());

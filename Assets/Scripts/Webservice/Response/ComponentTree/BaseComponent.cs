@@ -11,7 +11,7 @@ namespace Webservice.Response.ComponentTree
         public string key;
         public string name;
         public string qualifier;
-         public List<Measure> measures;
+        public List<Measure> measures;
 
         public override string ToString()
         {
