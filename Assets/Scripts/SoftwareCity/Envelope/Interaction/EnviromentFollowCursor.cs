@@ -1,5 +1,6 @@
 ﻿using HoloToolkit.Unity.InputModule;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SoftwareCity.Envelope.Interaction
 {
@@ -49,7 +50,7 @@ namespace SoftwareCity.Envelope.Interaction
         {
             if (gazeManager.HitObject == null || !gazeManager.HitObject.tag.Equals("Button"))
             {
-                EnableChildColliderAndRenderer();
+                EnableChildColliderRendererTextAndImage();
 
                 this.gameObject.GetComponent<EnviromentFollowCursor>().enabled = false;
             }
@@ -58,19 +59,23 @@ namespace SoftwareCity.Envelope.Interaction
         /// <summary>
         /// Enable the colliders and renderers from Scaler, Rotator, Infobox and SoftwareCity
         /// </summary>
-        public void EnableChildColliderAndRenderer()
+        public void EnableChildColliderRendererTextAndImage()
         {
             ActivateCollider(true);
             ActivateRenderer(true);
+            ActivateText(true);
+            ActivateImage(true);
         }
         
         /// <summary>
         /// Disable the colliders and renderers from Scaler, Rotator, Infobox and SoftwareCity
         /// </summary>
-        public void DisableChildColliderAndRenderer()
+        public void DisableChildColliderRendererTextAndImage()
         {
             ActivateCollider(false);
             ActivateRenderer(false);
+            ActivateText(false);
+            ActivateImage(false);
         }
         
         /// <summary>
@@ -94,11 +99,29 @@ namespace SoftwareCity.Envelope.Interaction
             {
                 renderer.enabled = b;
             }
+        }
 
+        /// <summary>
+        /// Search and enable the texts of the specific gameObjects
+        /// </summary>
+        private void ActivateText(bool b)
+        {
             infobox = GameObject.FindGameObjectWithTag("Infobox");
-            foreach (Renderer renderer in infobox.gameObject.GetComponentsInChildren<Renderer>())
+            foreach (Text text in infobox.gameObject.GetComponentsInChildren<Text>())
             {
-                renderer.enabled = b;
+                text.enabled = b;
+            }
+        }
+
+        /// <summary>
+        /// Search and enable the ímages of the specific gameObjects
+        /// </summary>
+        private void ActivateImage(bool b)
+        {
+            infobox = GameObject.FindGameObjectWithTag("Infobox");
+            foreach (Image image in infobox.gameObject.GetComponentsInChildren<Image>())
+            {
+                image.enabled = b;
             }
         }
     }

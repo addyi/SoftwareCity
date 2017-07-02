@@ -34,7 +34,7 @@ namespace SoftwareCity.Infobox
             {
                 ShowEnvelope();
             }
-            this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().DisableChildColliderAndRenderer();
+            this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().DisableChildColliderRendererTextAndImage();
 
             this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().enabled = true;
         }
