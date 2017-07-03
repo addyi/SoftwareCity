@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ConfigurationWindow.DataStore
+namespace ConfigurationWindow.DataStorage
 {
     public static class OverviewElements
     {
@@ -54,6 +54,14 @@ namespace ConfigurationWindow.DataStore
         public static int Length()
         {
             return overviewData.Count;
+        }
+
+        public static void Print()
+        {
+            foreach(string s in overviewData)
+            {
+                Debug.Log(s);
+            }
         }
     }
 }
