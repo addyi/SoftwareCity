@@ -4,7 +4,7 @@ using System;
 namespace Webservice.Response.ComponentTree
 {
     [Serializable]
-    public class Component
+    public class Component : IComparable
     {
         public string id;
         public string key;
@@ -13,6 +13,52 @@ namespace Webservice.Response.ComponentTree
         public string path;
         public string language;
         public List<Measure> measures;
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentException("Illegal Argument: null Objecto");
+            }
+            if (!(obj is Component))
+            {
+                throw new ArgumentException("Illegal Argument: obj isn't a Component");
+            }
+
+            Component other = (Component)obj;
+            int qualifierComparison = CompareQualifier(other.qualifier);
+
+            if (qualifierComparison == 0)
+            {
+                return this.path.CompareTo(other.path);
+            }
+            else
+            {
+                return qualifierComparison;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        private int CompareQualifier(string qualifier)
+        {
+            int ThisQualifier = QualifierToInt(this.qualifier);
+            int OtherQualifier = QualifierToInt(qualifier);
+            return ThisQualifier.CompareTo(OtherQualifier);
+        }
+
+        private static int QualifierToInt(string qualifier)
+        {
+            switch (qualifier)
+            {
+                case "BRC": return 1;
+                case "DIR": return 2;
+                case "FIL": return 3;
+                case "TRK": return 0;
+                case "UTS": return 4;
+                default: throw new ArgumentException("Unknown Argument for Qualifier: \"" + qualifier + "\"");
+            }
+        }
 
         public override string ToString()
         {
