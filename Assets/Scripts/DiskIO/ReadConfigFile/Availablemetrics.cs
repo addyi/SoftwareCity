@@ -1,5 +1,5 @@
-﻿﻿using System;
-namespace QAware.DataStorage.ReadConfigFile
+﻿
+namespace DiskIO.ReadConfigFile
 {
     public class Availablemetrics
     {
@@ -8,11 +8,11 @@ namespace QAware.DataStorage.ReadConfigFile
         /// </summary>
         public Metric[] availablemetrics;
 
-		/// <summary>
-		/// Gets the availablemetrics.
-		/// </summary>
-		/// <returns>Metrics[]</returns>
-		public Metric[] GetAvailablemetrics()
+        /// <summary>
+        /// Gets the availablemetrics.
+        /// </summary>
+        /// <returns>Metrics[]</returns>
+        public Metric[] GetAvailablemetrics()
         {
             return availablemetrics;
         }

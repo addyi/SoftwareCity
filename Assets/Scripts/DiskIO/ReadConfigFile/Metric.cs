@@ -1,31 +1,31 @@
 ﻿
-namespace QAware.DataStorage.ReadConfigFile
+namespace DiskIO.ReadConfigFile
 {
     public class Metric
     {
-		/// <summary>
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-		public string Name { get; set; }
+        public string Name { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// Gets or sets the key.
         /// </summary>
         /// <value>The key.</value>
-		public string Key { get; set; }
+        public string Key { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// Gets or sets the default value.
         /// </summary>
         /// <value>The default value.</value>
-		public int DefaultValue { get; set; }
+        public int DefaultValue { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// Gets or sets the datatype.
         /// </summary>
         /// <value>The datatype.</value>
-		public string Datatype { get; set; }
+        public string Datatype { get; set; }
 
 
     }

@@ -1,10 +1,11 @@
 ﻿using System.IO;
 
-namespace QAware.DataStorage.DiskIOManager
+namespace DiskIO.DiskIOManager
 {
     public class DiskIOStream<Type>
     {
-        public DiskIOStream(){
+        public DiskIOStream()
+        {
         }
 
         public void SerializeDiskIOItem(string file, Type item)
@@ -26,7 +27,7 @@ namespace QAware.DataStorage.DiskIOManager
                 return (Type)bformatter.Deserialize(stream);
 
             }
-           
+
         }
     }
 }
