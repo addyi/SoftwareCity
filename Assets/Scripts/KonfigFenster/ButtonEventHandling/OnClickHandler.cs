@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ConfigurationWindow.DataStorage;
+using System;
 
 namespace ConfigurationWindow.ButtonEventHandling
 {
@@ -13,71 +14,102 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// </summary>
         private Button[] allButtons;
 
+        private static Button saveLastButton;
+
+        private GameObject actualTag;
+
+        private bool wasRemoved;
+
+        private readonly string JUMPBACK = "BackButton";
+
+        private readonly string[] ALLPANELTAGS = { "SamplePanel", "HeightPanel", "ColorPanel", "PyramidPanel" };
+
+        private static int actualTagCounter;
+
         /// <summary>
         /// Initialize the datastorage and add Eventlistener in each Button.
         /// </summary>
         void Start()
         {
-            OverviewElements.Initialize();
             allButtons = GetComponentsInChildren<Button>();
+            if (actualTagCounter < ALLPANELTAGS.Length)
+                actualTag = GameObject.FindGameObjectWithTag(ALLPANELTAGS[actualTagCounter]);
+            else
+                Debug.LogError("IndexOutOfBounceException in array: " + ALLPANELTAGS.Length);
+            switch(actualTag.tag)
+            {
+                case "SamplePanel":
+                    OverviewElements.Initialize();
+                    Debug.Log("Initialize the beginning!| Counter: " +actualTagCounter);
+                    break;
+                case "HeightPanel":
 
-            //Debug.Log(allButtons.Length);
-            AddButtonListener();
-            //allButtons[1].onClick.AddListener(delegate { ButtonWasClicked(1); });
-            //allButtons[2].onClick.AddListener(delegate { ButtonWasClicked(2); });
-            //allButtons[3].onClick.AddListener(delegate { ButtonWasClicked(3); });
-            //RemoveButton();
-            allButtons[3].tag = "Online";
+                    break;
+                case "ColorPanel":
+                    CheckBeforeRemove();
+                    break;
+                case "PyramidPanel":
+
+                    break;
+            }
+            AddingListener();
+            AddingJumpBackListener();
         }
 
-        /// <summary>
-        /// Adding an Eventlistener in Buttons, to check which Button was pressed.
-        /// </summary>
-        void AddButtonListener()
+        void AddingListener()
         {
-            foreach (Button b in allButtons)
+            for(int i = 1; i < allButtons.Length; i++)
             {
-                b.onClick.AddListener(() =>
-                {
-                    ButtonWasClicked(b.tag);
-                });
+                int temp = i;
+                allButtons[i].onClick.AddListener(() => ClickedButton(temp));
             }
         }
 
-        /// <summary>
-        /// To save the text from the actual clicked Button in the OverviewDataStorage.
-        /// </summary>
-        /// <param name="tag">Checking the Button with the tag.</param>
-        void ButtonWasClicked(string tag)
+        void ClickedButton(int i)
         {
-            Debug.Log(tag);
-            Debug.Log("You have clicked the button: " + allButtons[0].GetComponentInChildren<Text>().text);
-            //InsertElement(allButtons[i].GetComponentInChildren<Text>().text);
-            OverviewElements.InsertElement(CheckTag(tag));
-            //view.InsertElement(allButtons[i].GetComponentInChildren<Text>().text);
-            Debug.Log(OverviewElements.Length() + " | " + OverviewElements.GetElement(0));
+            Debug.Log(allButtons[i].GetComponentInChildren<Text>().text);
+            OverviewElements.InsertElement(allButtons[i].GetComponentInChildren<Text>().text);
+            if(actualTagCounter < ALLPANELTAGS.Length)
+                actualTagCounter++;
         }
 
-        /// <summary>
-        /// Checks the tag from the Button, to know which button was pressed.
-        /// </summary>
-        /// <param name="tag">Tag name of the button.</param>
-        /// <returns>Return the text name of the button.</returns>
-        string CheckTag(string tag)
+        void AddingJumpBackListener()
         {
-            string temp = "";
-            bool checkIsTrue = false;
-            int i = 0;
-            while (i < allButtons.Length && !checkIsTrue)
+            allButtons[0].onClick.AddListener(BackButton);
+        }
+
+        void BackButton()
+        {
+            if (Array.Exists(ALLPANELTAGS, element => tag.Equals(element)))
+                wasRemoved = false;
+
+            if (OverviewElements.Length() > 0 && actualTagCounter > 0)
             {
-                if (tag.Equals(allButtons[i].tag))
+                OverviewElements.RemoveElement(OverviewElements.Length() - 1);
+                actualTagCounter--;
+            }
+            Start();
+        }
+
+        void CheckBeforeRemove()
+        {
+            if (wasRemoved)
+            {
+                saveLastButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                foreach (Button b in allButtons)
                 {
-                    temp = allButtons[i].GetComponentInChildren<Text>().text;
-                    checkIsTrue = true;
+                    if (b.GetComponentInChildren<Text>().text.Equals(OverviewElements.GetElement(OverviewElements.Length() - 1)))
+                    {
+                        saveLastButton = b;
+                        Debug.Log(saveLastButton.GetComponentInChildren<Text>().text);
+                        b.gameObject.SetActive(false);
+                        wasRemoved = true;
+                    }
                 }
-                i++;
             }
-            return temp;
         }
     }
 }
