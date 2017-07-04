@@ -25,11 +25,14 @@ public class SQObjectTree : MonoBehaviour {
 
     private float shiftingFactorYDirection = -0.01f;
 
+    private float maxDocumentHeight;
+
     // Use this for initialization
     void Start () {
         rnd = new System.Random();
 
         packageLevel = 1;
+        maxDocumentHeight = 0.0f;
 
         SQPackage root = new SQPackage();
         root.AddChild(new SQDocument());
@@ -41,56 +44,18 @@ public class SQObjectTree : MonoBehaviour {
         root.AddChild(new SQDocument());
         root.AddChild(new SQDocument());
 
-        SQPackage p2 = new SQPackage();
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-        p2.AddChild(new SQDocument());
-
-
-        SQPackage p3 = new SQPackage();
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-        p3.AddChild(new SQDocument());
-
-        SQPackage p4 = new SQPackage();
-        p4.AddChild(new SQDocument());
-        p4.AddChild(new SQDocument());
-        p4.AddChild(new SQDocument());
-        p4.AddChild(new SQDocument());
-
-        root.AddChild(p2);
-        root.AddChild(p3);
-        root.AddChild(p4);
-        
-
-
         GameObject rootGameObject = TraverseTree(root, packageLevel);
 
         DeleteHelperGameObjects(helperGameObjects);
+
+       
+        this.gameObject.transform.parent.localScale = new Vector3(rootGameObject.transform.localScale.x * 0.1f + 0.05f, maxDocumentHeight * 0.1f + 0.05f, rootGameObject.transform.localScale.z * 0.1f + 0.05f);
 
         rootGameObject.transform.SetParent(this.gameObject.transform);
         rootGameObject.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x /10f, this.gameObject.transform.localScale.y/ 10f, this.gameObject.transform.localScale.z/ 10f);
 
-       //this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
+        this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
     }
 
     private GameObject TraverseTree(ISQObject treeObject, int packageLevel)
@@ -169,6 +134,8 @@ public class SQObjectTree : MonoBehaviour {
             documentGameObject.transform.localScale = localScaleOfDocument;
             documentGameObject.transform.position = new Vector3(documentGameObject.transform.position.x, documentGameObject.GetComponent<Renderer>().bounds.size.y / 2, documentGameObject.transform.position.z);
            // print(documentGameObject.GetComponent<Renderer>().bounds.size.y / 2);
+
+            if(documentGameObject.GetComponent<Renderer>().bounds.size.y > maxDocumentHeight) maxDocumentHeight = documentGameObject.GetComponent<Renderer>().bounds.size.y;
 
             return documentGameObject;
         }

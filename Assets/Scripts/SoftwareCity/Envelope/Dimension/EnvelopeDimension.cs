@@ -61,7 +61,7 @@ namespace SoftwareCity.Envelope.Dimension
         }
 
         /// <summary>
-        /// Update hte whole envelope and the components around.
+        /// Update the whole envelope and the components around.
         /// </summary>
         public void UpdateDimensionPoints()
         {
