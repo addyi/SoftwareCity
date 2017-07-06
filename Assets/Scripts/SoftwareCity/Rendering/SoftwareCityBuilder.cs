@@ -62,7 +62,7 @@ public class SoftwareCityBuilder : MonoBehaviour {
 
         DeleteHelperGameObjects(helperGameObjects);
 
-        this.gameObject.transform.parent.localScale = new Vector3(rootGameObject.transform.localScale.x * 0.1f + 0.05f, maxDocumentHeight * 0.1f + 0.05f, rootGameObject.transform.localScale.z * 0.1f + 0.05f);
+        this.gameObject.transform.parent.localScale = new Vector3(rootGameObject.transform.localScale.x * 0.1f + 0.05f, /*maxDocumentHeight * 0.1f + 0.05f*/ 0.2f, rootGameObject.transform.localScale.z * 0.1f + 0.05f);
 
         rootGameObject.transform.SetParent(this.gameObject.transform);
         rootGameObject.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);

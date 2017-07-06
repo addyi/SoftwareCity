@@ -24,7 +24,7 @@ namespace SoftwareCity.Envelope.Interaction
         void Start()
         {
             envelope = GameObject.FindGameObjectWithTag("Envelope");
-
+            startScale = envelope.transform.localScale.y;
             rotator = GameObject.FindGameObjectWithTag("Rotator");
         }
 
@@ -35,7 +35,7 @@ namespace SoftwareCity.Envelope.Interaction
         public void OnManipulationStarted(ManipulationEventData eventData)
         {
             InputManager.Instance.AddGlobalListener(this.gameObject);
-            startScale = envelope.transform.localScale.y;
+            
             ActivateCollider(false);
         }
 
