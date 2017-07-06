@@ -10,10 +10,6 @@ namespace ConfigurationWindow.ButtonEventHandling
     public class OverviewPanelResult : MonoBehaviour
     {
 
-        private static bool changeRequest;
-
-        private Button backButton;
-
         /// <summary>
         /// An array of Text is to get all the TextFields from the Overviewpanel.
         /// </summary>
@@ -23,28 +19,9 @@ namespace ConfigurationWindow.ButtonEventHandling
         void Start()
         {
             overviewResult = GetComponentsInChildren<Text>();
-            backButton = GameObject.FindGameObjectWithTag("BackButton").GetComponent<Button>();
             //Debug.Log(OverviewElements.GetElement(0));
             //OverviewElements.Print();
-            backButton.onClick.AddListener(JumpBack);
-            changeRequest = true;
-        }
-
-        private void OnGUI()
-        {
-            if (changeRequest)
-            {
-                CheckString();
-                changeRequest = false;
-            }
-        }
-
-        private void JumpBack()
-        {
-            if (OverviewElements.Length() > 0)
-                OverviewElements.RemoveElement(OverviewElements.Length() - 1);
-            changeRequest = true;
-
+            CheckString();
         }
 
         /// <summary>

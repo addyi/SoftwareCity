@@ -19,11 +19,6 @@ namespace ConfigurationWindow.DataStorage
             overviewData = new List<string>();
         }
 
-        public static bool IsEmpty()
-        {
-            return overviewData == null;
-        }
-
         /// <summary>
         /// Insert an string element into the Datastorage.
         /// </summary>
