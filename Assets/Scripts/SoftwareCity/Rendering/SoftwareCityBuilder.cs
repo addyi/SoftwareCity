@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
+using SoftwareCity.Rendering.Utils;
 
 namespace SoftwareCity.Rendering
 {
@@ -10,11 +11,6 @@ namespace SoftwareCity.Rendering
         /// Border of the packages.
         /// </summary>
         private readonly Vector3 packageBorder = new Vector3(0.2f, 0.0f, 0.2f);
-    
-        /// <summary>
-        /// IMPLEMENT !!!!!!!
-        /// </summary>
-        private readonly Color[] colors = new Color[] { Color.green, Color.yellow };
     
         /// <summary>
         /// Save a list with gameobject helpers for generating
