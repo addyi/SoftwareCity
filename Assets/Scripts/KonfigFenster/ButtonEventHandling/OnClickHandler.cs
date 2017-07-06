@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using ConfigurationWindow.DataStorage;
 using System;
 
-namespace ConfigurationWindow.ButtonEventHandling
+namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
     public class OnClickHandler : MonoBehaviour
     {
@@ -102,7 +102,7 @@ namespace ConfigurationWindow.ButtonEventHandling
 
             if (OverviewElements.Length() > 0)
                 OverviewElements.RemoveElement(OverviewElements.Length() - 1);
-            if (saveLastButton != null && !saveLastButton.interactable)
+            if (saveLastButton != null && !saveLastButton.interactable && SearchTag().Equals("HeightPanel"))
                 saveLastButton.interactable = true;
         }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using ConfigurationWindow.DataStorage;
 using System.Text.RegularExpressions;
 
-namespace ConfigurationWindow.ButtonEventHandling
+namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
     public class OverviewPanelResult : MonoBehaviour
     {
