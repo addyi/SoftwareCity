@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using Webservice.Response.ComponentTree;
 using DataModel.ProjectTree;
+using DataModel.ProjectTree.Components;
 
 namespace DataModel
 {
     interface IProjectTree
     {
-        void BuildProjectTree(BaseComponent baseComponent, List<Component> components);
+        void BuildProjectTree(Component baseComponent, List<Component> components);
         // ProjectMetrics GetProjectMetrics();
-        ProjectInfos GetProjectInfos();
+         ProjectComponent GetTree();
         // TODO ADDYI weitere project methodes
     }
 }

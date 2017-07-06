@@ -1,25 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DataModel;
+using DataModel.ProjectTree.Components;
 using Webservice.Response.ComponentTree;
-using DataModel.ProjectTree;
 
 namespace DataModel
 {
+    public enum SqQualifier { SUB_PROJECT, DIRECTORY, FILE, PROJECT, UNIT_TEST }
+
     class Model : IProjectTree
     {
-        private ProjectInfos project;
+        private ProjectComponent project;
 
-        public void BuildProjectTree(BaseComponent baseComponent, List<Component> components)
+
+        public void BuildProjectTree(Component baseComponent,
+            List<Component> components)
         {
-            this.project = new ProjectInfos(baseComponent);
+            if (baseComponent == null || components == null)
+                return;
+
+            project = new ProjectComponent(baseComponent);
+           
+            foreach (Component c in components)
+            {
+                string[] s = c.path.Split('/');
+               project.InsertComponentAt(s, GetTreeComponent(c));
+            }
+
         }
 
-        public ProjectInfos GetProjectInfos()
+        public ProjectComponent GetTree()
         {
             return project;
+        }
+
+        private TreeComponent GetTreeComponent(Component component)
+        {
+            switch (component.qualifier)
+            {
+                case "BRC": return null;
+                case "DIR": return new DirComponent(component);
+                case "FIL": return new FilComponent(component);
+                case "TRK": return null;
+                case "UTS": return null;
+                default: throw new ArgumentException("Unknown Qualifier: \"" + component.qualifier + "\"");
+            }
         }
     }
 }

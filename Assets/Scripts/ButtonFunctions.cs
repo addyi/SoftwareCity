@@ -65,9 +65,8 @@ public class ButtonFunctions : MonoBehaviour
 
         StartCoroutine(WebInterface.FuckingUnityRequest<ComponentTree>(
            new SqComponentTreeUriBuilder(baseUri, projectKey, metricKeys)
-                .UserCredentials(username, pw)
-           .GetSqUri(),
-           (res, err) =>
+                .UserCredentials(username, pw).GetSqUri(),
+           (System.Action<ComponentTree, long>)((res, err) =>
            {
                switch (err)
                {
@@ -75,8 +74,13 @@ public class ButtonFunctions : MonoBehaviour
                        Debug.Log(res.baseComponent.ToString());
                        Debug.Log(res.paging.ToString());
                        IProjectTree ProjectTree = new Model();
+
+                      // List<Webservice.Response.ComponentTree.Component> components = res.components;
+                       //components.Sort();
+                      
+
                        ProjectTree.BuildProjectTree(res.baseComponent, res.components);
-                       Debug.LogWarning("ADDYI COMPONENT_TYPE: "+ProjectTree.GetProjectInfos().ComponentType.ToString());
+                       Debug.Log(ProjectTree.GetTree().ToString());
 
                        break;
                    default:
@@ -85,7 +89,7 @@ public class ButtonFunctions : MonoBehaviour
 
                }
 
-           }));
+           })));
 
 
     }

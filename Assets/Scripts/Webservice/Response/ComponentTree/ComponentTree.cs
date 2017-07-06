@@ -9,7 +9,7 @@ namespace Webservice.Response.ComponentTree
     class ComponentTree
     {
         public Paging paging;
-        public BaseComponent baseComponent;
+        public Component baseComponent;
         public List<Component> components;
 
         public override string ToString()

@@ -17,27 +17,27 @@ namespace Webservice.Response.ComponentTree
         public int CompareTo(object obj)
         {
             if (obj == null)
-            {
                 throw new ArgumentException("Illegal Argument: null Objecto");
-            }
             if (!(obj is Component))
-            {
                 throw new ArgumentException("Illegal Argument: obj isn't a Component");
-            }
 
             Component other = (Component)obj;
+
             int qualifierComparison = CompareQualifier(other.qualifier);
-
-            if (qualifierComparison == 0)
-            {
-                return this.path.CompareTo(other.path);
-            }
-            else
-            {
+            if (qualifierComparison != 0)
                 return qualifierComparison;
-            }
+            int pathDepthComparison = ComparePathDepth(other.path);
+            if (pathDepthComparison != 0)
+                return pathDepthComparison;
 
-            throw new NotImplementedException();
+            return path.CompareTo(other.path);
+        }
+
+        private int ComparePathDepth(string path)
+        {
+            int ThisPathDepth = this.path.Split('/').Length;
+            int OtherPathDepth = path.Split('/').Length;
+            return ThisPathDepth.CompareTo(OtherPathDepth);
         }
 
         private int CompareQualifier(string qualifier)
