@@ -6,18 +6,10 @@ namespace SoftwareCity.Rendering
 {
     public class SoftwareCityBuilder : MonoBehaviour {
 
-        //private int packageCounterGlobal = 0;
-        //private int documentCounterGlobal = 0;
-
         /// <summary>
         /// Border of the packages.
         /// </summary>
         private readonly Vector3 packageBorder = new Vector3(0.2f, 0.0f, 0.2f);
-
-        /// <summary>
-        /// IMPLEMENT !!!!!!!
-        /// </summary>
-        private readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 0.3f, 0.2f);
     
         /// <summary>
         /// IMPLEMENT !!!!!!!
@@ -92,13 +84,6 @@ namespace SoftwareCity.Rendering
                     childs.Add(TraverseTree(child, packageLevel + 1));
                 }
 
-                /*
-                for(int i = 0; i < childs.Count; i++)
-                {
-                    print(childs[i].name);
-                }
-                print("-------------------------------------");
-                */
                 List<GameObject> childDocuments = FilterDocuments(childs);
                 List<GameObject> childPackages = FilterPackages(childs);
                 if (childs.Count > 0)
@@ -107,15 +92,14 @@ namespace SoftwareCity.Rendering
                     {
                         CalculateChildPositions(childDocuments);
 
-                        GameObject helperGameobject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        helperGameobject.AddComponent<Information>();
-                        helperGameobject.GetComponent<Information>().SetSQObjectType("package");
-                        helperGameObjects.Add(helperGameobject);
+                        GameObject helper = ComponentProducer.GenerateHelper();
 
-                        helperGameobject.transform.localScale = CalculatePackageSize(childDocuments, helperGameobject);
-                        SetPackageGameObjectAsParent(helperGameobject, childDocuments);
+                        helperGameObjects.Add(helper);
 
-                        childPackages.Add(helperGameobject);
+                        helper.transform.localScale = CalculatePackageSize(childDocuments, helper);
+                        SetPackageGameObjectAsParent(helper, childDocuments);
+
+                        childPackages.Add(helper);
                         CalculateChildPositions(childPackages);
                     }
                     else
@@ -125,14 +109,7 @@ namespace SoftwareCity.Rendering
                     }
                 }
 
-                GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                packageGameObject.AddComponent<Information>();
-                packageGameObject.GetComponent<Information>().SetSQObjectType("package");
-                packageGameObject.GetComponent<Collider>().enabled = false;
-                packageGameObject.GetComponent<Renderer>().enabled = false;
-                //packageGameObject.name = "Package " + packageCounterGlobal++;
-                //print("[" + packageGameObject.name + "]" + packageLevel);
-
+                GameObject packageGameObject = ComponentProducer.GeneratePackage();
                 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -151,18 +128,10 @@ namespace SoftwareCity.Rendering
             }
             else
             {
-                GameObject documentGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                documentGameObject.AddComponent<Information>();
-                documentGameObject.GetComponent<Information>().SetSQObjectType("document");
-                //documentGameObject.name = "Document " + documentCounterGlobal++;
-                documentGameObject.GetComponent<Renderer>().material.color = Color.red;
-                documentGameObject.GetComponent<Collider>().enabled = false;
-                documentGameObject.GetComponent<Renderer>().enabled = false;
-                documentGameObject.transform.localScale = localScaleOfDocument;
-                documentGameObject.transform.position = new Vector3(documentGameObject.transform.position.x, documentGameObject.GetComponent<Renderer>().bounds.size.y / 2, documentGameObject.transform.position.z);
-                // print(documentGameObject.GetComponent<Renderer>().bounds.size.y / 2);
+                GameObject documentGameObject = ComponentProducer.GenerateDocument();
 
-                if (documentGameObject.GetComponent<Renderer>().bounds.size.y > maxDocumentHeight) maxDocumentHeight = documentGameObject.GetComponent<Renderer>().bounds.size.y;
+                if (documentGameObject.GetComponent<Renderer>().bounds.size.y > maxDocumentHeight)
+                    maxDocumentHeight = documentGameObject.GetComponent<Renderer>().bounds.size.y;
 
                 return documentGameObject;
             }
@@ -209,28 +178,12 @@ namespace SoftwareCity.Rendering
                     maxPosition.z = childBounds.max.z;
             }
 
-            /*
-            GameObject min = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            min.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            min.transform.position = minPosition;
+            float horizontalDistance = CalculateDistance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
 
-
-            GameObject max = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            max.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            max.transform.position = maxPosition;
-            */
-
-            float horizontalDistance = Vector3.Distance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
-            //print("minPosition: " + minPosition);
-            float verticalDistance = Vector3.Distance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
-            //print("maxPosition: " + maxPosition);
-
-            //print((minPosition + maxPosition) / 2f + " = (" + minPosition + " + " + maxPosition + ") / 2");
+            float verticalDistance = CalculateDistance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
 
             packageGameObject.transform.position = (minPosition + maxPosition) / 2f;
             packageGameObject.transform.position = new Vector3(packageGameObject.transform.position.x, shiftingFactorYDirection * packageLevel, packageGameObject.transform.position.z);
-            //print(shiftingFactorYDirection * packageLevel);
-            //print(packageGameObject.name + ", position: " + packageGameObject.transform.position);
 
             return new Vector3(horizontalDistance, levelHeight, verticalDistance) + packageBorder;
         }
@@ -247,10 +200,7 @@ namespace SoftwareCity.Rendering
             float displacementFactorWidth = FindOutDisplacementFactorWidth(childs);
             float displacementFactorDepth = FindOutDisplacementFactorDepth(childs);
 
-            //print("displacementFactor: " + displacementFactor);
-
             GameObject prevGameObject = childs[0];
-            //prevGameObject.transform.position = new Vector3(0.0f, prevGameObject.transform.position.y, 0.0f);
 
             if (prevGameObject.GetComponent<Information>().GetSQObjectType().Equals("document"))
                 prevGameObject.transform.position = new Vector3(0.0f, prevGameObject.transform.position.y, 0.0f);
@@ -276,16 +226,10 @@ namespace SoftwareCity.Rendering
                         if (listIndex % 2 == 0)
                         {
                             childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(sign * displacementFactorWidth, 0.0f, 0.0f);
-
-                            //childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(sign, 0.0f, 0.0f);
-                            //print(childs[childIndex].transform.position + " = " + prevGameObject.transform.position + " + " + new Vector3(sign, 0.0f, 0.0f));
                         }
                         else
                         {
                             childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(0.0f, 0.0f, sign * displacementFactorDepth);
-
-                            //childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(0.0f, 0.0f, sign);
-                            //print(childs[childIndex].transform.position + " = " + prevGameObject.transform.position + " + " + new Vector3(0.0f, 0.0f, sign));
                         }
                         prevGameObject = childs[childIndex];
                         childIndex++;

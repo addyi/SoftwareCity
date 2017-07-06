@@ -33,39 +33,19 @@ namespace SoftwareCity.Rendering
             p1.AddChild(new SQDocument());
 
             SQPackage p2 = new SQPackage();
-
-            SQPackage p3 = new SQPackage();
-
-            SQPackage p4 = new SQPackage();
-            SQPackage p5 = new SQPackage();
-            SQPackage p6 = new SQPackage();
-            SQPackage p7 = new SQPackage();
-            SQPackage p8 = new SQPackage();
-            SQPackage p9 = new SQPackage();
-            SQPackage p10 = new SQPackage();
-            SQPackage p11 = new SQPackage();
-            SQPackage p12 = new SQPackage();
-            SQPackage p13 = new SQPackage();
-            SQPackage p14 = new SQPackage();
-
-            p12.AddChild(p14);
-            p12.AddChild(p13);
-            p11.AddChild(p12);
-            p10.AddChild(p11);
-            p9.AddChild(p10);
-            p8.AddChild(p9);
-            p7.AddChild(p8);
-
-            p6.AddChild(p7);
-            p5.AddChild(p6);
-            p4.AddChild(p5);
-            p3.AddChild(p4);
-
-            p2.AddChild(p3);
-
-            p1.AddChild(p2);
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
+            p2.AddChild(new SQDocument());
 
             root.AddChild(p1);
+            root.AddChild(p2);
 
             softwareCityBuilder.Build(root);
         }
