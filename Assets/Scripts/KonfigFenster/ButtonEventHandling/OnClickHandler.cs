@@ -16,15 +16,13 @@ namespace ConfigurationWindow.ButtonEventHandling
 
         private static Button saveLastButton;
 
-        private GameObject actualTag;
+        private string actualTag;
 
-        private bool wasRemoved;
+        private static bool wasRemoved, wasClicked;
 
         private readonly string JUMPBACK = "BackButton";
 
         private readonly string[] ALLPANELTAGS = { "SamplePanel", "HeightPanel", "ColorPanel", "PyramidPanel" };
-
-        private static int actualTagCounter;
 
         /// <summary>
         /// Initialize the datastorage and add Eventlistener in each Button.
@@ -32,28 +30,48 @@ namespace ConfigurationWindow.ButtonEventHandling
         void Start()
         {
             allButtons = GetComponentsInChildren<Button>();
-            if (actualTagCounter < ALLPANELTAGS.Length)
-                actualTag = GameObject.FindGameObjectWithTag(ALLPANELTAGS[actualTagCounter]);
-            else
-                Debug.LogError("IndexOutOfBounceException in array: " + ALLPANELTAGS.Length);
-            switch(actualTag.tag)
+            actualTag = SearchTag();
+            if(actualTag.Equals("SamplePanel") && OverviewElements.IsEmpty())
             {
-                case "SamplePanel":
-                    OverviewElements.Initialize();
-                    Debug.Log("Initialize the beginning!| Counter: " +actualTagCounter);
-                    break;
-                case "HeightPanel":
-
-                    break;
-                case "ColorPanel":
-                    CheckBeforeRemove();
-                    break;
-                case "PyramidPanel":
-
-                    break;
+                OverviewElements.Initialize();
             }
             AddingListener();
             AddingJumpBackListener();
+        }
+
+        private void OnGUI()
+        {
+            if (wasClicked)
+            {
+                switch (actualTag)
+                {
+                    case "HeightPanel":
+
+                        break;
+                    case "ColorPanel":
+                        CheckBeforeRemove();
+                        break;
+                    case "PyramidPanel":
+
+                        break;
+                }
+                wasClicked = false;
+            }
+        }
+
+        private string SearchTag()
+        {
+            bool looping = true;
+            string temp = "";
+            for(int i = 0; i < ALLPANELTAGS.Length && looping; i++)
+            {
+                if(GameObject.FindGameObjectWithTag(ALLPANELTAGS[i]))
+                {
+                    temp = ALLPANELTAGS[i];
+                    looping = false;
+                }
+            }
+            return temp;
         }
 
         void AddingListener()
@@ -69,26 +87,23 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
             Debug.Log(allButtons[i].GetComponentInChildren<Text>().text);
             OverviewElements.InsertElement(allButtons[i].GetComponentInChildren<Text>().text);
-            if(actualTagCounter < ALLPANELTAGS.Length)
-                actualTagCounter++;
+            wasClicked = true;
         }
 
         void AddingJumpBackListener()
         {
-            allButtons[0].onClick.AddListener(BackButton);
+            allButtons[0].onClick.AddListener(JumpBack);
         }
 
-        void BackButton()
+        void JumpBack()
         {
             if (Array.Exists(ALLPANELTAGS, element => tag.Equals(element)))
                 wasRemoved = false;
 
-            if (OverviewElements.Length() > 0 && actualTagCounter > 0)
-            {
+            if (OverviewElements.Length() > 0)
                 OverviewElements.RemoveElement(OverviewElements.Length() - 1);
-                actualTagCounter--;
-            }
-            Start();
+            if (saveLastButton != null && !saveLastButton.interactable)
+                saveLastButton.interactable = true;
         }
 
         void CheckBeforeRemove()
@@ -104,8 +119,7 @@ namespace ConfigurationWindow.ButtonEventHandling
                     if (b.GetComponentInChildren<Text>().text.Equals(OverviewElements.GetElement(OverviewElements.Length() - 1)))
                     {
                         saveLastButton = b;
-                        Debug.Log(saveLastButton.GetComponentInChildren<Text>().text);
-                        b.gameObject.SetActive(false);
+                        saveLastButton.interactable = false;
                         wasRemoved = true;
                     }
                 }
