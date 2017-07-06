@@ -34,9 +34,11 @@ namespace SoftwareCity.Infobox
             {
                 ShowEnvelope();
             }
-            this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().DisableChildColliderRendererTextAndImage();
+            //this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().DisableChildColliderRendererTextAndImage();
+            this.gameObject.transform.parent.GetComponent<EnviromentFollowCursor>().DisableChildColliderRendererTextAndImage();
 
-            this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().enabled = true;
+            //this.gameObject.transform.parent.parent.GetComponent<EnviromentFollowCursor>().enabled = true;
+            this.gameObject.transform.parent.GetComponent<EnviromentFollowCursor>().enabled = true;
         }
 
         /// <summary>

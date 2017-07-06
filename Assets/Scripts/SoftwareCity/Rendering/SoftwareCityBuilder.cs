@@ -2,6 +2,7 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
+using SoftwareCity.Envelope.Interaction;
 
 namespace SoftwareCity.Rendering
 {
@@ -381,7 +382,7 @@ namespace SoftwareCity.Rendering
         /// <param name="root"></param>
         private void AddCityToEnvelope(GameObject root)
         {
-            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f, maxDocumentHeight * 0.1f, root.transform.localScale.z * 0.1f);
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f, (maxDocumentHeight + 0.1f) * 0.1f, root.transform.localScale.z * 0.1f);
 
             root.transform.SetParent(this.gameObject.transform);
             root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -389,21 +390,21 @@ namespace SoftwareCity.Rendering
 
             this.gameObject.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
 
-            this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().GenerateEnvelope();
-
-            EditEnviroment();
+            EditEnvelope();
         }
 
         /// <summary>
         /// Set the correct position of the enviroment gameobject in y direction.
         /// </summary>
-        private void EditEnviroment()
+        private void EditEnvelope()
         {
-            GameObject enviroment = GameObject.FindGameObjectWithTag("Enviroment");
+            GameObject envelope = GameObject.FindGameObjectWithTag("Envelope");
 
             print("maxDocumentHeight: " + maxDocumentHeight);
 
-            enviroment.transform.localPosition = new Vector3(0.0f, maxDocumentHeight * 0.5f * 0.1f, 0.0f);
+            //envelope.transform.localPosition = new Vector3(0.0f, (maxDocumentHeight * 0.5f * 0.1f) + 0.05f, 0.0f);
+            envelope.transform.position = new Vector3(0, 0, 0);
+            envelope.GetComponent<EnvelopeDimension>().GenerateEnvelope();
         }
     }
 }

@@ -20,32 +20,6 @@ namespace SoftwareCity.Rendering
             root.AddChild(new SQDocument());
             root.AddChild(new SQDocument());
 
-            SQPackage p1 = new SQPackage();
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-            p1.AddChild(new SQDocument());
-
-            SQPackage p2 = new SQPackage();
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-            p2.AddChild(new SQDocument());
-
-            root.AddChild(p1);
-            root.AddChild(p2);
 
             softwareCityBuilder.Build(root);
         }
