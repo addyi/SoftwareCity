@@ -5,7 +5,8 @@ using SoftwareCity.Rendering.Utils;
 
 namespace SoftwareCity.Rendering
 {
-    public class SoftwareCityBuilder : MonoBehaviour {
+    public class SoftwareCityBuilder : MonoBehaviour
+    {
 
 
 
@@ -13,12 +14,12 @@ namespace SoftwareCity.Rendering
         /// Border of the packages.
         /// </summary>
         private readonly Vector3 packageBorder = new Vector3(0.2f, 0.0f, 0.2f);
-    
+
         /// <summary>
         /// Save a list with gameobject helpers for generating
         /// </summary>
         private List<GameObject> helperGameObjects = new List<GameObject>();
-    
+
         /// <summary>
         /// Height of a package.
         /// </summary>
@@ -102,7 +103,7 @@ namespace SoftwareCity.Rendering
                 }
 
                 GameObject packageGameObject = ComponentProducer.GeneratePackage();
-                
+
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
                 if (childPackages.Count > 0 && childDocuments.Count > 0)
@@ -267,7 +268,7 @@ namespace SoftwareCity.Rendering
 
             return packages;
         }
-    
+
         /// <summary>
         /// Find displacement factor in x direction to calculate the positions.
         /// </summary>
@@ -302,7 +303,7 @@ namespace SoftwareCity.Rendering
                 return (displacementFactorWidth / 2) + (prevDisplacementFactorWidth / 2) + 0.1f;
             return displacementFactorWidth + 0.1f;
         }
-    
+
         /// <summary>
         /// Find displacement factor in z direction to calculate the positions.
         /// </summary>
@@ -338,7 +339,7 @@ namespace SoftwareCity.Rendering
                 return (displacementFactorDepth * 0.5f) + (prevDisplacementFactorDepth * 0.5f) + 0.1f;
             return displacementFactorDepth + 0.1f;
         }
-    
+
         /// <summary>
         /// Calculate the distance between two points.
         /// </summary>
@@ -380,15 +381,29 @@ namespace SoftwareCity.Rendering
         /// <param name="root"></param>
         private void AddCityToEnvelope(GameObject root)
         {
-            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f + 0.05f, maxDocumentHeight * 0.1f + 0.05f, root.transform.localScale.z * 0.1f + 0.05f);
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f, maxDocumentHeight * 0.1f, root.transform.localScale.z * 0.1f);
 
             root.transform.SetParent(this.gameObject.transform);
             root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.1f, this.gameObject.transform.localScale.y * 0.1f, this.gameObject.transform.localScale.z * 0.1f);
 
-            this.gameObject.transform.localPosition = new Vector3(0.0f, -(maxDocumentHeight * 0.1f), 0.0f);
+            this.gameObject.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
 
             this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().GenerateEnvelope();
+
+            EditEnviroment();
+        }
+
+        /// <summary>
+        /// Set the correct position of the enviroment gameobject in y direction.
+        /// </summary>
+        private void EditEnviroment()
+        {
+            GameObject enviroment = GameObject.FindGameObjectWithTag("Enviroment");
+
+            print("maxDocumentHeight: " + maxDocumentHeight);
+
+            enviroment.transform.localPosition = new Vector3(0.0f, maxDocumentHeight * 0.5f * 0.1f, 0.0f);
         }
     }
 }

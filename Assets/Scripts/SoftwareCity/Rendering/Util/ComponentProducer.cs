@@ -6,7 +6,7 @@ namespace SoftwareCity.Rendering.Utils {
         /// <summary>
         /// IMPLEMENT !!!!!!!
         /// </summary>
-        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 5f, 0.2f);
+        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 1, 0.2f);
 
         /// <summary>
         /// Create a new document gameobject with the specific informations.
