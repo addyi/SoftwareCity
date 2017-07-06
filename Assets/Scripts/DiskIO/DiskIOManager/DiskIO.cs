@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using QAware.DataStorage.DataEntertainment;
 using DiskIO.ReadConfigFile;
 
 namespace DiskIO.DiskIOManager
 {
-    public class DiskIO
+    public class DiskIO<Type>
     {
         private readonly string directoryPath = @"/Users/yacinesghairi/Desktop";
+		private readonly string filePath = @"/Users/yacinesghairi/Desktop/MyStacks/QAware-statics/av-metrics/available.json";
 
 		public DiskIO()
 		{
@@ -19,21 +19,21 @@ namespace DiskIO.DiskIOManager
 
         public List<Metric> GetAvailableMetrics(ConfigFile configFile)
         {
-            return configFile.ReadConfigFile("/Users/yacinesghairi/Desktop/MyStacks/QAware-statics/av-metrics/available.json");
+            return configFile.ReadConfigFile(filePath);
         }
 
-        public ComponentTree GetSavedTree(string fileName)
+        public Type GetSavedTree(string fileName)
         {
             string file = Path.Combine(directoryPath, fileName);
-            DiskIOStream<ComponentTree> dskioStream = new DiskIOStream<ComponentTree>();
+            DiskIOStream<Type> dskioStream = new DiskIOStream<Type>();
             return dskioStream.DeserializeDiskIOItem(file);
 
         }
 
-        public void SetSavedTree(string fileName, ComponentTree componentTree)
+        public void SetSavedTree(string fileName, Type componentTree)
         {
             string file = Path.Combine(directoryPath, fileName);
-            DiskIOStream<ComponentTree> dskioStream = new DiskIOStream<ComponentTree>();
+            DiskIOStream<Type> dskioStream = new DiskIOStream<Type>();
             dskioStream.SerializeDiskIOItem(file, componentTree);
         }
     }
