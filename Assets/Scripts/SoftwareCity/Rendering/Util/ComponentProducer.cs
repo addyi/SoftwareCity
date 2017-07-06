@@ -6,7 +6,7 @@ namespace SoftwareCity.Rendering.Utils {
         /// <summary>
         /// IMPLEMENT !!!!!!!
         /// </summary>
-        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 0.3f, 0.2f);
+        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 5f, 0.2f);
 
         /// <summary>
         /// Create a new document gameobject with the specific informations.
@@ -21,7 +21,10 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.GetComponent<Collider>().enabled = false;
             documentGameObject.GetComponent<Renderer>().enabled = false;
             documentGameObject.transform.localScale = localScaleOfDocument;
-            documentGameObject.transform.position = new Vector3(documentGameObject.transform.position.x, documentGameObject.GetComponent<Renderer>().bounds.size.y / 2, documentGameObject.transform.position.z);
+            documentGameObject.transform.position = new Vector3(
+                documentGameObject.transform.position.x, 
+                documentGameObject.GetComponent<Renderer>().bounds.size.y * 0.5f, 
+                documentGameObject.transform.position.z);
 
             return documentGameObject;
         }

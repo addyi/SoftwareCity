@@ -7,6 +7,8 @@ namespace SoftwareCity.Rendering
 {
     public class SoftwareCityBuilder : MonoBehaviour {
 
+
+
         /// <summary>
         /// Border of the packages.
         /// </summary>
@@ -54,13 +56,7 @@ namespace SoftwareCity.Rendering
 
             DeleteHelperGameObjects(helperGameObjects);
 
-            this.gameObject.transform.parent.localScale = new Vector3(rootGameObject.transform.localScale.x * 0.1f + 0.05f, maxDocumentHeight * 0.1f + 0.05f, rootGameObject.transform.localScale.z * 0.1f + 0.05f);
-
-            rootGameObject.transform.SetParent(this.gameObject.transform);
-            rootGameObject.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x / 10f, this.gameObject.transform.localScale.y / 10f, this.gameObject.transform.localScale.z / 10f);
-
-            this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
+            AddCityToEnvelope(rootGameObject);
         }
 
         /// <summary>
@@ -178,7 +174,7 @@ namespace SoftwareCity.Rendering
 
             float verticalDistance = CalculateDistance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
 
-            packageGameObject.transform.position = (minPosition + maxPosition) / 2f;
+            packageGameObject.transform.position = (minPosition + maxPosition) * 0.5f;
             packageGameObject.transform.position = new Vector3(packageGameObject.transform.position.x, shiftingFactorYDirection * packageLevel, packageGameObject.transform.position.z);
 
             return new Vector3(horizontalDistance, levelHeight, verticalDistance) + packageBorder;
@@ -339,7 +335,7 @@ namespace SoftwareCity.Rendering
             }
 
             if (lastSQType.Equals("package"))
-                return (displacementFactorDepth / 2) + (prevDisplacementFactorDepth / 2) + 0.1f;
+                return (displacementFactorDepth * 0.5f) + (prevDisplacementFactorDepth * 0.5f) + 0.1f;
             return displacementFactorDepth + 0.1f;
         }
     
@@ -376,6 +372,23 @@ namespace SoftwareCity.Rendering
 
                 Destroy(helperGameObject);
             }
+        }
+
+        /// <summary>
+        /// Add the generated city to the Envelope gameobject.
+        /// </summary>
+        /// <param name="root"></param>
+        private void AddCityToEnvelope(GameObject root)
+        {
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f + 0.05f, maxDocumentHeight * 0.1f + 0.05f, root.transform.localScale.z * 0.1f + 0.05f);
+
+            root.transform.SetParent(this.gameObject.transform);
+            root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.1f, this.gameObject.transform.localScale.y * 0.1f, this.gameObject.transform.localScale.z * 0.1f);
+
+            this.gameObject.transform.localPosition = new Vector3(0.0f, -(maxDocumentHeight * 0.1f), 0.0f);
+
+            this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().GenerateEnvelope();
         }
     }
 }

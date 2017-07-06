@@ -35,7 +35,6 @@ namespace SoftwareCity.Envelope.Interaction
         public void OnManipulationStarted(ManipulationEventData eventData)
         {
             InputManager.Instance.AddGlobalListener(this.gameObject);
-            
             ActivateCollider(false);
         }
 
