@@ -20,6 +20,8 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.GetComponent<Renderer>().material.color = Color.red;
             documentGameObject.GetComponent<Collider>().enabled = false;
             documentGameObject.GetComponent<Renderer>().enabled = false;
+            documentGameObject.name = "Document";
+
             documentGameObject.transform.localScale = CalculateDocumentSize();
 
             return documentGameObject;
@@ -46,6 +48,7 @@ namespace SoftwareCity.Rendering.Utils {
             packageGameObject.GetComponent<Information>().SetSQObjectType("package");
             packageGameObject.GetComponent<Collider>().enabled = false;
             packageGameObject.GetComponent<Renderer>().enabled = false;
+            packageGameObject.name = "Package";
 
             return packageGameObject;
         }
@@ -59,6 +62,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject helperGameobject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             helperGameobject.AddComponent<Information>();
             helperGameobject.GetComponent<Information>().SetSQObjectType("package");
+            helperGameobject.name = "Helper";
 
             return helperGameobject;
         }

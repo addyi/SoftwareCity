@@ -80,34 +80,47 @@ namespace SoftwareCity.Rendering
 
                 List<GameObject> childDocuments = FilterDocuments(childs);
                 List<GameObject> childPackages = FilterPackages(childs);
+                /*
                 if (childs.Count > 0)
                 {
                     if (childPackages.Count > 0 && childDocuments.Count > 0)
                     {
-                        CalculateChildPositions(childDocuments);
+                    */
+                if(childPackages.Count > 0 && childDocuments.Count > 0)
+                {
+                    CalculateChildPositions(childDocuments);
 
-                        GameObject helper = ComponentProducer.GenerateHelper();
+                    GameObject helper = ComponentProducer.GenerateHelper();
 
-                        helperGameObjects.Add(helper);
+                    helperGameObjects.Add(helper);
 
-                        helper.transform.localScale = CalculatePackageSize(childDocuments, helper);
-                        SetPackageGameObjectAsParent(helper, childDocuments);
+                    helper.transform.localScale = CalculatePackageSize(childDocuments, helper);
+                    SetPackageGameObjectAsParent(helper, childDocuments);
 
-                        childPackages.Add(helper);
-                        CalculateChildPositions(childPackages);
-                    }
-                    else
-                    {
-                        if (childs.Count > 0)
-                            CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
-                    }
+                    childPackages.Add(helper);
+                    CalculateChildPositions(childPackages);
                 }
+                else
+                {
+                    //if (childs.Count > 0)
+                    CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                }
+
+                //}
+                /*
+                else
+                {
+                    if (childs.Count > 0)
+                        CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                }
+                */
+                //}
 
                 GameObject packageGameObject = ComponentProducer.GeneratePackage();
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
-                if (childPackages.Count > 0 && childDocuments.Count > 0)
+                if (childPackages.Count > 0)
                 {
                     packageGameObject.transform.localScale = CalculatePackageSize(childPackages, packageGameObject);
                     SetPackageGameObjectAsParent(packageGameObject, childPackages);
@@ -310,7 +323,7 @@ namespace SoftwareCity.Rendering
                 else
                 {
                     if (childSize.z >= prevDisplacementFactorWidth)
-                        prevDisplacementFactorWidth = childSize.z;
+                        prevDisplacementFactorWidth = childSize.x;
                 }
             }
 
