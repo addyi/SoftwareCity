@@ -28,7 +28,7 @@ public class ButtonFunctions : MonoBehaviour
         const string projectKey = "geo-quiz-app";
 
         // TODO ADDYI REMOVE DEBUG LOGS
-        StartCoroutine(WebInterface.FuckingUnityRequest<Auth>(
+        StartCoroutine(WebInterface.WebRequest<Auth>(
             new SqAuthValidationUriBuilder(baseUri, username, pw).GetSqUri(),
             (res, err) =>
             {
@@ -44,7 +44,7 @@ public class ButtonFunctions : MonoBehaviour
                 }
             }));
 
-        StartCoroutine(WebInterface.FuckingUnityRequest<List<SQProject>>(
+        StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
            new SqProjectUriBuilder(baseUri).UserCredentials(username, pw).GetSqUri(),
            (res, err) =>
            {
@@ -63,7 +63,7 @@ public class ButtonFunctions : MonoBehaviour
                }
            }));
 
-        StartCoroutine(WebInterface.FuckingUnityRequest<ComponentTree>(
+        StartCoroutine(WebInterface.WebRequest<ComponentTree>(
            new SqComponentTreeUriBuilder(baseUri, projectKey, metricKeys)
                 .UserCredentials(username, pw).GetSqUri(),
            (System.Action<ComponentTree, long>)((res, err) =>

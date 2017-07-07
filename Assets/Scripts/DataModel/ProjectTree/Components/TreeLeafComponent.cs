@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
     abstract class TreeLeafComponent : TreeComponent
     {
         public string Language;
+
+        protected TreeLeafComponent(Component component):base(component)
+        {
+            Language = component.language;            
+        }
 
         public override TreeComponent InsertComponentAt(string[] path, TreeComponent component)
         {

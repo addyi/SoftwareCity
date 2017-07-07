@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataModel.Metrics;
+using Webservice.Response.ComponentTree;
+
 
 namespace DataModel.ProjectTree.Components
 {
@@ -13,10 +16,57 @@ namespace DataModel.ProjectTree.Components
         public string Name;
         public string Path;
         public SqQualifier Qualifier;
-        // TODO ADDYI  public List<Metric> Metrics;
+        public List<TreeMetric> Metrics = new List<TreeMetric>();
+
+        protected TreeComponent(Component component)
+        {
+            ID = component.id;
+            Key = component.key;
+            Name = component.name.Split('/').Last();
+            Path = component.path;
+            Qualifier = QualifierForString(component.qualifier);
+            Metrics = TransformToTreeMetrics(component.measures);
+        }
+
+        protected TreeComponent(string Name)
+        {
+            this.Name = Name;
+        }
 
         public abstract TreeComponent InsertComponentAt(string[] path, TreeComponent component);
-        public abstract TreeComponent UpdateComponent(TreeComponent component);
+
+        public virtual TreeComponent UpdateComponent(TreeComponent component)
+        {
+            if (component != null && Name == component.Name)
+            {
+                ID = component.ID;
+                Key = component.Key;
+                Name = component.Name;
+                Path = component.Path;
+                Qualifier = component.Qualifier;
+                Metrics = component.Metrics;
+                return this;
+            }
+            return null;
+        }
+
+        protected List<TreeMetric> TransformToTreeMetrics(List<Measure> measures)
+        {
+            List<TreeMetric> m = new List<TreeMetric>();
+            foreach (Measure measure in measures)
+            {
+                try
+                {
+                    double d = Convert.ToDouble(measure.value);
+                    m.Add(new TreeMetric(measure.metric, d));
+                }
+                catch (Exception e)
+                {
+                    ;
+                }
+            }
+            return m;
+        }
 
         public override bool Equals(object obj)
         {
@@ -59,7 +109,12 @@ namespace DataModel.ProjectTree.Components
 
         public override string ToString()
         {
-            return Name + "\n\t" + Path;
+            string res= Name + "\n\t" + Path + "\n\t";
+            foreach(TreeMetric tm in Metrics)
+            {
+                res += tm.ToString();
+            }
+            return res;
         }
 
         private int CompareQualifier(SqQualifier Qualifier)

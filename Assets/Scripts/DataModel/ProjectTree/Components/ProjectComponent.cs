@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
@@ -9,13 +10,9 @@ namespace DataModel.ProjectTree.Components
         {
             if (component.qualifier == "TRK")
             {
-                this.ID = component.id;
-                this.Key = component.key;
-                this.Name = component.name;
-                this.Qualifier = SqQualifier.PROJECT;
+                Qualifier = SqQualifier.PROJECT;
                 // path ist IMMER "" (empty)
-                this.Path = "";
-                // TODO ADDYI  this.Metrics = component.measures;
+                Path = "";
             }
             else
             {
@@ -23,7 +20,15 @@ namespace DataModel.ProjectTree.Components
             }
         }
 
-
+        public override TreeComponent UpdateComponent(TreeComponent component)
+        {
+            if (component != null && component is ProjectComponent && Name == component.Name)
+            {
+                base.UpdateComponent(component);
+                return this;
+            }
+            return null;
+        }
 
     }
 }

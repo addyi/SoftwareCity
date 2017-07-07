@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataModel.ProjectTree.Components;
+using DataModel.ProjectTree;
 using Webservice.Response.ComponentTree;
 
 namespace DataModel
@@ -11,27 +12,23 @@ namespace DataModel
     {
         private ProjectComponent project;
 
-
-        public void BuildProjectTree(Component baseComponent,
+        public ProjectComponent BuildProjectTree(Component baseComponent,
             List<Component> components)
         {
             if (baseComponent == null || components == null)
-                return;
+                return null;
 
             project = new ProjectComponent(baseComponent);
-           
+
             foreach (Component c in components)
             {
                 string[] s = c.path.Split('/');
-               project.InsertComponentAt(s, GetTreeComponent(c));
+                project.InsertComponentAt(s, GetTreeComponent(c));
             }
-
-        }
-
-        public ProjectComponent GetTree()
-        {
             return project;
         }
+
+        public ProjectComponent GetTree() { return project; }
 
         private TreeComponent GetTreeComponent(Component component)
         {

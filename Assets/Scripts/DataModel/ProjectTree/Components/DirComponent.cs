@@ -10,20 +10,15 @@ namespace DataModel.ProjectTree.Components
     {
         public readonly List<TreeComponent> components = new List<TreeComponent>();
 
-        public DirComponent(Component component)
+        public DirComponent(Component component) : base(component)
         {
-            ID = component.id;
-            Key = component.key;
-            Name = component.name.Split('/').Last();
-            Path = component.path;
-            Qualifier = QualifierForString(component.qualifier);
-            // TODO ADDYI  this.Metrics = component.measures;
+            if (Qualifier != SqQualifier.DIRECTORY
+                && Qualifier != SqQualifier.PROJECT
+                && Qualifier != SqQualifier.SUB_PROJECT)
+                throw new ArgumentException("Illegal Argument for Qualifier: \"" + component.qualifier + "\"");
         }
 
-        private DirComponent(string dirName)
-        {
-            Name = dirName;
-        }
+        private DirComponent(string dirName) : base(dirName) { }
 
         public override TreeComponent InsertComponentAt(string[] path, TreeComponent component)
         {
@@ -65,15 +60,9 @@ namespace DataModel.ProjectTree.Components
 
         public override TreeComponent UpdateComponent(TreeComponent component)
         {
-            if (component is DirComponent && this.Name == component.Name)
+            if (component != null && component is DirComponent && Name == component.Name)
             {
-                DirComponent d = (DirComponent)component;
-                ID = d.ID;
-                Key = d.Key;
-                Name = d.Name.Split('/').Last();
-                Path = d.Path;
-                Qualifier = d.Qualifier;
-                // TODO ADDYI  this.Metrics = d.Metrics;
+                base.UpdateComponent(component);
                 return this;
             }
             return null;

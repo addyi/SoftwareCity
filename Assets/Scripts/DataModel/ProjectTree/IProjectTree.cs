@@ -6,11 +6,11 @@ using Webservice.Response.ComponentTree;
 using DataModel.ProjectTree;
 using DataModel.ProjectTree.Components;
 
-namespace DataModel
+namespace DataModel.ProjectTree
 {
     interface IProjectTree
     {
-        void BuildProjectTree(Component baseComponent, List<Component> components);
+        ProjectComponent BuildProjectTree(Component baseComponent, List<Component> components);
         // ProjectMetrics GetProjectMetrics();
          ProjectComponent GetTree();
         // TODO ADDYI weitere project methodes
