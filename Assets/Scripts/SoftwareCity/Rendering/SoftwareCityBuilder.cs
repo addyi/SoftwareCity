@@ -8,9 +8,6 @@ namespace SoftwareCity.Rendering
 {
     public class SoftwareCityBuilder : MonoBehaviour
     {
-
-
-
         /// <summary>
         /// Border of the packages.
         /// </summary>
@@ -43,6 +40,8 @@ namespace SoftwareCity.Rendering
 
         private PackageColorizer packageColorizer;
 
+        private ComponentProducer componentProducer;
+
         /// <summary>
         /// Method to build a new software city.
         /// </summary>
@@ -53,6 +52,7 @@ namespace SoftwareCity.Rendering
             maxDocumentHeight = 0.0f;
 
             packageColorizer = GetComponent<PackageColorizer>();
+            componentProducer = GetComponent<ComponentProducer>();
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
@@ -80,17 +80,12 @@ namespace SoftwareCity.Rendering
 
                 List<GameObject> childDocuments = FilterDocuments(childs);
                 List<GameObject> childPackages = FilterPackages(childs);
-                /*
-                if (childs.Count > 0)
-                {
-                    if (childPackages.Count > 0 && childDocuments.Count > 0)
-                    {
-                    */
+                
                 if(childPackages.Count > 0 && childDocuments.Count > 0)
                 {
                     CalculateChildPositions(childDocuments);
 
-                    GameObject helper = ComponentProducer.GenerateHelper();
+                    GameObject helper = componentProducer.GenerateHelper();
 
                     helperGameObjects.Add(helper);
 
@@ -102,21 +97,10 @@ namespace SoftwareCity.Rendering
                 }
                 else
                 {
-                    //if (childs.Count > 0)
                     CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
                 }
 
-                //}
-                /*
-                else
-                {
-                    if (childs.Count > 0)
-                        CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
-                }
-                */
-                //}
-
-                GameObject packageGameObject = ComponentProducer.GeneratePackage();
+                GameObject packageGameObject = componentProducer.GeneratePackage();
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -131,16 +115,14 @@ namespace SoftwareCity.Rendering
                     SetPackageGameObjectAsParent(packageGameObject, childs);
                 }
 
-                SetDocumentYPosition(FilterDocuments(childs));
-
                 return packageGameObject;
             }
             else
             {
-                GameObject documentGameObject = ComponentProducer.GenerateDocument();
+                GameObject documentGameObject = componentProducer.GenerateDocument();
 
-                if (documentGameObject.GetComponent<Renderer>().bounds.size.y > maxDocumentHeight)
-                    maxDocumentHeight = documentGameObject.GetComponent<Renderer>().bounds.size.y;
+                if (documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y > maxDocumentHeight)
+                    maxDocumentHeight = documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y;
 
                 return documentGameObject;
             }
@@ -184,7 +166,7 @@ namespace SoftwareCity.Rendering
 
             foreach (GameObject child in childs)
             {
-                Bounds childBounds = child.GetComponent<Renderer>().bounds;
+                Bounds childBounds = child.GetComponentInChildren<Renderer>().bounds;
 
                 if (minPosition.x > childBounds.min.x)
                     minPosition.x = childBounds.min.x;
@@ -312,7 +294,7 @@ namespace SoftwareCity.Rendering
 
             foreach (GameObject child in childs)
             {
-                childSize = child.GetComponent<Renderer>().bounds.size;
+                childSize = child.GetComponentInChildren<Renderer>().bounds.size;
 
                 if (childSize.x >= displacementFactorWidth)
                 {
@@ -348,7 +330,7 @@ namespace SoftwareCity.Rendering
 
             foreach (GameObject child in childs)
             {
-                childSize = child.GetComponent<Renderer>().bounds.size;
+                childSize = child.GetComponentInChildren<Renderer>().bounds.size;
 
                 if (childSize.z >= displacementFactorDepth)
                 {

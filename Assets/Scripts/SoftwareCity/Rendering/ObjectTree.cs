@@ -77,8 +77,24 @@ namespace SoftwareCity.Rendering
             p5.AddChild(new SQDocument());
             p5.AddChild(new SQDocument());
 
+            SQPackage p6 = new SQPackage();
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+            p6.AddChild(new SQDocument());
+
             root.AddChild(p1);
             p1.AddChild(p2);
+            p1.AddChild(p6);
             p2.AddChild(p3);
             p3.AddChild(p4);
             p4.AddChild(p5);
