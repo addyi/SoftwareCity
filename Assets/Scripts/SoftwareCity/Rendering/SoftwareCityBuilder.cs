@@ -118,6 +118,8 @@ namespace SoftwareCity.Rendering
                     SetPackageGameObjectAsParent(packageGameObject, childs);
                 }
 
+                SetDocumentYPosition(FilterDocuments(childs));
+
                 return packageGameObject;
             }
             else
@@ -128,6 +130,18 @@ namespace SoftwareCity.Rendering
                     maxDocumentHeight = documentGameObject.GetComponent<Renderer>().bounds.size.y;
 
                 return documentGameObject;
+            }
+        }
+
+        /// <summary>
+        /// Set the correct local position of the specific space in y direction.
+        /// </summary>
+        /// <param name="childsDocuments"></param>
+        private void SetDocumentYPosition(List<GameObject> childsDocuments)
+        {
+            foreach(GameObject childDocument in childsDocuments)
+            {
+                childDocument.transform.localPosition = new Vector3(childDocument.transform.localPosition.x, childDocument.transform.localScale.y / 2, childDocument.transform.localPosition.z);
             }
         }
 

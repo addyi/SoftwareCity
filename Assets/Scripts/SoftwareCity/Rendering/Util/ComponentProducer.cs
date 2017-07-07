@@ -6,7 +6,7 @@ namespace SoftwareCity.Rendering.Utils {
         /// <summary>
         /// IMPLEMENT !!!!!!!
         /// </summary>
-        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 2f, 0.2f);
+        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 1f, 0.2f);
 
         /// <summary>
         /// Create a new document gameobject with the specific informations.
@@ -20,13 +20,19 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.GetComponent<Renderer>().material.color = Color.red;
             documentGameObject.GetComponent<Collider>().enabled = false;
             documentGameObject.GetComponent<Renderer>().enabled = false;
-            documentGameObject.transform.localScale = localScaleOfDocument;
-            documentGameObject.transform.position = new Vector3(
-                documentGameObject.transform.position.x, 
-                documentGameObject.GetComponent<Renderer>().bounds.size.y * 0.5f, 
-                documentGameObject.transform.position.z);
+            documentGameObject.transform.localScale = CalculateDocumentSize();
 
             return documentGameObject;
+        }
+        
+        /// <summary>
+        /// Calculate the specific size depend on the the metric.
+        /// </summary>
+        /// <returns></returns>
+        private static Vector3 CalculateDocumentSize()
+        {
+            float widthHeight = Random.Range(0.1f, 1.0f);
+            return new Vector3(widthHeight, Random.Range(0.1f, 2.0f), widthHeight);
         }
 
         /// <summary>
