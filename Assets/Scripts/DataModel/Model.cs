@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using DataModel.ProjectTree.Components;
 using DataModel.ProjectTree;
 using Webservice.Response.ComponentTree;
+using DataModel.Metrics;
 
 namespace DataModel
 {
     public enum SqQualifier { SUB_PROJECT, DIRECTORY, FILE, PROJECT, UNIT_TEST }
 
-    class Model : IProjectTree
+    class Model : IProjectTree, IAvailableMetrics
     {
         private ProjectComponent project;
 
