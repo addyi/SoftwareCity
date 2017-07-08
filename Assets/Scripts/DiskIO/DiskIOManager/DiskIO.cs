@@ -1,18 +1,11 @@
-﻿﻿using System.Collections.Generic;
-using System.IO;
-using DiskIO.ReadConfigFile;
+﻿using System.IO;
 
 namespace DiskIO.DiskIOManager
 {
     public class DiskIO<Type>
     {
-        public readonly string directoryPath = @"/hololens/directory/path/where/componentTree/should-be-saved "; 
+        public readonly string directoryPath = @"/hololens/directory/path/where/componentTree/should-be-saved ";
         public readonly string filePath = @"/file/path/where/componentTree/should-be-saved";
-
-        public List<Metric> GetAvailableMetrics(ConfigFile configFile)
-        {
-            return configFile.ReadConfigFile(filePath);
-        }
 
         public Type GetSavedTree(string fileName)
         {
