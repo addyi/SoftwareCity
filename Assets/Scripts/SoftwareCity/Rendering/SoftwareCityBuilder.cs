@@ -97,7 +97,8 @@ namespace SoftwareCity.Rendering
                 }
                 else
                 {
-                    CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                    if(childDocuments.Count > 0)
+                        CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();
