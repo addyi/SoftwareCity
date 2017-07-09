@@ -84,7 +84,8 @@ namespace SoftwareCity.Rendering
                 
                 if(childPackages.Count > 0 && childDocuments.Count > 0)
                 {
-                    ComponentLayout.CalculateChildPositions(childDocuments);
+                    //ComponentLayout.Helix(childDocuments);
+                    ComponentLayout.Corner(childDocuments);
 
                     GameObject helper = componentProducer.GenerateHelper();
 
@@ -94,12 +95,13 @@ namespace SoftwareCity.Rendering
                     SetPackageGameObjectAsParent(helper, childDocuments);
 
                     childPackages.Add(helper);
-                    ComponentLayout.CalculateChildPositions(childPackages);
+                    ComponentLayout.Helix(childPackages);
                 }
                 else
                 {
                     if(childDocuments.Count > 0)
-                        ComponentLayout.CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                        ComponentLayout.Corner(childDocuments);
+                    //ComponentLayout.Helix(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();

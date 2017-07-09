@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,10 @@ namespace SoftwareCity.Rendering.Utils
     {
 
         /// <summary>
-        /// Calculate the positions of the child gameobjects.
+        /// Calculate the positions of the child gameobjects in a helix.
         /// </summary>
         /// <param name="childs"></param>
-        public static void CalculateChildPositions(List<GameObject> childs)
+        public static void Helix(List<GameObject> childs)
         {
             int sign = 1;
             int sequenceNumber = 0;
@@ -63,6 +64,33 @@ namespace SoftwareCity.Rendering.Utils
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Calculate the positions of the child gameobjects in a corner.
+        /// </summary>
+        /// <param name="childs"></param>
+        public static void Corner(List<GameObject> childs)
+        {
+            childs = DocumentSorter.SortingByHeightDesc(childs);
+
+            float displacementFactorWidth = FindOutDisplacementFactorWidth(childs);
+            float displacementFactorDepth = FindOutDisplacementFactorDepth(childs);
+
+            int indexList = 0;
+            int i = 0;
+
+            while(indexList < childs.Count)
+            {
+                int x = i;
+
+                for(int y = 0; y >= -i && indexList < childs.Count; y--, x--, indexList++)
+                {
+                    childs[indexList].transform.position = new Vector3(x * displacementFactorWidth, 0.0f, y * displacementFactorDepth);
+                }
+                i++;
+            }
+
         }
 
         /// <summary>
