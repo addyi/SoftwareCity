@@ -2,7 +2,6 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
-using SoftwareCity.Envelope.Interaction;
 
 namespace SoftwareCity.Rendering
 {
@@ -203,6 +202,8 @@ namespace SoftwareCity.Rendering
 
             float displacementFactorWidth = FindOutDisplacementFactorWidth(childs);
             float displacementFactorDepth = FindOutDisplacementFactorDepth(childs);
+
+            childs = DocumentSorter.SortingByHeightDesc(childs);
 
             GameObject prevGameObject = childs[0];
 
