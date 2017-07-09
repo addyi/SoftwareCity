@@ -2,6 +2,8 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
+using SoftwareCity.Envelope.Interaction;
+using System.Linq;
 
 namespace SoftwareCity.Rendering
 {
@@ -77,12 +79,12 @@ namespace SoftwareCity.Rendering
                     childs.Add(TraverseTree(child, packageLevel + 1));
                 }
 
-                List<GameObject> childDocuments = FilterDocuments(childs);
-                List<GameObject> childPackages = FilterPackages(childs);
+                List<GameObject> childDocuments = ComponentFilter.FilterDocuments(childs);
+                List<GameObject> childPackages = ComponentFilter.FilterPackages(childs);
                 
                 if(childPackages.Count > 0 && childDocuments.Count > 0)
                 {
-                    CalculateChildPositions(childDocuments);
+                    ComponentLayout.CalculateChildPositions(childDocuments);
 
                     GameObject helper = componentProducer.GenerateHelper();
 
@@ -92,12 +94,12 @@ namespace SoftwareCity.Rendering
                     SetPackageGameObjectAsParent(helper, childDocuments);
 
                     childPackages.Add(helper);
-                    CalculateChildPositions(childPackages);
+                    ComponentLayout.CalculateChildPositions(childPackages);
                 }
                 else
                 {
                     if(childDocuments.Count > 0)
-                        CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                        ComponentLayout.CalculateChildPositions(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();
@@ -180,9 +182,9 @@ namespace SoftwareCity.Rendering
                 if (maxPosition.z < childBounds.max.z)
                     maxPosition.z = childBounds.max.z;
             }
-
+            //float horizontalDistance = Vector3.Distance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
             float horizontalDistance = CalculateDistance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
-
+            //float verticalDistance = Vector3.Distance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
             float verticalDistance = CalculateDistance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
 
             packageGameObject.transform.position = (minPosition + maxPosition) * 0.5f;
@@ -190,7 +192,7 @@ namespace SoftwareCity.Rendering
 
             return new Vector3(horizontalDistance, levelHeight, verticalDistance) + packageBorder;
         }
-
+        /*
         /// <summary>
         /// Calculate the positions of the child gameobjects.
         /// </summary>
@@ -246,7 +248,8 @@ namespace SoftwareCity.Rendering
                 }
             }
         }
-
+        */
+        /*
         /// <summary>
         /// Get all documents from childs.
         /// </summary>
@@ -280,7 +283,8 @@ namespace SoftwareCity.Rendering
 
             return packages;
         }
-
+        */
+        /*
         /// <summary>
         /// Find displacement factor in x direction to calculate the positions.
         /// </summary>
@@ -351,7 +355,7 @@ namespace SoftwareCity.Rendering
                 return (displacementFactorDepth * 0.5f) + (prevDisplacementFactorDepth * 0.5f) + 0.1f;
             return displacementFactorDepth + 0.1f;
         }
-
+        */
         /// <summary>
         /// Calculate the distance between two points.
         /// </summary>
