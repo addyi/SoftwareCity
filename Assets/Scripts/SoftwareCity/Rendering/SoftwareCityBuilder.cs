@@ -2,8 +2,6 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
-using SoftwareCity.Envelope.Interaction;
-using System.Linq;
 
 namespace SoftwareCity.Rendering
 {
@@ -39,8 +37,14 @@ namespace SoftwareCity.Rendering
         /// </summary>
         private float maxDocumentHeight;
 
+        /// <summary>
+        /// Save the PackageColorizer reference.
+        /// </summary>
         private PackageColorizer packageColorizer;
 
+        /// <summary>
+        /// Save the ComponentProducer reference.
+        /// </summary>
         private ComponentProducer componentProducer;
 
         /// <summary>
@@ -184,189 +188,14 @@ namespace SoftwareCity.Rendering
                 if (maxPosition.z < childBounds.max.z)
                     maxPosition.z = childBounds.max.z;
             }
-            //float horizontalDistance = Vector3.Distance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
-            float horizontalDistance = CalculateDistance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
-            //float verticalDistance = Vector3.Distance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
-            float verticalDistance = CalculateDistance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
+            float horizontalDistance = Vector3.Distance(new Vector3(minPosition.x, 0.0f, 0.0f), new Vector3(maxPosition.x, 0.0f, 0.0f));
+
+            float verticalDistance = Vector3.Distance(new Vector3(0.0f, 0.0f, minPosition.z), new Vector3(0.0f, 0.0f, maxPosition.z));
 
             packageGameObject.transform.position = (minPosition + maxPosition) * 0.5f;
             packageGameObject.transform.position = new Vector3(packageGameObject.transform.position.x, shiftingFactorYDirection * packageLevel, packageGameObject.transform.position.z);
 
             return new Vector3(horizontalDistance, levelHeight, verticalDistance) + packageBorder;
-        }
-        /*
-        /// <summary>
-        /// Calculate the positions of the child gameobjects.
-        /// </summary>
-        /// <param name="childs"></param>
-        private void CalculateChildPositions(List<GameObject> childs)
-        {
-            int sign = 1;
-            int sequenceNumber = 0;
-
-            float displacementFactorWidth = FindOutDisplacementFactorWidth(childs);
-            float displacementFactorDepth = FindOutDisplacementFactorDepth(childs);
-
-            childs = DocumentSorter.SortingByHeightDesc(childs);
-
-            GameObject prevGameObject = childs[0];
-
-            if (prevGameObject.GetComponent<Information>().GetSQObjectType().Equals("document"))
-                prevGameObject.transform.position = new Vector3(0.0f, prevGameObject.transform.position.y, 0.0f);
-            else
-                prevGameObject.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-
-            int childIndex = 1;
-            for (int listIndex = 0; childIndex < childs.Count; listIndex++)
-            {
-                if ((listIndex + 1) % 2 == 0)
-                {
-                    sign = -sign;
-                }
-                else
-                {
-                    sequenceNumber++;
-                }
-
-                for (int loopIndexSeqNumber = 0; loopIndexSeqNumber < sequenceNumber; loopIndexSeqNumber++)
-                {
-                    if (childIndex < childs.Count)
-                    {
-                        if (listIndex % 2 == 0)
-                        {
-                            childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(sign * displacementFactorWidth, 0.0f, 0.0f);
-                        }
-                        else
-                        {
-                            childs[childIndex].transform.position = prevGameObject.transform.position + new Vector3(0.0f, 0.0f, sign * displacementFactorDepth);
-                        }
-                        prevGameObject = childs[childIndex];
-                        childIndex++;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-        */
-        /*
-        /// <summary>
-        /// Get all documents from childs.
-        /// </summary>
-        /// <param name="childs"></param>
-        /// <returns></returns>
-        private List<GameObject> FilterDocuments(List<GameObject> childs)
-        {
-            List<GameObject> documents = new List<GameObject>();
-            foreach (GameObject child in childs)
-            {
-                if (child.GetComponent<Information>().GetSQObjectType().Equals("document"))
-                    documents.Add(child);
-            }
-
-            return documents;
-        }
-
-        /// <summary>
-        /// Get all packages from childs.
-        /// </summary>
-        /// <param name="childs"></param>
-        /// <returns></returns>
-        private List<GameObject> FilterPackages(List<GameObject> childs)
-        {
-            List<GameObject> packages = new List<GameObject>();
-            foreach (GameObject child in childs)
-            {
-                if (child.GetComponent<Information>().GetSQObjectType().Equals("package"))
-                    packages.Add(child);
-            }
-
-            return packages;
-        }
-        */
-        /*
-        /// <summary>
-        /// Find displacement factor in x direction to calculate the positions.
-        /// </summary>
-        /// <param name="childs"></param>
-        /// <returns></returns>
-        private float FindOutDisplacementFactorWidth(List<GameObject> childs)
-        {
-            float displacementFactorWidth = 0.0f;
-            float prevDisplacementFactorWidth = 0.0f;
-            Vector3 childSize;
-
-            string lastSQType = "";
-
-            foreach (GameObject child in childs)
-            {
-                childSize = child.GetComponentInChildren<Renderer>().bounds.size;
-
-                if (childSize.x >= displacementFactorWidth)
-                {
-                    lastSQType = child.GetComponent<Information>().GetSQObjectType();
-                    prevDisplacementFactorWidth = displacementFactorWidth;
-                    displacementFactorWidth = childSize.x;
-                }
-                else
-                {
-                    if (childSize.z >= prevDisplacementFactorWidth)
-                        prevDisplacementFactorWidth = childSize.x;
-                }
-            }
-
-            if (lastSQType.Equals("package"))
-                return (displacementFactorWidth / 2) + (prevDisplacementFactorWidth / 2) + 0.1f;
-            return displacementFactorWidth + 0.1f;
-        }
-
-        /// <summary>
-        /// Find displacement factor in z direction to calculate the positions.
-        /// </summary>
-        /// <param name="childs"></param>
-        /// <returns></returns>
-        private float FindOutDisplacementFactorDepth(List<GameObject> childs)
-        {
-            float displacementFactorDepth = 0.0f;
-            float prevDisplacementFactorDepth = 0.0f;
-
-            Vector3 childSize;
-
-            string lastSQType = "";
-
-            foreach (GameObject child in childs)
-            {
-                childSize = child.GetComponentInChildren<Renderer>().bounds.size;
-
-                if (childSize.z >= displacementFactorDepth)
-                {
-                    lastSQType = child.GetComponent<Information>().GetSQObjectType();
-                    prevDisplacementFactorDepth = displacementFactorDepth;
-                    displacementFactorDepth = childSize.z;
-                }
-                else
-                {
-                    if (childSize.z >= prevDisplacementFactorDepth)
-                        prevDisplacementFactorDepth = childSize.z;
-                }
-            }
-
-            if (lastSQType.Equals("package"))
-                return (displacementFactorDepth * 0.5f) + (prevDisplacementFactorDepth * 0.5f) + 0.1f;
-            return displacementFactorDepth + 0.1f;
-        }
-        */
-        /// <summary>
-        /// Calculate the distance between two points.
-        /// </summary>
-        /// <param name="startPoint"></param>
-        /// <param name="endPoint"></param>
-        /// <returns></returns>
-        private float CalculateDistance(Vector3 startPoint, Vector3 endPoint)
-        {
-            return Vector3.Distance(startPoint, endPoint);
         }
 
         /// <summary>
@@ -399,11 +228,11 @@ namespace SoftwareCity.Rendering
         /// <param name="root"></param>
         private void AddCityToEnvelope(GameObject root)
         {
-            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.1f, (maxDocumentHeight + 0.1f) * 0.1f, root.transform.localScale.z * 0.1f);
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.05f, (maxDocumentHeight + 0.1f) * 0.05f, root.transform.localScale.z * 0.05f);
 
             root.transform.SetParent(this.gameObject.transform);
             root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.1f, this.gameObject.transform.localScale.y * 0.1f, this.gameObject.transform.localScale.z * 0.1f);
+            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.05f, this.gameObject.transform.localScale.y * 0.05f, this.gameObject.transform.localScale.z * 0.05f);
 
             this.gameObject.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
 
@@ -417,11 +246,15 @@ namespace SoftwareCity.Rendering
         {
             GameObject envelope = GameObject.FindGameObjectWithTag("Envelope");
 
-            print("maxDocumentHeight: " + maxDocumentHeight);
-
             //envelope.transform.localPosition = new Vector3(0.0f, (maxDocumentHeight * 0.5f * 0.1f) + 0.05f, 0.0f);
+
             envelope.transform.position = new Vector3(0, 0, 0);
             envelope.GetComponent<EnvelopeDimension>().GenerateEnvelope();
+        }
+
+        public float GetHeight()
+        {
+            return maxDocumentHeight;
         }
     }
 }
