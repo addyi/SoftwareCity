@@ -4,7 +4,7 @@ using System;
 namespace Webservice.Response.ComponentTree
 {
     [Serializable]
-    public class Component : IComparable
+    public class SqComponent : IComparable
     {
         public string id;
         public string key;
@@ -18,10 +18,10 @@ namespace Webservice.Response.ComponentTree
         {
             if (obj == null)
                 throw new ArgumentException("Illegal Argument: null Objecto");
-            if (!(obj is Component))
+            if (!(obj is SqComponent))
                 throw new ArgumentException("Illegal Argument: obj isn't a Component");
 
-            Component other = (Component)obj;
+            SqComponent other = (SqComponent)obj;
 
             int qualifierComparison = CompareQualifier(other.qualifier);
             if (qualifierComparison != 0)

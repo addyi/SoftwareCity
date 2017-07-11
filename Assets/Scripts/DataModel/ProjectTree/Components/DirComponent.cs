@@ -10,7 +10,7 @@ namespace DataModel.ProjectTree.Components
     {
         public readonly List<TreeComponent> components = new List<TreeComponent>();
 
-        public DirComponent(Component component) : base(component)
+        public DirComponent(SqComponent component) : base(component)
         {
             if (Qualifier != SqQualifier.DIRECTORY
                 && Qualifier != SqQualifier.PROJECT

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DataModel.Metrics;
 using Webservice.Response.ComponentTree;
-
+using UnityEngine;
 
 namespace DataModel.ProjectTree.Components
 {
@@ -18,7 +18,7 @@ namespace DataModel.ProjectTree.Components
         public SqQualifier Qualifier;
         public List<TreeMetric> Metrics = new List<TreeMetric>();
 
-        protected TreeComponent(Component component)
+        protected TreeComponent(SqComponent component)
         {
             ID = component.id;
             Key = component.key;
@@ -62,7 +62,7 @@ namespace DataModel.ProjectTree.Components
                 }
                 catch (Exception e)
                 {
-                    ;
+                    Debug.Log(e.Message);
                 }
             }
             return m;
