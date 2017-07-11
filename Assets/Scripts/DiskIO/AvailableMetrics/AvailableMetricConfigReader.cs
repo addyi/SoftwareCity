@@ -6,10 +6,22 @@ using UnityEngine.Windows;
 
 namespace DiskIO.AvailableMetrics
 {
+    /// <summary>
+    /// Static class for reading predefined metrics from JSON file.
+    /// These metrics are requested by the WebInterface as selectable to the user.
+    /// </summary>
     public static class AvailableMetricConfigReader
     {
-        public static readonly string ConfigFilePath = Application.dataPath + "/Scripts/DiskIO/AvailableMetrics/availablemetricsConf.json";
+        /// <summary>
+        /// Path to JSON file with availabe metrics.
+        /// </summary>
+        private static readonly string ConfigFilePath = Application.dataPath + "/Storage/availablemetricsConf.json";
 
+        /// <summary>
+        /// Reading predefined metrics that are requested by the WebInterface to SonarQube.
+        /// These metrics are selectable to the user to show the City.
+        /// </summary>
+        /// <returns>List of predefined metrics</returns>
         public static List<Metric> ReadConfigFile()
         {
             byte[] data = File.ReadAllBytes(ConfigFilePath);
