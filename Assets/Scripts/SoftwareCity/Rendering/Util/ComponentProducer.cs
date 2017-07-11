@@ -25,8 +25,8 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject documentGameObject = Instantiate(documentPrefab) as GameObject;
             documentGameObject.AddComponent<Information>();
             documentGameObject.GetComponent<Information>().SetSQObjectType("document");
-            documentGameObject.GetComponentInChildren<Renderer>().material = contentMaterial;
-            documentGameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+            documentGameObject.GetComponentInChildren<Renderer>().sharedMaterial = contentMaterial;
+            documentGameObject.GetComponentInChildren<Renderer>().sharedMaterial.color = Color.red;
             documentGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             documentGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
             documentGameObject.GetComponentInChildren<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
@@ -75,7 +75,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             packageGameObject.AddComponent<Information>();
             packageGameObject.GetComponent<Information>().SetSQObjectType("package");
-            packageGameObject.GetComponentInChildren<Renderer>().material = contentMaterial;
+            packageGameObject.GetComponentInChildren<Renderer>().sharedMaterial = contentMaterial;
             packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             packageGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
             packageGameObject.GetComponentInChildren<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
