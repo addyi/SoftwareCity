@@ -7,7 +7,6 @@ using Webservice.Response.ComponentTree;
 using System.Collections.Generic;
 using DataModel;
 using DataModel.ProjectTree;
-using DiskIO.AvailableMetrics;
 
 
 //calls to generate a test enviroment
@@ -91,13 +90,6 @@ public class ButtonFunctions : MonoBehaviour
                }
 
            })));
-
-        List<Metric> metrics = AvailableMetricConfigReader.ReadConfigFile();
-        foreach (Metric m in metrics)
-        {
-            Debug.Log(string.Format("Metric {0}, {1}, {2}, {3}", m.name, m.key, m.defaultvalue, m.datatype));
-        }
-
     }
 
     public void CreateEnvironment()

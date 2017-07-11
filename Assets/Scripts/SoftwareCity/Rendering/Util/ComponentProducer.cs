@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace SoftwareCity.Rendering.Utils {
     public class ComponentProducer : MonoBehaviour {
@@ -22,6 +23,10 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.AddComponent<Information>();
             documentGameObject.GetComponent<Information>().SetSQObjectType("document");
             documentGameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+            documentGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            documentGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
+            documentGameObject.GetComponentInChildren<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
+            documentGameObject.GetComponentInChildren<Renderer>().receiveShadows = false;
             documentGameObject.GetComponentInChildren<Collider>().enabled = false;
             documentGameObject.GetComponentInChildren<Renderer>().enabled = false;
             documentGameObject.transform.position = Vector3.zero;
@@ -66,6 +71,10 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             packageGameObject.AddComponent<Information>();
             packageGameObject.GetComponent<Information>().SetSQObjectType("package");
+            packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            packageGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
+            packageGameObject.GetComponentInChildren<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
+            packageGameObject.GetComponentInChildren<Renderer>().receiveShadows = false;
             packageGameObject.GetComponent<Collider>().enabled = false;
             packageGameObject.GetComponent<Renderer>().enabled = false;
             packageGameObject.name = "Package";
