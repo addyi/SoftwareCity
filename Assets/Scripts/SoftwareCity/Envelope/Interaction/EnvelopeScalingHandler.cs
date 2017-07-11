@@ -17,14 +17,25 @@ namespace SoftwareCity.Envelope.Interaction
         private GameObject rotator;
 
         /// <summary>
-        /// Sclae value at the start.
+        /// Scale value at the start.
         /// </summary>
-        private readonly float startScale = 0.2f;
+        private float startScale;
+
+        /// <summary>
+        /// Save the enviroment reference.
+        /// </summary>
+        private GameObject enviroment;
+
+        /// <summary>
+        /// Save the current position of the enviroment.
+        /// </summary>
+        private Vector3 currentEnviromentPosition;
 
         void Start()
         {
             envelope = GameObject.FindGameObjectWithTag("Envelope");
             rotator = GameObject.FindGameObjectWithTag("Rotator");
+            enviroment = GameObject.FindGameObjectWithTag("Enviroment");
         }
 
         /// <summary>
@@ -34,6 +45,8 @@ namespace SoftwareCity.Envelope.Interaction
         public void OnManipulationStarted(ManipulationEventData eventData)
         {
             InputManager.Instance.AddGlobalListener(this.gameObject);
+            currentEnviromentPosition = enviroment.transform.position;
+            startScale = envelope.transform.localScale.y;
             ActivateCollider(false);
         }
 
@@ -47,11 +60,12 @@ namespace SoftwareCity.Envelope.Interaction
 
             Vector3 currentLocalScale = envelope.transform.localScale;
 
-            if (!(currentLocalScale.x + multiplier < 0.1f && currentLocalScale.y + multiplier < 0.1f && currentLocalScale.z + multiplier < 0.1f) || eventData.CumulativeDelta.y > 0.0f)
+            if (!(currentLocalScale.x + multiplier < 0.1f || currentLocalScale.y + multiplier < 0.1f || currentLocalScale.z + multiplier < 0.1f) || eventData.CumulativeDelta.y > 0.0f)
             {
                 envelope.transform.localScale += new Vector3(multiplier, multiplier, multiplier) * eventData.CumulativeDelta.y;
 
-                transform.parent.localPosition = new Vector3(0.0f, 0.15f + (envelope.transform.localScale.x - startScale) / 2.0f, 0.0f);
+                enviroment.transform.position = new Vector3(enviroment.transform.position.x, currentEnviromentPosition.y + ((envelope.transform.localScale.y - startScale) / 2f), enviroment.transform.position.z);
+
                 envelope.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
             }
         }

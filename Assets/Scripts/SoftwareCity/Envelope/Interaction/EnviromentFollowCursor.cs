@@ -1,4 +1,5 @@
 ﻿using HoloToolkit.Unity.InputModule;
+using SoftwareCity.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,7 @@ namespace SoftwareCity.Envelope.Interaction
         {
             cursor = GameObject.FindGameObjectWithTag("Cursor");
             gazeManager = GameObject.FindGameObjectWithTag("InputManager").GetComponent<GazeManager>();
+            envelope = GameObject.FindGameObjectWithTag("Envelope");
 
             InputManager.Instance.PushModalInputHandler(this.gameObject);
         }
@@ -39,7 +41,7 @@ namespace SoftwareCity.Envelope.Interaction
         /// </summary>
         void FixedUpdate()
         {
-            this.gameObject.transform.position = cursor.transform.position;
+            this.gameObject.transform.position = cursor.transform.position + new Vector3(0.0f, envelope.GetComponentInChildren<SoftwareCityBuilder>().GetHeight() * 0.05f, 0.0f);
         }
         
         /// <summary>

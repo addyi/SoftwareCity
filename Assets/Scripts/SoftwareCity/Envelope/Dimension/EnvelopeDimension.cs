@@ -46,7 +46,7 @@ namespace SoftwareCity.Envelope.Dimension
             new Vector3(-1, -1, -1)
         };
         
-        void Start()
+        public void GenerateEnvelope()
         {
             dimensionPoints = new Vector3[8];
 
@@ -61,7 +61,7 @@ namespace SoftwareCity.Envelope.Dimension
         }
 
         /// <summary>
-        /// Update hte whole envelope and the components around.
+        /// Update the whole envelope and the components around.
         /// </summary>
         public void UpdateDimensionPoints()
         {
