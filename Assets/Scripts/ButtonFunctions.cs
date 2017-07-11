@@ -5,6 +5,9 @@ using Webservice.UriBuilding;
 using Webservice.Response.Project;
 using Webservice.Response.ComponentTree;
 using System.Collections.Generic;
+using DataModel;
+using DataModel.ProjectTree;
+using DiskIO.AvailableMetrics;
 
 
 //calls to generate a test enviroment
@@ -25,8 +28,8 @@ public class ButtonFunctions : MonoBehaviour
         const string metricKeys = "ncloc,bugs,vulnerabilities,code_smells,violations,functions,coverage,test_success_density,comment_lines_density";
         const string projectKey = "geo-quiz-app";
 
-        // TODO paging
-        StartCoroutine(WebInterface.FuckingUnityRequest<Auth>(
+        // TODO ADDYI REMOVE DEBUG LOGS
+        StartCoroutine(WebInterface.WebRequest<Auth>(
             new SqAuthValidationUriBuilder(baseUri, username, pw).GetSqUri(),
             (res, err) =>
             {
@@ -42,7 +45,7 @@ public class ButtonFunctions : MonoBehaviour
                 }
             }));
 
-        StartCoroutine(WebInterface.FuckingUnityRequest<List<SQProject>>(
+        StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
            new SqProjectUriBuilder(baseUri).UserCredentials(username, pw).GetSqUri(),
            (res, err) =>
            {
@@ -61,17 +64,25 @@ public class ButtonFunctions : MonoBehaviour
                }
            }));
 
-        StartCoroutine(WebInterface.FuckingUnityRequest<ComponentTree>(
+        StartCoroutine(WebInterface.WebRequest<ComponentTree>(
            new SqComponentTreeUriBuilder(baseUri, projectKey, metricKeys)
-                .UserCredentials(username, pw)
-           .GetSqUri(),
-           (res, err) =>
+                .UserCredentials(username, pw).GetSqUri(),
+           (System.Action<ComponentTree, long>)((res, err) =>
            {
                switch (err)
                {
                    case 200:
                        Debug.Log(res.baseComponent.ToString());
                        Debug.Log(res.paging.ToString());
+                       IProjectTree ProjectTree = new Model();
+
+                       // List<Webservice.Response.ComponentTree.Component> components = res.components;
+                       //components.Sort();
+
+
+                       ProjectTree.BuildProjectTree(res.baseComponent, res.components);
+                       Debug.Log(ProjectTree.GetTree().ToString());
+
                        break;
                    default:
                        Debug.Log("Addyi ResponseCode: " + err);
@@ -79,8 +90,13 @@ public class ButtonFunctions : MonoBehaviour
 
                }
 
-           }));
+           })));
 
+        List<Metric> metrics = AvailableMetricConfigReader.ReadConfigFile();
+        foreach (Metric m in metrics)
+        {
+            Debug.Log(string.Format("Metric {0}, {1}, {2}, {3}", m.name, m.key, m.defaultvalue, m.datatype));
+        }
 
     }
 

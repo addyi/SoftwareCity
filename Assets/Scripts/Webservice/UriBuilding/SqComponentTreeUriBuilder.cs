@@ -23,7 +23,7 @@ namespace Webservice.UriBuilding
 
         public override ISqUriBuilder PageSize(int pageSize)
         {
-            if (pageSize < 500 && pageSize > 0)
+            if (pageSize <= 500 && pageSize > 0)
             {
                 return AppendToQuery(string.Format("ps={0}", pageSize));
             }

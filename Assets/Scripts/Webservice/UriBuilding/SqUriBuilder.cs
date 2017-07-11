@@ -13,7 +13,7 @@ namespace Webservice.UriBuilding
 
         public ISqUriBuilder AppendToPath(string pathToAppend)
         {
-            if (uriBuilder.Path != null && uriBuilder.Query.Length > 1)
+            if (uriBuilder.Path != null && uriBuilder.Path.Length > 1)
                 uriBuilder.Path = uriBuilder.Path.Substring(1) + "/" + pathToAppend;
             else
                 uriBuilder.Path = pathToAppend;

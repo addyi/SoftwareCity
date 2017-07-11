@@ -9,8 +9,7 @@ namespace Webservice
 {
     public static class WebInterface
     {
-
-        public static IEnumerator FuckingUnityRequest<T>(Uri uri, Action<T, long> callback)
+        public static IEnumerator WebRequest<T>(Uri uri, Action<T, long> callback)
         {
             UnityWebRequest www = UnityWebRequest.Get(uri.ToString());
             yield return www.Send();
@@ -25,7 +24,7 @@ namespace Webservice
                 try
                 {
                     // handling if only JSON array as response is available -> [...]
-                    if (www.downloadHandler.text.Substring(0, 1) == "[")
+                    if (www.downloadHandler.text.StartsWith("["))
                     {
                         string json = www.downloadHandler.text;
                         json = "{\"array\":" + json + "}";
@@ -47,10 +46,5 @@ namespace Webservice
                 }
             }
         }
-
-
-
-
-
     }
 }
