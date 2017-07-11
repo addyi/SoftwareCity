@@ -12,6 +12,9 @@ namespace SoftwareCity.Rendering.Utils {
         [SerializeField]
         private GameObject documentPrefab;
 
+        [SerializeField]
+        private Material contentMaterial;
+
         /// <summary>
         /// Create a new document gameobject with the specific informations.
         /// </summary>
@@ -22,6 +25,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject documentGameObject = Instantiate(documentPrefab) as GameObject;
             documentGameObject.AddComponent<Information>();
             documentGameObject.GetComponent<Information>().SetSQObjectType("document");
+            documentGameObject.GetComponentInChildren<Renderer>().material = contentMaterial;
             documentGameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
             documentGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             documentGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
@@ -71,6 +75,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             packageGameObject.AddComponent<Information>();
             packageGameObject.GetComponent<Information>().SetSQObjectType("package");
+            packageGameObject.GetComponentInChildren<Renderer>().material = contentMaterial;
             packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             packageGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
             packageGameObject.GetComponentInChildren<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
