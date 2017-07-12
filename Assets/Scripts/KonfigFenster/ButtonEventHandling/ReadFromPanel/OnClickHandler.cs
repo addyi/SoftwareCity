@@ -20,8 +20,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 
         private static bool wasRemoved, wasClicked;
 
-        private readonly string JUMPBACK = "BackButton";
-
         private readonly string[] ALLPANELTAGS = { "SamplePanel", "HeightPanel", "ColorPanel", "PyramidPanel" };
 
         /// <summary>

@@ -14,10 +14,13 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         public GameObject actualPanel;
         public GameObject nextPanel;
 
+        //the list to load all projects from SonarQube
         private List<string> allProjects;
         // Use this for initialization
         void Awake()
         {
+            //here the list will be loaded
+            //example projects for test
             allProjects = new List<string> { "LocalProject", "Online Project", "Java Project", "Foo Project" };
             foreach (string s in allProjects)
             {
