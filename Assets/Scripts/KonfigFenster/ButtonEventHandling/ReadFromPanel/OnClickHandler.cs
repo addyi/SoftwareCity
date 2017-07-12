@@ -14,12 +14,24 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// </summary>
         private Button[] allButtons;
 
+        /// <summary>
+        /// Save the Button in the metric button, to deactivate in the next Panel.
+        /// </summary>
         private static Button saveLastButton;
 
+        /// <summary>
+        /// Looking up, which Panel is now active.
+        /// </summary>
         private string actualTag;
 
+        /// <summary>
+        /// To check if one button was clicked to know which button in the next label is to deactivate or to set it active again.
+        /// </summary>
         private static bool wasRemoved, wasClicked;
 
+        /// <summary>
+        /// All possible tags in the configuration window in one array.
+        /// </summary>
         private readonly string[] ALLPANELTAGS = { "SamplePanel", "HeightPanel", "ColorPanel", "PyramidPanel" };
 
         /// <summary>
@@ -57,6 +69,10 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             }
         }
 
+        /// <summary>
+        /// Searching with the help of the array: ALLPANELTAGS, to look up which panel is active now.
+        /// </summary>
+        /// <returns>Returns the actual tag as string.</returns>
         private string SearchTag()
         {
             bool looping = true;
@@ -72,6 +88,9 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             return temp;
         }
 
+        /// <summary>
+        /// This method adds for every button an eventlistener to observe which one was clicked.
+        /// </summary>
         void AddingListener()
         {
             for(int i = 1; i < allButtons.Length; i++)
@@ -81,6 +100,10 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             }
         }
 
+        /// <summary>
+        /// The clicked button will save the information from the button in th OverviewElements data.
+        /// </summary>
+        /// <param name="i">An index of the button array.</param>
         void ClickedButton(int i)
         {
             Debug.Log(allButtons[i].GetComponentInChildren<Text>().text);
@@ -88,11 +111,17 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             wasClicked = true;
         }
 
+        /// <summary>
+        /// Special eventlistener for the back button.
+        /// </summary>
         void AddingJumpBackListener()
         {
             allButtons[0].onClick.AddListener(JumpBack);
         }
 
+        /// <summary>
+        /// Delete the last entry from the OverviewElements data and get to the preview Panel.
+        /// </summary>
         void JumpBack()
         {
             if (Array.Exists(ALLPANELTAGS, element => tag.Equals(element)))
@@ -104,6 +133,9 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                 saveLastButton.interactable = true;
         }
 
+        /// <summary>
+        /// Check all buttons in the metric Panel, before the one button get disabled.
+        /// </summary>
         void CheckBeforeRemove()
         {
             if (wasRemoved)

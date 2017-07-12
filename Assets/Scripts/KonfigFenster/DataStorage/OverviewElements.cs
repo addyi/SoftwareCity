@@ -19,6 +19,10 @@ namespace ConfigurationWindow.DataStorage
             overviewData = new List<string>();
         }
 
+        /// <summary>
+        /// Checks if the datastructure is not initialized.
+        /// </summary>
+        /// <returns>Returns an boolean if it is not initialized.</returns>
         public static bool IsEmpty()
         {
             return overviewData == null;
@@ -61,6 +65,9 @@ namespace ConfigurationWindow.DataStorage
             return overviewData.Count;
         }
 
+        /// <summary>
+        /// Print the datastructure in the console.
+        /// </summary>
         public static void Print()
         {
             foreach(string s in overviewData)

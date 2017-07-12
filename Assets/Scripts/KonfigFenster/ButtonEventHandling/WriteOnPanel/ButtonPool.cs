@@ -7,11 +7,22 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 {
     public class ButtonPool : MonoBehaviour
     {
-
+        /// <summary>
+        /// A reference to the button template.
+        /// </summary>
         public GameObject buttonPrefab;
+        /// <summary>
+        /// A reference for the Panel to insert the buttons.
+        /// </summary>
         public GameObject panelScrollView;
 
+        /// <summary>
+        /// Shows an reference to the actual panel.
+        /// </summary>
         public GameObject actualPanel;
+        /// <summary>
+        /// A reference to the next panel.
+        /// </summary>
         public GameObject nextPanel;
 
         //the list to load all projects from SonarQube
@@ -32,6 +43,9 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             }
         }
 
+        /// <summary>
+        /// The button listener to switch between panels.
+        /// </summary>
         void Clicked()
         {
             actualPanel.SetActive(false);

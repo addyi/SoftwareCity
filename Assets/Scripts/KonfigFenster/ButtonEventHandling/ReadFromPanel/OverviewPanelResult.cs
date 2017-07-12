@@ -9,9 +9,14 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
     public class OverviewPanelResult : MonoBehaviour
     {
-
+        /// <summary>
+        /// If the backButton was pressed so the overview panel should rewrite the TextLabels.
+        /// </summary>
         private static bool changeRequest;
 
+        /// <summary>
+        /// Represent the back button from the overviewpanel, to jump to the preview panel.
+        /// </summary>
         private Button backButton;
 
         /// <summary>
@@ -39,6 +44,9 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             }
         }
 
+        /// <summary>
+        /// An Listener for the back Button, to get to the preview Panel.
+        /// </summary>
         private void JumpBack()
         {
             if (OverviewElements.Length() > 0)
