@@ -60,6 +60,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                         break;
                     case "ColorPanel":
                         CheckBeforeRemove();
+                        //NotifySecondMetricSelected();
                         break;
                     case "PyramidPanel":
 

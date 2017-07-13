@@ -30,6 +30,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         // Use this for initialization
         void Awake()
         {
+            
             //here the list will be loaded
             //example projects for test
             allProjects = new List<string> { "LocalProject", "Online Project", "Java Project", "Foo Project" };

@@ -37,7 +37,7 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
 
             textLabel = input.text;
-            result = Uri.TryCreate(textLabel, UriKind.RelativeOrAbsolute, out resultLink)
+            result = Uri.TryCreate(textLabel, UriKind.Absolute, out resultLink)
                 && (resultLink.Scheme == Uri.UriSchemeHttp || resultLink.Scheme == Uri.UriSchemeHttps);
             if(result)
                 Debug.Log(resultLink.Scheme);
