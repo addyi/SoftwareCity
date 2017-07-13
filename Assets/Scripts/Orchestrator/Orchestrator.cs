@@ -89,11 +89,7 @@ namespace Orchestrator
 
             //   })));
 
-            //List<Metric> metrics = AvailableMetricConfigReader.ReadConfigFile();
-            //foreach (Metric m in metrics)
-            //{
-            //    Debug.Log(string.Format("Metric {0}, {1}, {2}, {3}", m.name, m.key, m.defaultvalue, m.datatype));
-            //}
+
         }
 
         public void GetLocalProject()
@@ -106,9 +102,9 @@ namespace Orchestrator
             throw new NotImplementedException();
         }
 
-        public void GetAvailableMetrics()
+        public List<Metric> GetAvailableMetrics()
         {
-            throw new NotImplementedException();
+            return AvailableMetricConfigReader.ReadConfigFile();
         }
 
         public void CredentialsValid(string baseUri, string username, string password, Action<bool, long> callback)
