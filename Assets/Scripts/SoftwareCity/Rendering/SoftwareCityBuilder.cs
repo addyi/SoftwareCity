@@ -47,6 +47,8 @@ namespace SoftwareCity.Rendering
         /// </summary>
         private ComponentProducer componentProducer;
 
+        private GameObject envelope;
+
         /// <summary>
         /// Method to build a new software city.
         /// </summary>
@@ -58,12 +60,15 @@ namespace SoftwareCity.Rendering
 
             packageColorizer = GetComponent<PackageColorizer>();
             componentProducer = GetComponent<ComponentProducer>();
+            envelope = GameObject.FindGameObjectWithTag("Envelope");
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
             DeleteHelperGameObjects(helperGameObjects);
 
             AddCityToEnvelope(rootGameObject);
+
+            TreeToLinearStructur(rootGameObject);
         }
 
         /// <summary>
@@ -109,6 +114,7 @@ namespace SoftwareCity.Rendering
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();
+                packageGameObject.GetComponent<Information>().SetChilds(childs);
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -242,6 +248,20 @@ namespace SoftwareCity.Rendering
         public float GetHeight()
         {
             return maxDocumentHeight;
+        }
+
+        private void TreeToLinearStructur(GameObject treeNode)
+        {
+            if(treeNode.GetComponent<Information>().GetChilds() == null)
+            {
+                treeNode.transform.SetParent(envelope.transform);
+                return;
+            }
+            foreach (GameObject child in treeNode.GetComponent<Information>().GetChilds())
+            {
+                treeNode.transform.SetParent(envelope.transform);
+                TreeToLinearStructur(child);
+            }
         }
     }
 }
