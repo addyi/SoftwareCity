@@ -10,7 +10,7 @@ namespace DataModel.ProjectTree
 {
     interface IProjectTree
     {
-        ProjectComponent BuildProjectTree(Component baseComponent, List<Component> components);
+        ProjectComponent BuildProjectTree(SqComponent baseComponent, List<SqComponent> components);
         // ProjectMetrics GetProjectMetrics();
          ProjectComponent GetTree();
         // TODO ADDYI weitere project methodes

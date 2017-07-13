@@ -6,7 +6,7 @@ namespace DataModel.ProjectTree.Components
 {
     class ProjectComponent : DirComponent
     {
-        public ProjectComponent(Component component) : base(component)
+        public ProjectComponent(SqComponent component) : base(component)
         {
             if (component.qualifier == "TRK")
             {

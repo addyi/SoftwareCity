@@ -9,8 +9,8 @@ namespace Webservice.Response.ComponentTree
     class ComponentTree
     {
         public Paging paging;
-        public Component baseComponent;
-        public List<Component> components;
+        public SqComponent baseComponent;
+        public List<SqComponent> components;
 
         public override string ToString()
         {
@@ -18,7 +18,7 @@ namespace Webservice.Response.ComponentTree
                 paging.ToString(), baseComponent.ToString());
         }
 
-        public void AddComponents(List<Component> additionalComponents)
+        public void AddComponents(List<SqComponent> additionalComponents)
         {
             lock (components)
             {

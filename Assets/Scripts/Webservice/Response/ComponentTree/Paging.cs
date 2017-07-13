@@ -5,9 +5,9 @@ namespace Webservice.Response.ComponentTree
     [Serializable]
     class Paging
     {
-        public int pageIndex;
-        public int pageSize;
-        public int total;
+        public int pageIndex = 0;
+        public int pageSize = 0;
+        public int total = 0;
 
         public override string ToString()
         {
