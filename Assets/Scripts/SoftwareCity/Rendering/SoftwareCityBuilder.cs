@@ -2,6 +2,7 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
+using DataModel.ProjectTree.Components;
 
 namespace SoftwareCity.Rendering
 {
@@ -49,11 +50,16 @@ namespace SoftwareCity.Rendering
 
         private GameObject envelope;
 
+        private void Start()
+        {
+            Build(GameObject.FindGameObjectWithTag("InitialGameObject").GetComponent<Initial>().rootProjectComponent);
+        }
+
         /// <summary>
         /// Method to build a new software city.
         /// </summary>
         /// <param name="root"></param>
-        public void Build(SQPackage root)
+        public void Build(ProjectComponent root)
         {
             packageLevel = 1;
             maxDocumentHeight = 0.0f;
@@ -77,13 +83,13 @@ namespace SoftwareCity.Rendering
         /// <param name="treeObject"></param>
         /// <param name="packageLevel"></param>
         /// <returns></returns>
-        private GameObject TraverseTree(ISQObject treeObject, int packageLevel)
+        private GameObject TraverseTree(TreeComponent treeObject, int packageLevel)
         {
-            if (treeObject is SQPackage)
+            if (treeObject is DirComponent)
             {
                 List<GameObject> childs = new List<GameObject>();
 
-                foreach (ISQObject child in ((SQPackage)treeObject).GetChilds())
+                foreach (TreeComponent child in ((DirComponent)treeObject).components)
                 {
                     childs.Add(TraverseTree(child, packageLevel + 1));
                 }
@@ -108,9 +114,17 @@ namespace SoftwareCity.Rendering
                 }
                 else
                 {
-                    if(childDocuments.Count > 0)
+                    if(childDocuments.Count > 0 && childPackages.Count == 0)
+                    {
                         ComponentLayout.Corner(childDocuments);
-                    //ComponentLayout.Helix(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                    } else
+                    {
+                        if (childDocuments.Count == 0 && childPackages.Count > 0) {
+                            ComponentLayout.Helix(childPackages);
+                        }
+
+                    }
+                        //ComponentLayout.Helix(childs);
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();
@@ -252,14 +266,15 @@ namespace SoftwareCity.Rendering
 
         private void TreeToLinearStructur(GameObject treeNode)
         {
+            treeNode.transform.SetParent(envelope.transform);
+
             if(treeNode.GetComponent<Information>().GetChilds() == null)
             {
-                treeNode.transform.SetParent(envelope.transform);
                 return;
             }
+
             foreach (GameObject child in treeNode.GetComponent<Information>().GetChilds())
             {
-                treeNode.transform.SetParent(envelope.transform);
                 TreeToLinearStructur(child);
             }
         }

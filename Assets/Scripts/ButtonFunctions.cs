@@ -20,7 +20,7 @@ public class ButtonFunctions : MonoBehaviour
     private void Start()
     {
         enviromentExist = false;
-
+        /*
         const string baseUri = "http://sonarqube.eosn.de/";
         const string username = "user";
         const string pw = "123456";
@@ -62,7 +62,8 @@ public class ButtonFunctions : MonoBehaviour
 
                }
            }));
-
+        */
+        /*
         StartCoroutine(WebInterface.WebRequest<ComponentTree>(
            new SqComponentTreeUriBuilder(baseUri, projectKey, metricKeys)
                 .UserCredentials(username, pw).GetSqUri(),
@@ -90,6 +91,7 @@ public class ButtonFunctions : MonoBehaviour
                }
 
            })));
+           */
     }
 
     public void CreateEnvironment()

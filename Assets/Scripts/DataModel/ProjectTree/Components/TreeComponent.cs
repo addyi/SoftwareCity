@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DataModel.ProjectTree.Components
 {
-    abstract class TreeComponent : IComparable
+    public abstract class TreeComponent : IComparable
     {
         // TODO ADDYI fucking toString methode 
         public string ID;

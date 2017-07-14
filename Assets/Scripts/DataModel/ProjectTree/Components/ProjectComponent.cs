@@ -4,7 +4,7 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
-    class ProjectComponent : DirComponent
+    public class ProjectComponent : DirComponent
     {
         public ProjectComponent(SqComponent component) : base(component)
         {
