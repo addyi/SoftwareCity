@@ -20,7 +20,7 @@ namespace DiskIO.ProjectTreeSaveLoader
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="obj"></param>
-		public static void SerializeObject<T>(T obj)
+		public static void SaveProjectComponent<T>(T obj)
 		{
 			using (MemoryStream ms = new MemoryStream())
 			{
@@ -40,7 +40,7 @@ namespace DiskIO.ProjectTreeSaveLoader
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
-		public static T DeserializeObject<T>()
+		public static T LoadProjectComponent<T>()
 		{
 			byte[] data = File.ReadAllBytes(path);
 			using (MemoryStream memoryStream = new MemoryStream(data))

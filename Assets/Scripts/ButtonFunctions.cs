@@ -99,9 +99,9 @@ public class ButtonFunctions : MonoBehaviour
             Debug.Log(string.Format("Metric {0}, {1}, {2}, {3}", m.name, m.key, m.defaultvalue, m.datatype));
         }
 
-		//ComponentTreeStream.SerializeObject<Metric>(metrics[0]);
+		ComponentTreeStream.SaveProjectComponent<Metric>(metrics[0]);
 
-		Metric metric = ComponentTreeStream.DeserializeObject<Metric>();
+		Metric metric = ComponentTreeStream.LoadProjectComponent<Metric>();
 		Debug.Log(string.Format("Metric for IO debG {0}", metric.name));
 
 
