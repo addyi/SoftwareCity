@@ -1,0 +1,1 @@
+@Metric?http://schemas.datacontract.org/2004/07/DiskIO.AvailableMetrics	i)http://www.w3.org/2001/XMLSchema-instance@datatype™int@defaultvalue™0.1@key™ncloc@name™Lines of Code
