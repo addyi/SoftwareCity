@@ -122,9 +122,9 @@ namespace SoftwareCity.Envelope.Interaction
         private void ActivateImage(bool b)
         {
             infobox = GameObject.FindGameObjectWithTag("Infobox");
-            foreach (Image image in infobox.gameObject.GetComponentsInChildren<Image>())
+            foreach (Renderer renderer in infobox.gameObject.GetComponentsInChildren<Renderer>())
             {
-                image.enabled = b;
+                renderer.enabled = b;
             }
         }
     }
