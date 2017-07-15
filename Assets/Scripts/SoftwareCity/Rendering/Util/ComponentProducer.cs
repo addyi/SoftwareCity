@@ -25,6 +25,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject documentGameObject = Instantiate(documentPrefab) as GameObject;
             documentGameObject.AddComponent<BaseInformation>();
             documentGameObject.GetComponent<BaseInformation>().UpdateValues(documentComponent);
+            documentGameObject.AddComponent<ComponentClickListener>();
             documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid();
             documentGameObject.GetComponent<Renderer>().sharedMaterial = contentMaterial;
             documentGameObject.GetComponent<Renderer>().sharedMaterial.color = Color.red;
@@ -72,6 +73,7 @@ namespace SoftwareCity.Rendering.Utils {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             packageGameObject.AddComponent<BaseInformation>();
             packageGameObject.GetComponent<BaseInformation>().UpdateValues(packageComponent);
+            packageGameObject.AddComponent<ComponentClickListener>();
             packageGameObject.GetComponentInChildren<Renderer>().sharedMaterial = contentMaterial;
             packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             packageGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;

@@ -37,17 +37,6 @@ public class BaseInformation : MonoBehaviour {
         return qualifier;
     }
 
-    /*
-    public void SetSQObjectType(string sqObjectType)
-    {
-        this.sqObjectType = sqObjectType;
-    }
-
-    public string GetSQObjectType()
-    {
-        return sqObjectType;
-    }
-    */
     public void SetChilds(List<GameObject> childs)
     {
         this.childs = childs;
@@ -56,5 +45,16 @@ public class BaseInformation : MonoBehaviour {
     public List<GameObject> GetChilds()
     {
         return childs;
+    }
+
+    public override string ToString()
+    {
+        string metricString = "";
+        foreach(TreeMetric metric in metrics)
+        {
+            metricString += "   " + metric.Key + ": " + metric.Value + "\n";
+        }
+
+        return "<b>Type:</b> <size=40pt>" + qualifier + "</size>\n<b>Id:</b> <size=40pt>" + this.id + "</size>\n<b>Key:</b> <size=40pt>" + this.key + "</size>\n<b>Name:</b> <size=40pt>" + componentName + "</size>\n<b>Metrics:</b> \n" + metricString;
     }
 }
