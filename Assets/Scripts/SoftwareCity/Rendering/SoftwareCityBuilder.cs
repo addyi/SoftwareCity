@@ -47,6 +47,8 @@ namespace SoftwareCity.Rendering
         /// </summary>
         private ComponentProducer componentProducer;
 
+        private GameObject envelope;
+
         /// <summary>
         /// Method to build a new software city.
         /// </summary>
@@ -58,12 +60,15 @@ namespace SoftwareCity.Rendering
 
             packageColorizer = GetComponent<PackageColorizer>();
             componentProducer = GetComponent<ComponentProducer>();
+            envelope = GameObject.FindGameObjectWithTag("Envelope");
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
             DeleteHelperGameObjects(helperGameObjects);
 
             AddCityToEnvelope(rootGameObject);
+
+            TreeToLinearStructur(rootGameObject);
         }
 
         /// <summary>
@@ -109,6 +114,7 @@ namespace SoftwareCity.Rendering
                 }
 
                 GameObject packageGameObject = componentProducer.GeneratePackage();
+                packageGameObject.GetComponent<Information>().SetChilds(childs);
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -228,33 +234,34 @@ namespace SoftwareCity.Rendering
         /// <param name="root"></param>
         private void AddCityToEnvelope(GameObject root)
         {
-            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.05f, (maxDocumentHeight + 0.1f) * 0.05f, root.transform.localScale.z * 0.05f);
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.03f, (maxDocumentHeight + 0.1f) * 0.03f, root.transform.localScale.z * 0.03f);
 
             root.transform.SetParent(this.gameObject.transform);
             root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.05f, this.gameObject.transform.localScale.y * 0.05f, this.gameObject.transform.localScale.z * 0.05f);
+            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.03f, this.gameObject.transform.localScale.y * 0.03f, this.gameObject.transform.localScale.z * 0.03f);
 
             this.gameObject.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
 
-            EditEnvelope();
-        }
-
-        /// <summary>
-        /// Set the correct position of the enviroment gameobject in y direction.
-        /// </summary>
-        private void EditEnvelope()
-        {
-            GameObject envelope = GameObject.FindGameObjectWithTag("Envelope");
-
-            //envelope.transform.localPosition = new Vector3(0.0f, (maxDocumentHeight * 0.5f * 0.1f) + 0.05f, 0.0f);
-
-            envelope.transform.position = new Vector3(0, 0, 0);
-            envelope.GetComponent<EnvelopeDimension>().GenerateEnvelope();
+            this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
         }
 
         public float GetHeight()
         {
             return maxDocumentHeight;
+        }
+
+        private void TreeToLinearStructur(GameObject treeNode)
+        {
+            if(treeNode.GetComponent<Information>().GetChilds() == null)
+            {
+                treeNode.transform.SetParent(envelope.transform);
+                return;
+            }
+            foreach (GameObject child in treeNode.GetComponent<Information>().GetChilds())
+            {
+                treeNode.transform.SetParent(envelope.transform);
+                TreeToLinearStructur(child);
+            }
         }
     }
 }

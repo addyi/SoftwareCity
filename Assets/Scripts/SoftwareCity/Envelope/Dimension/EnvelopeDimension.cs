@@ -45,8 +45,8 @@ namespace SoftwareCity.Envelope.Dimension
             new Vector3(1, -1, 1),
             new Vector3(-1, -1, -1)
         };
-        
-        public void GenerateEnvelope()
+
+        void Start()
         {
             dimensionPoints = new Vector3[8];
 
@@ -60,6 +60,21 @@ namespace SoftwareCity.Envelope.Dimension
             UpdateDimensionPoints();
         }
 
+        /*
+        public void GenerateEnvelope()
+        {
+            dimensionPoints = new Vector3[8];
+
+            //get the reference to the producer components
+            scaleObjectProducer = transform.parent.GetComponentInChildren<ScaleObjectProducer>();
+            rotateObjectProducer = transform.parent.GetComponentInChildren<RotateObjectProducer>();
+            wireObjectProducer = transform.parent.GetComponentInChildren<WireObjectProducer>();
+            infoboxHandler = transform.parent.GetComponentInChildren<InfoboxHandler>();
+
+            //update and calculate the dimension points
+            UpdateDimensionPoints();
+        }
+        */
         /// <summary>
         /// Update the whole envelope and the components around.
         /// </summary>

@@ -13,15 +13,15 @@ namespace DataModel
     {
         private ProjectComponent project;
 
-        public ProjectComponent BuildProjectTree(Component baseComponent,
-            List<Component> components)
+        public ProjectComponent BuildProjectTree(SqComponent baseComponent,
+            List<SqComponent> components)
         {
             if (baseComponent == null || components == null)
                 return null;
 
             project = new ProjectComponent(baseComponent);
 
-            foreach (Component c in components)
+            foreach (SqComponent c in components)
             {
                 string[] s = c.path.Split('/');
                 project.InsertComponentAt(s, GetTreeComponent(c));
@@ -31,7 +31,7 @@ namespace DataModel
 
         public ProjectComponent GetTree() { return project; }
 
-        private TreeComponent GetTreeComponent(Component component)
+        private TreeComponent GetTreeComponent(SqComponent component)
         {
             switch (component.qualifier)
             {

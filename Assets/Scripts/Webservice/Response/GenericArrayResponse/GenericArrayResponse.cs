@@ -7,6 +7,6 @@ namespace Webservice.Response.GenericArrayResponse
     [Serializable]
     class GenericArrayResponse<T>
     {
-        public T array;
+        public T array = default(T);
     }
 }
