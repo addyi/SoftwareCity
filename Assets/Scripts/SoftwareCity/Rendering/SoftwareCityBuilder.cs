@@ -127,8 +127,8 @@ namespace SoftwareCity.Rendering
                         //ComponentLayout.Helix(childs);
                 }
 
-                GameObject packageGameObject = componentProducer.GeneratePackage();
-                packageGameObject.GetComponent<Information>().SetChilds(childs);
+                GameObject packageGameObject = componentProducer.GeneratePackage(treeObject);
+                packageGameObject.GetComponent<BaseInformation>().SetChilds(childs);
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -147,7 +147,7 @@ namespace SoftwareCity.Rendering
             }
             else
             {
-                GameObject documentGameObject = componentProducer.GenerateDocument();
+                GameObject documentGameObject = componentProducer.GenerateDocument(treeObject);
 
                 if (documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y > maxDocumentHeight)
                     maxDocumentHeight = documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y;
@@ -268,12 +268,12 @@ namespace SoftwareCity.Rendering
         {
             treeNode.transform.SetParent(envelope.transform);
 
-            if(treeNode.GetComponent<Information>().GetChilds() == null)
+            if(treeNode.GetComponent<BaseInformation>().GetChilds() == null)
             {
                 return;
             }
 
-            foreach (GameObject child in treeNode.GetComponent<Information>().GetChilds())
+            foreach (GameObject child in treeNode.GetComponent<BaseInformation>().GetChilds())
             {
                 TreeToLinearStructur(child);
             }

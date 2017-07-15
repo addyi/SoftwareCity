@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DataModel.ProjectTree.Components;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace SoftwareCity.Rendering.Utils {
@@ -19,11 +20,11 @@ namespace SoftwareCity.Rendering.Utils {
         /// Create a new document gameobject with the specific informations.
         /// </summary>
         /// <returns></returns>
-        public GameObject GenerateDocument()
+        public GameObject GenerateDocument(TreeComponent documentComponent)
         {
             GameObject documentGameObject = Instantiate(documentPrefab) as GameObject;
-            documentGameObject.AddComponent<Information>();
-            documentGameObject.GetComponent<Information>().SetSQObjectType("document");
+            documentGameObject.AddComponent<BaseInformation>();
+            documentGameObject.GetComponent<BaseInformation>().UpdateValues(documentComponent);
             documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid();
             documentGameObject.GetComponent<Renderer>().sharedMaterial = contentMaterial;
             documentGameObject.GetComponent<Renderer>().sharedMaterial.color = Color.red;
@@ -34,7 +35,7 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.GetComponent<Collider>().enabled = false;
             documentGameObject.GetComponent<Renderer>().enabled = false;
             documentGameObject.transform.position = Vector3.zero;
-            documentGameObject.name = "Document";
+            documentGameObject.name = documentComponent.Name;
 
             documentGameObject.transform.localScale = CalculateDocumentSize();
 
@@ -66,11 +67,11 @@ namespace SoftwareCity.Rendering.Utils {
         /// Create a new package gameobject with the specific informations.
         /// </summary>
         /// <returns></returns>
-        public GameObject GeneratePackage()
+        public GameObject GeneratePackage(TreeComponent packageComponent)
         {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            packageGameObject.AddComponent<Information>();
-            packageGameObject.GetComponent<Information>().SetSQObjectType("package");
+            packageGameObject.AddComponent<BaseInformation>();
+            packageGameObject.GetComponent<BaseInformation>().UpdateValues(packageComponent);
             packageGameObject.GetComponentInChildren<Renderer>().sharedMaterial = contentMaterial;
             packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             packageGameObject.GetComponentInChildren<Renderer>().lightProbeUsage = LightProbeUsage.Off;
@@ -78,7 +79,7 @@ namespace SoftwareCity.Rendering.Utils {
             packageGameObject.GetComponentInChildren<Renderer>().receiveShadows = false;
             packageGameObject.GetComponent<Collider>().enabled = false;
             packageGameObject.GetComponent<Renderer>().enabled = false;
-            packageGameObject.name = "Package";
+            packageGameObject.name = packageComponent.Name;
 
             return packageGameObject;
         }
@@ -90,8 +91,7 @@ namespace SoftwareCity.Rendering.Utils {
         public GameObject GenerateHelper()
         {
             GameObject helperGameobject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            helperGameobject.AddComponent<Information>();
-            helperGameobject.GetComponent<Information>().SetSQObjectType("package");
+            helperGameobject.AddComponent<BaseInformation>();
             helperGameobject.name = "Helper";
 
             return helperGameobject;
