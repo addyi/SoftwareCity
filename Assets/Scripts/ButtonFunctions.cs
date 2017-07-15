@@ -7,9 +7,6 @@ using Webservice.Response.ComponentTree;
 using System.Collections.Generic;
 using DataModel;
 using DataModel.ProjectTree;
-using DiskIO.AvailableMetrics;
-using DiskIO.ProjectTreeSaveLoader;
-
 
 //calls to generate a test enviroment
 public class ButtonFunctions : MonoBehaviour
@@ -92,20 +89,6 @@ public class ButtonFunctions : MonoBehaviour
                }
 
            })));
-
-        List<Metric> metrics = AvailableMetricConfigReader.ReadConfigFile();
-        foreach (Metric m in metrics)
-        {
-            Debug.Log(string.Format("Metric {0}, {1}, {2}, {3}", m.name, m.key, m.defaultvalue, m.datatype));
-        }
-
-		ComponentTreeStream.SaveProjectComponent<Metric>(metrics[0]);
-
-		Metric metric = ComponentTreeStream.LoadProjectComponent<Metric>();
-		Debug.Log(string.Format("Metric for IO debG {0}", metric.name));
-
-
-
 
 	}
 
