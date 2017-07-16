@@ -31,9 +31,6 @@ public class Initial : MonoBehaviour {
                         Debug.Log(res.paging.ToString());
                         IProjectTree ProjectTree = new Model();
 
-                        // List<Webservice.Response.ComponentTree.Component> components = res.components;
-                        //components.Sort();
-
                         rootProjectComponent = ProjectTree.BuildProjectTree(res.baseComponent, res.components);
 
                         break;
@@ -42,7 +39,6 @@ public class Initial : MonoBehaviour {
                         break;
 
                 }
-
             }))
             );
     }

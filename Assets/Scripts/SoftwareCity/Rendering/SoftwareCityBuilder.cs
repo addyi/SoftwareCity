@@ -4,6 +4,7 @@ using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
 using DataModel.ProjectTree.Components;
 using SoftwareCity.Rendering.Utils.Information;
+using SoftwareCity.Rendering.Utils.Colorizer;
 
 namespace SoftwareCity.Rendering
 {
