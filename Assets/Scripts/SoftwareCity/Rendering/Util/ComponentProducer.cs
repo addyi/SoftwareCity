@@ -1,4 +1,6 @@
-﻿using DataModel.ProjectTree.Components;
+﻿using DataModel;
+using DataModel.ProjectTree.Components;
+using SoftwareCity.Rendering.Utils.Information;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -23,8 +25,8 @@ namespace SoftwareCity.Rendering.Utils {
         public GameObject GenerateDocument(TreeComponent documentComponent)
         {
             GameObject documentGameObject = Instantiate(documentPrefab) as GameObject;
-            documentGameObject.AddComponent<BaseInformation>();
-            documentGameObject.GetComponent<BaseInformation>().UpdateValues(documentComponent);
+            documentGameObject.AddComponent<FileInformation>();
+            documentGameObject.GetComponent<FileInformation>().UpdateValues(documentComponent);
             documentGameObject.AddComponent<ComponentClickListener>();
             documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid();
             documentGameObject.GetComponent<Renderer>().sharedMaterial = contentMaterial;
@@ -71,8 +73,8 @@ namespace SoftwareCity.Rendering.Utils {
         public GameObject GeneratePackage(TreeComponent packageComponent)
         {
             GameObject packageGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            packageGameObject.AddComponent<BaseInformation>();
-            packageGameObject.GetComponent<BaseInformation>().UpdateValues(packageComponent);
+            packageGameObject.AddComponent<DirectoryInformation>();
+            packageGameObject.GetComponent<DirectoryInformation>().UpdateValues(packageComponent);
             packageGameObject.AddComponent<ComponentClickListener>();
             packageGameObject.GetComponentInChildren<Renderer>().sharedMaterial = contentMaterial;
             packageGameObject.GetComponentInChildren<Renderer>().shadowCastingMode = ShadowCastingMode.Off;

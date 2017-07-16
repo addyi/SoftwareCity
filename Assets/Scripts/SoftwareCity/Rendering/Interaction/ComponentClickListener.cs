@@ -1,4 +1,5 @@
 ﻿using HoloToolkit.Unity.InputModule;
+using SoftwareCity.Rendering.Utils.Information;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,15 @@ public class ComponentClickListener : MonoBehaviour, IInputClickHandler
         lastReference = this.gameObject;
         lastColor = this.gameObject.GetComponent<Renderer>().material.color;
 
-        GameObject.FindGameObjectWithTag("Infobox").GetComponentInChildren<Text>().text = GetComponent<BaseInformation>().ToString();
+        GameObject.FindGameObjectWithTag("Infobox").GetComponentInChildren<Text>().text = ContentInformation(GetComponent<BaseInformation>());
         GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    private string ContentInformation(BaseInformation info)
+    {
+        if (info is FileInformation)
+            return ((FileInformation)info).ToString();
+
+        return info.ToString();
     }
 }

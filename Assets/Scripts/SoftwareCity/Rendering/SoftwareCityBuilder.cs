@@ -3,6 +3,7 @@ using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
 using DataModel.ProjectTree.Components;
+using SoftwareCity.Rendering.Utils.Information;
 
 namespace SoftwareCity.Rendering
 {
