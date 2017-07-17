@@ -29,9 +29,24 @@ namespace Orchestrator
             throw new NotImplementedException();
         }
 
-        public void GetAvailableProjects()
+        /// <summary>
+        /// Load List of SonarQube Projects from the predefined Uri. 
+        /// Depends on the Permissionlevel in SonarQube.
+        /// </summary>
+        /// <param name="callback">Function with List of Projects (can be empty) and long HTML Error Code.</param>
+        public void LoadOnlineProjects(Action<List<SQProject>, long> callback)
         {
-            throw new NotImplementedException();
+            SqProjectUriBuilder uriBuilder = new SqProjectUriBuilder(model.GetBaseUrl());
+            if (model.GetUsername() != "" && model.GetPassword() != "")
+                uriBuilder.UserCredentials(model.GetUsername(), model.GetPassword());
+
+            StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
+               uriBuilder.GetSqUri(),
+               (res, err) =>
+               {
+                   Debug.Log("LoadProjectList ResponseCode: " + err);
+                   callback(res, err);                  
+               }));
         }
 
         public List<Metric> GetAvailableMetrics()
@@ -72,32 +87,6 @@ namespace Orchestrator
         public void SelectedProject(string projectKey)
         {
             selectedProjectKey = projectKey;
-        }
-
-        private void LoadProjects()
-        {
-            SqProjectUriBuilder uriBuilder = new SqProjectUriBuilder(model.GetBaseUrl());
-            if (model.GetUsername() != "" && model.GetPassword() != "")
-                uriBuilder.UserCredentials(model.GetUsername(), model.GetPassword());
-
-            StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
-               uriBuilder.GetSqUri(),
-               (res, err) =>
-               {
-                   switch (err)
-                   {
-                       case 200:
-                           res.ForEach((projekt) =>
-                           {
-                               Debug.Log("Addyi Projekt: " + projekt.ToString());
-                           });
-                           break;
-                       default:
-                           Debug.Log("Addyi ResponseCode: " + err);
-                           break;
-
-                   }
-               }));
         }
 
         private void LoadProject()
