@@ -16,7 +16,7 @@ namespace Orchestrator
         private string username = "";
         private string password = "";
         private string selectedProjectKey = "";
-        private readonly Model model = new Model();
+        private readonly Model model = Model.GetInstance();
 
 
         // Use this for initialization

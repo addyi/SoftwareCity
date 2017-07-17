@@ -13,8 +13,13 @@ namespace DataModel
 
     class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics
     {
+        private readonly static Model model = new Model();
         private ProjectComponent project;
         private Metric[] SelectedMetrics;
+
+        private Model() { }
+
+        public static Model GetInstance() { return model; }
 
         public ProjectComponent BuildProjectTree(SqComponent baseComponent,
             List<SqComponent> components)
