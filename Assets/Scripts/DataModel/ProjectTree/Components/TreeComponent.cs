@@ -9,7 +9,6 @@ namespace DataModel.ProjectTree.Components
 {
     abstract class TreeComponent : IComparable
     {
-        // TODO ADDYI fucking toString methode 
         public string ID;
         public string Key;
         public string Name;

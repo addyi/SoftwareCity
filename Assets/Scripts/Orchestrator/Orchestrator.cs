@@ -20,7 +20,8 @@ namespace Orchestrator
         // Use this for initialization
         void Start()
         {
-
+            model.SetAvailableMetrics(AvailableMetricConfigReader.ReadConfigFile());
+            // TODO ADDYI load city from disk
         }
 
         public void GetLocalProject()
@@ -35,7 +36,7 @@ namespace Orchestrator
 
         public List<Metric> GetAvailableMetrics()
         {
-            return AvailableMetricConfigReader.ReadConfigFile();
+            return model.GetAvailableMetrics();
         }
 
         public void CredentialsValid(string baseUri, string username, string password, Action<bool, long> callback)

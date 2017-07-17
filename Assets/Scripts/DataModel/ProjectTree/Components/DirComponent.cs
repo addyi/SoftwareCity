@@ -36,13 +36,13 @@ namespace DataModel.ProjectTree.Components
             if (path.Length == 1)
             {
                 components.Add(component);
-                //TODO ADDYI components.Sort();
+                //TODO ADDYI FIX SORT ELSE EXCEPTION components.Sort();
                 return component;
             }
 
             tc = new DirComponent(path[0]);
             components.Add(tc);
-            //TODO ADDYI components.Sort();
+            //TODO ADDYI FIX SORT ELSE EXCEPTION components.Sort();
             return tc.InsertComponentAt(SubArray(path, 1, path.Length - 1), component);
 
 

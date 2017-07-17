@@ -4,7 +4,6 @@ using DataModel.ProjectTree.Components;
 using DataModel.ProjectTree;
 using Webservice.Response.ComponentTree;
 using DataModel.Metrics;
-using DataModel.SelectedMetrics;
 using DiskIO.AvailableMetrics;
 using DataModel.UserData;
 
@@ -18,6 +17,7 @@ namespace DataModel
         private ProjectComponent project;
         private Metric[] SelectedMetrics;
         private readonly UserCredentials userCredentials = new UserCredentials();
+        private List<Metric> availableMetrics = new List<Metric>();
 
         private Model() { }
 
@@ -37,6 +37,11 @@ namespace DataModel
                 project.InsertComponentAt(s, GetTreeComponent(c));
             }
             return project;
+        }
+
+        public List<Metric> GetAvailableMetrics()
+        {
+            return availableMetrics;
         }
 
         public string GetBaseUrl()
@@ -59,6 +64,11 @@ namespace DataModel
         public string GetUsername()
         {
             return userCredentials.username;
+        }
+
+        public void SetAvailableMetrics(List<Metric> AvailableMetrics)
+        {
+            this.availableMetrics = AvailableMetrics;
         }
 
         public void SetCredentials(string BaseUrl, string Username, string Password)
