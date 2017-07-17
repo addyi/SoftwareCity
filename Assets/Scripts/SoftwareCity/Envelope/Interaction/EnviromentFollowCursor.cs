@@ -41,7 +41,8 @@ namespace SoftwareCity.Envelope.Interaction
         /// </summary>
         void FixedUpdate()
         {
-            this.gameObject.transform.position = cursor.transform.position + new Vector3(0.0f, envelope.GetComponentInChildren<SoftwareCityBuilder>().GetHeight() * 0.05f, 0.0f);
+            this.gameObject.transform.position = cursor.transform.position + new Vector3(0.0f, envelope.GetComponentInChildren<SoftwareCityBuilder>().GetHeight() * 0.04f, 0.0f);
+            //this.gameObject.transform.position = cursor.transform.position;
         }
         
         /// <summary>
@@ -121,9 +122,9 @@ namespace SoftwareCity.Envelope.Interaction
         private void ActivateImage(bool b)
         {
             infobox = GameObject.FindGameObjectWithTag("Infobox");
-            foreach (Image image in infobox.gameObject.GetComponentsInChildren<Image>())
+            foreach (Renderer renderer in infobox.gameObject.GetComponentsInChildren<Renderer>())
             {
-                image.enabled = b;
+                renderer.enabled = b;
             }
         }
     }

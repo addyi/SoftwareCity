@@ -6,7 +6,7 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
-    class DirComponent : TreeComponent
+    public class DirComponent : TreeComponent
     {
         public readonly List<TreeComponent> components = new List<TreeComponent>();
 

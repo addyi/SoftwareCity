@@ -7,7 +7,6 @@ using Webservice.Response.ComponentTree;
 using System.Collections.Generic;
 using DataModel;
 using DataModel.ProjectTree;
-using DiskIO.AvailableMetrics;
 
 
 //calls to generate a test enviroment

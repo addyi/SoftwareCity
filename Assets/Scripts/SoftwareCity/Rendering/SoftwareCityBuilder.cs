@@ -2,6 +2,8 @@
 using UnityEngine;
 using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
+using DataModel.ProjectTree.Components;
+using SoftwareCity.Rendering.Utils.Information;
 
 namespace SoftwareCity.Rendering
 {
@@ -47,23 +49,33 @@ namespace SoftwareCity.Rendering
         /// </summary>
         private ComponentProducer componentProducer;
 
+        private GameObject envelope;
+
+        private void Start()
+        {
+            Build(GameObject.FindGameObjectWithTag("InitialGameObject").GetComponent<Initial>().rootProjectComponent);
+        }
+
         /// <summary>
         /// Method to build a new software city.
         /// </summary>
         /// <param name="root"></param>
-        public void Build(SQPackage root)
+        public void Build(ProjectComponent root)
         {
             packageLevel = 1;
             maxDocumentHeight = 0.0f;
 
             packageColorizer = GetComponent<PackageColorizer>();
             componentProducer = GetComponent<ComponentProducer>();
+            envelope = GameObject.FindGameObjectWithTag("Envelope");
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
             DeleteHelperGameObjects(helperGameObjects);
 
             AddCityToEnvelope(rootGameObject);
+
+            TreeToLinearStructur(rootGameObject);
         }
 
         /// <summary>
@@ -72,13 +84,13 @@ namespace SoftwareCity.Rendering
         /// <param name="treeObject"></param>
         /// <param name="packageLevel"></param>
         /// <returns></returns>
-        private GameObject TraverseTree(ISQObject treeObject, int packageLevel)
+        private GameObject TraverseTree(TreeComponent treeObject, int packageLevel)
         {
-            if (treeObject is SQPackage)
+            if (treeObject is DirComponent)
             {
                 List<GameObject> childs = new List<GameObject>();
 
-                foreach (ISQObject child in ((SQPackage)treeObject).GetChilds())
+                foreach (TreeComponent child in ((DirComponent)treeObject).components)
                 {
                     childs.Add(TraverseTree(child, packageLevel + 1));
                 }
@@ -103,12 +115,21 @@ namespace SoftwareCity.Rendering
                 }
                 else
                 {
-                    if(childDocuments.Count > 0)
+                    if(childDocuments.Count > 0 && childPackages.Count == 0)
+                    {
                         ComponentLayout.Corner(childDocuments);
-                    //ComponentLayout.Helix(childs);  //--> WICHTIG !!!!!!!!!!!!!!!!!!!!
+                    } else
+                    {
+                        if (childDocuments.Count == 0 && childPackages.Count > 0) {
+                            ComponentLayout.Helix(childPackages);
+                        }
+
+                    }
+                        //ComponentLayout.Helix(childs);
                 }
 
-                GameObject packageGameObject = componentProducer.GeneratePackage();
+                GameObject packageGameObject = componentProducer.GeneratePackage(treeObject);
+                packageGameObject.GetComponent<BaseInformation>().SetChilds(childs);
 
                 packageGameObject.GetComponent<Renderer>().material.color = packageColorizer.PackageLevelColor(packageLevel);
 
@@ -127,7 +148,7 @@ namespace SoftwareCity.Rendering
             }
             else
             {
-                GameObject documentGameObject = componentProducer.GenerateDocument();
+                GameObject documentGameObject = componentProducer.GenerateDocument(treeObject);
 
                 if (documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y > maxDocumentHeight)
                     maxDocumentHeight = documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y;
@@ -228,33 +249,35 @@ namespace SoftwareCity.Rendering
         /// <param name="root"></param>
         private void AddCityToEnvelope(GameObject root)
         {
-            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.05f, (maxDocumentHeight + 0.1f) * 0.05f, root.transform.localScale.z * 0.05f);
+            this.gameObject.transform.parent.localScale = new Vector3(root.transform.localScale.x * 0.03f, (maxDocumentHeight + 0.1f) * 0.03f, root.transform.localScale.z * 0.03f);
 
             root.transform.SetParent(this.gameObject.transform);
             root.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.05f, this.gameObject.transform.localScale.y * 0.05f, this.gameObject.transform.localScale.z * 0.05f);
+            this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * 0.03f, this.gameObject.transform.localScale.y * 0.03f, this.gameObject.transform.localScale.z * 0.03f);
 
             this.gameObject.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
 
-            EditEnvelope();
-        }
-
-        /// <summary>
-        /// Set the correct position of the enviroment gameobject in y direction.
-        /// </summary>
-        private void EditEnvelope()
-        {
-            GameObject envelope = GameObject.FindGameObjectWithTag("Envelope");
-
-            //envelope.transform.localPosition = new Vector3(0.0f, (maxDocumentHeight * 0.5f * 0.1f) + 0.05f, 0.0f);
-
-            envelope.transform.position = new Vector3(0, 0, 0);
-            envelope.GetComponent<EnvelopeDimension>().GenerateEnvelope();
+            this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
         }
 
         public float GetHeight()
         {
             return maxDocumentHeight;
+        }
+
+        private void TreeToLinearStructur(GameObject treeNode)
+        {
+            treeNode.transform.SetParent(envelope.transform);
+
+            if(treeNode.GetComponent<BaseInformation>().GetChilds() == null)
+            {
+                return;
+            }
+
+            foreach (GameObject child in treeNode.GetComponent<BaseInformation>().GetChilds())
+            {
+                TreeToLinearStructur(child);
+            }
         }
     }
 }

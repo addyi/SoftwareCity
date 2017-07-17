@@ -2,7 +2,7 @@
 
 namespace DataModel.Metrics
 {
-    class TreeMetric
+    public class TreeMetric
     {
         public readonly string Key;
         public readonly double Value;
