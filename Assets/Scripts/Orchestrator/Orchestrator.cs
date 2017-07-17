@@ -4,9 +4,7 @@ using Webservice;
 using Webservice.Response.Authentication;
 using Webservice.UriBuilding;
 using Webservice.Response.Project;
-using Webservice.Response.ComponentTree;
 using DataModel;
-using DataModel.ProjectTree;
 using DiskIO.AvailableMetrics;
 using System;
 
@@ -18,12 +16,13 @@ namespace Orchestrator
         private string username = "";
         private string password = "";
         private string selectedProjectKey = "";
+        private readonly Model model = new Model();
 
 
         // Use this for initialization
         void Start()
         {
-            
+
         }
 
         public void GetLocalProject()
@@ -58,9 +57,9 @@ namespace Orchestrator
                 }));
         }
 
-        public void SelectedMetrics(Metric[] KeysSelectedMetrics)
+        public void SelectedMetrics(Metric[] SelectedMetrics)
         {
-            throw new NotImplementedException();
+            model.SetSelectedMetrics(SelectedMetrics);
         }
 
         public void SecondMetricSelected()

@@ -4,14 +4,17 @@ using DataModel.ProjectTree.Components;
 using DataModel.ProjectTree;
 using Webservice.Response.ComponentTree;
 using DataModel.Metrics;
+using DataModel.SelectedMetrics;
+using DiskIO.AvailableMetrics;
 
 namespace DataModel
 {
     public enum SqQualifier { SUB_PROJECT, DIRECTORY, FILE, PROJECT, UNIT_TEST }
 
-    class Model : IProjectTree, IAvailableMetrics
+    class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics
     {
         private ProjectComponent project;
+        private Metric[] SelectedMetrics;
 
         public ProjectComponent BuildProjectTree(SqComponent baseComponent,
             List<SqComponent> components)
@@ -29,7 +32,17 @@ namespace DataModel
             return project;
         }
 
+        public Metric[] GetSelectedMetrics()
+        {
+            return SelectedMetrics;
+        }
+
         public ProjectComponent GetTree() { return project; }
+
+        public void SetSelectedMetrics(Metric[] SelectedMetrics)
+        {
+            this.SelectedMetrics = SelectedMetrics;
+        }
 
         private TreeComponent GetTreeComponent(SqComponent component)
         {
