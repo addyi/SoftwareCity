@@ -6,16 +6,18 @@ using Webservice.Response.ComponentTree;
 using DataModel.Metrics;
 using DataModel.SelectedMetrics;
 using DiskIO.AvailableMetrics;
+using DataModel.UserData;
 
 namespace DataModel
 {
     public enum SqQualifier { SUB_PROJECT, DIRECTORY, FILE, PROJECT, UNIT_TEST }
 
-    class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics
+    class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics, IUserData
     {
         private readonly static Model model = new Model();
         private ProjectComponent project;
         private Metric[] SelectedMetrics;
+        private readonly UserCredentials userCredentials = new UserCredentials();
 
         private Model() { }
 
@@ -37,12 +39,34 @@ namespace DataModel
             return project;
         }
 
+        public string GetBaseUrl()
+        {
+            return userCredentials.baseUri;
+        }
+
+        public string GetPassword()
+        {
+            return userCredentials.password;
+        }
+
         public Metric[] GetSelectedMetrics()
         {
             return SelectedMetrics;
         }
 
         public ProjectComponent GetTree() { return project; }
+
+        public string GetUsername()
+        {
+            return userCredentials.username;
+        }
+
+        public void SetCredentials(string BaseUrl, string Username, string Password)
+        {
+            userCredentials.baseUri = BaseUrl;
+            userCredentials.username = Username;
+            userCredentials.password = Password;
+        }
 
         public void SetSelectedMetrics(Metric[] SelectedMetrics)
         {

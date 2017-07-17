@@ -12,9 +12,7 @@ namespace Orchestrator
 {
     public class Orchestrator : MonoBehaviour
     {
-        private string baseUri = "";
-        private string username = "";
-        private string password = "";
+
         private string selectedProjectKey = "";
         private readonly Model model = Model.GetInstance();
 
@@ -48,9 +46,7 @@ namespace Orchestrator
                 {
                     if (err == 200)
                     {
-                        this.baseUri = baseUri;
-                        this.username = username;
-                        this.password = password;
+                        model.SetCredentials(baseUri, username, password);
                         callback(res.valid, err);
                     }
                     callback(false, err);
@@ -79,9 +75,9 @@ namespace Orchestrator
 
         private void LoadProjects()
         {
-            SqProjectUriBuilder uriBuilder = new SqProjectUriBuilder(baseUri);
-            if (username != "" && password != "")
-                uriBuilder.UserCredentials(username, password);
+            SqProjectUriBuilder uriBuilder = new SqProjectUriBuilder(model.GetBaseUrl());
+            if (model.GetUsername() != "" && model.GetPassword() != "")
+                uriBuilder.UserCredentials(model.GetUsername(), model.GetPassword());
 
             StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
                uriBuilder.GetSqUri(),
