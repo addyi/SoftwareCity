@@ -41,6 +41,7 @@ namespace DataModel.ProjectTree.Components
             }
 
             tc = new DirComponent(path[0]);
+            tc.Qualifier = SqQualifier.UNDEFINED;
             components.Add(tc);
             //TODO ADDYI FIX SORT ELSE EXCEPTION components.Sort();
             return tc.InsertComponentAt(SubArray(path, 1, path.Length - 1), component);

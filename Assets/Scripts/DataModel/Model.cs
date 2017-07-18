@@ -9,7 +9,21 @@ using DataModel.UserData;
 
 namespace DataModel
 {
-    public enum SqQualifier { SUB_PROJECT, DIRECTORY, FILE, PROJECT, UNIT_TEST }
+    /// <summary>
+    /// Qalifier for the Tree Component. Equvalent to SQ Responce.
+    /// </summary>
+    public enum SqQualifier
+    {
+        /// <summary>
+        /// If a folder is not returned by the API Call, but is needed for the Tree structure.
+        /// </summary>
+        UNDEFINED,
+        SUB_PROJECT,
+        DIRECTORY,
+        FILE,
+        PROJECT,
+        UNIT_TEST
+    }
 
     class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics, IUserData
     {
