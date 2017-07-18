@@ -1,16 +1,23 @@
-﻿using HoloToolkit.Unity.InputModule;
+﻿using System;
+using HoloToolkit.Unity.InputModule;
 using SoftwareCity.Rendering.Utils.Information;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ComponentClickListener : MonoBehaviour, IInputClickHandler
+public class ComponentClickListener : MonoBehaviour, IInputHandler
 {
     private static GameObject lastReference = null;
     private static Color lastColor;
 
+    /*
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        if(lastReference != null)
+
+    }
+    */
+    public void OnInputDown(InputEventData eventData)
+    {
+                if(lastReference != null)
         {
             lastReference.GetComponent<Renderer>().material.color = lastColor;
         }
@@ -19,6 +26,11 @@ public class ComponentClickListener : MonoBehaviour, IInputClickHandler
 
         GameObject.FindGameObjectWithTag("Infobox").GetComponentInChildren<Text>().text = ContentInformation(GetComponent<BaseInformation>());
         GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    public void OnInputUp(InputEventData eventData)
+    {
+        //throw new NotImplementedException();
     }
 
     private string ContentInformation(BaseInformation info)
