@@ -4,6 +4,7 @@ using SoftwareCity.Envelope.Dimension;
 using SoftwareCity.Rendering.Utils;
 using DataModel.ProjectTree.Components;
 using SoftwareCity.Rendering.Utils.Information;
+using DataModel;
 
 namespace SoftwareCity.Rendering
 {
@@ -53,7 +54,7 @@ namespace SoftwareCity.Rendering
 
         private void Start()
         {
-            Build(GameObject.FindGameObjectWithTag("InitialGameObject").GetComponent<Initial>().rootProjectComponent);
+            Build(Model.GetInstance().GetTree());
         }
 
         /// <summary>

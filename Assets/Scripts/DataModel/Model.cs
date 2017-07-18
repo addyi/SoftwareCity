@@ -43,12 +43,16 @@ namespace DataModel
             if (baseComponent == null || components == null)
                 return null;
 
-            project = new ProjectComponent(baseComponent);
+            if (project == null)
+                project = new ProjectComponent(baseComponent);
 
-            foreach (SqComponent c in components)
+            lock (project)
             {
-                string[] s = c.path.Split('/');
-                project.InsertComponentAt(s, GetTreeComponent(c));
+                foreach (SqComponent c in components)
+                {
+                    string[] s = c.path.Split('/');
+                    project.InsertComponentAt(s, GetTreeComponent(c));
+                }
             }
             return project;
         }
@@ -56,6 +60,22 @@ namespace DataModel
         public List<Metric> GetAvailableMetrics()
         {
             return availableMetrics;
+        }
+
+        public string GetAvailableMetricsAsString()
+        {
+            List<Metric> metrics = GetAvailableMetrics();
+            string res = "";
+
+            if (metrics == null || metrics.Count <= 0)
+                return res;
+
+            foreach (Metric m in metrics)
+            {
+                res += m.key + ",";
+            }
+
+            return res.Substring(0, res.Length - 1);
         }
 
         public string GetBaseUrl()

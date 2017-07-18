@@ -10,5 +10,6 @@ namespace DataModel.Metrics
     {
         List<Metric> GetAvailableMetrics();
         void SetAvailableMetrics(List<Metric> AvailableMetrics);
+        string GetAvailableMetricsAsString();
     }
 }

@@ -7,13 +7,14 @@ using Webservice.Response.Project;
 using DataModel;
 using DiskIO.AvailableMetrics;
 using System;
+using Webservice.Response.ComponentTree;
+using DataModel.ProjectTree.Components;
 
 namespace Orchestrator
 {
     public class Orchestrator : MonoBehaviour
     {
 
-        private string selectedProjectKey = "";
         private readonly Model model = Model.GetInstance();
 
 
@@ -22,6 +23,12 @@ namespace Orchestrator
         {
             model.SetAvailableMetrics(AvailableMetricConfigReader.ReadConfigFile());
             // TODO ADDYI load city from disk
+            CredentialsValid("http://sonarqube.eosn.de/", "user", "123456", (success, code) =>
+            {
+                SelectProject("geo-quiz-app");
+            });
+
+
         }
 
         public void GetLocalProject()
@@ -45,7 +52,7 @@ namespace Orchestrator
                (res, err) =>
                {
                    Debug.Log("LoadProjectList ResponseCode: " + err);
-                   callback(res, err);                  
+                   callback(res, err);
                }));
         }
 
@@ -69,7 +76,7 @@ namespace Orchestrator
                 }));
         }
 
-        public void SelectedMetrics(Metric[] SelectedMetrics)
+        public void SelectMetrics(Metric[] SelectedMetrics)
         {
             model.SetSelectedMetrics(SelectedMetrics);
         }
@@ -84,40 +91,55 @@ namespace Orchestrator
             throw new NotImplementedException();
         }
 
-        public void SelectedProject(string projectKey)
+        private bool IsLocalProjectRequestedProject(string projectKey)
         {
-            selectedProjectKey = projectKey;
+            ProjectComponent p = model.GetTree();
+            if (p != null && p.Key == projectKey)
+                return true;
+            return false;
         }
 
-        private void LoadProject()
+        public void SelectProject(string projectKey)
         {
-            //StartCoroutine(WebInterface.WebRequest<ComponentTree>(
-            //   new SqComponentTreeUriBuilder(baseUri, projectKey, metricKeys)
-            //        .UserCredentials(username, password).GetSqUri(),
-            //   (System.Action<ComponentTree, long>)((res, err) =>
-            //   {
-            //       switch (err)
-            //       {
-            //           case 200:
-            //               Debug.Log(res.baseComponent.ToString());
-            //               Debug.Log(res.paging.ToString());
-            //               IProjectTree ProjectTree = new Model();
-
-            //               // List<Webservice.Response.ComponentTree.Component> components = res.components;
-            //               //components.Sort();
-
-
-            //               ProjectTree.BuildProjectTree(res.baseComponent, res.components);
-            //               Debug.Log(ProjectTree.GetTree().ToString());
-
-            //               break;
-            //           default:
-            //               Debug.Log("Addyi ResponseCode: " + err);
-            //               break;
-
-            //       }
-
-            //   })));
+            if (!IsLocalProjectRequestedProject(projectKey))
+            {
+                LoadProject(projectKey, 1);
+            }
         }
+
+        private void LoadProject(string projectKey, int page)
+        {
+            SqComponentTreeUriBuilder uriBuilder
+                = new SqComponentTreeUriBuilder(model.GetBaseUrl(), projectKey,
+                model.GetAvailableMetricsAsString());
+
+            if (model.GetUsername() != "" && model.GetPassword() != "")
+            {
+                uriBuilder.UserCredentials(model.GetUsername(), model.GetPassword());
+            }
+
+            StartCoroutine(WebInterface.WebRequest<ComponentTree>(
+               uriBuilder.Page(page).GetSqUri(),
+               (res, err) =>
+               {
+                   switch (err)
+                   {
+                       case 200:
+                           model.BuildProjectTree(res.baseComponent, res.components);
+
+                           int TotalNumOfPages = res.paging.total / res.paging.pageSize + 1;
+                           if (page < TotalNumOfPages)
+                           {
+                               LoadProject(projectKey, page + 1);
+                           }
+                           break;
+                       default:
+                           Debug.Log("Addyi ResponseCode: " + err);
+                           break;
+                   }
+               }));
+        }
+
+
     }
 }
