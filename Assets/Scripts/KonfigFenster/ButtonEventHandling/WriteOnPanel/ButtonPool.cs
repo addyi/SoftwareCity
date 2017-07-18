@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ConfigurationWindow.ConfigurationObserver;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,12 +26,14 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         public GameObject nextPanel;
 
+        private PanelExchanger changePanel;
+
         //the list to load all projects from SonarQube
         private List<string> allProjects;
         // Use this for initialization
         void Awake()
         {
-            
+            changePanel = this.GetComponent<PanelExchanger>();
             //here the list will be loaded
             //example projects for test
             allProjects = new List<string> { "LocalProject", "Online Project", "Java Project", "Foo Project" };
@@ -40,8 +43,15 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 button.transform.SetParent(panelScrollView.transform);
                 button.transform.localPosition = new Vector3(button.transform.localPosition.x, button.transform.localPosition.y, 0.0f);
                 button.GetComponentInChildren<Text>().text = s;
+                DisableImage(button);
                 button.GetComponent<Button>().onClick.AddListener(Clicked);
             }
+        }
+
+        private void DisableImage(GameObject button)
+        {
+            button.GetComponentInChildren<Image>().enabled = false;
+            button.GetComponentInChildren<Text>().enabled = false;
         }
 
         /// <summary>
@@ -49,8 +59,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         void Clicked()
         {
-            actualPanel.SetActive(false);
-            nextPanel.SetActive(true);
+            changePanel.NextPanel("ProjectSample");
         }
     }
 }

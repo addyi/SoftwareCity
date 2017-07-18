@@ -10,7 +10,8 @@ namespace ConfigurationWindow.ButtonEventHandling
         //private ConfigurationObserver observer;
         private bool localProject;
         private Button[] allActiveButtons;
-        private GameObject disableButton;
+        private GameObject deactivateButton;
+        private bool disabledButton;
         // Use this for initialization
         void Start()
         {
@@ -22,6 +23,13 @@ namespace ConfigurationWindow.ButtonEventHandling
             AddingListener();
         }
 
+        public void RefreshDisplay()
+        {
+            Debug.Log(disabledButton);
+            if (disabledButton)
+                DisableButton();
+        }
+
         private bool GetLocalProject()
         {
             return false;
@@ -31,9 +39,15 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
             if(tag != null && !localProject)
             {
-                disableButton = GameObject.FindGameObjectWithTag(tag);
-                disableButton.GetComponent<Button>().interactable = false;
+                deactivateButton = GameObject.FindGameObjectWithTag(tag);
+                DisableButton();
+                disabledButton = true;
             }
+        }
+
+        private void DisableButton()
+        {
+            deactivateButton.GetComponent<Button>().interactable = false;
         }
 
         private void AddingListener()

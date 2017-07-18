@@ -10,7 +10,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
     {
         private GameObject panelParent;
         private GameObject metricPanel;
-        private readonly string[] ALLMETRICPANELS = { "ChooseHeightPanel", "ChooseColorPanel", "ChoosePyramidPanel" };
+        
 
         private ConfigurationWindowObserver<string> metrics;
         private List<string> metricList;
@@ -39,8 +39,15 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 metricButton.transform.SetParent(panelScrollView.transform);
                 metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
                 metricButton.GetComponentInChildren<Text>().text = s;
+                DisableImage(metricButton);
                 metricButton.GetComponent<Button>().onClick.AddListener(Clicked);
             }
+        }
+
+        private void DisableImage(GameObject metricButton)
+        {
+            metricButton.GetComponent<Image>().enabled = false;
+            metricButton.GetComponentInChildren<Text>().enabled = false;
         }
 
         void Clicked()
