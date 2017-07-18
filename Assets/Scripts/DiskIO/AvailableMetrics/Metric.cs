@@ -24,6 +24,23 @@ namespace DiskIO.AvailableMetrics
         /// </summary>
         public string datatype;
 
+        public Metric(string n, string k, double dv, string dt)
+        {
+            this.name = n;
+            this.key = k;
+            this.defaultvalue = dv;
+            this.datatype = dt;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Metric metric = obj as Metric;
+            return this.name == metric.name &&
+                   this.key == metric.key &&
+                   this.datatype == metric.datatype &&
+                   this.defaultvalue == metric.defaultvalue;
+        }
+
 
     }
 }
