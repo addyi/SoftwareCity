@@ -21,7 +21,7 @@ namespace SoftwareCity.ConfigMenu
         {
             cursor = GameObject.FindGameObjectWithTag("Cursor");
 
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
             InputManager.Instance.PushModalInputHandler(this.gameObject);
         }
@@ -41,11 +41,12 @@ namespace SoftwareCity.ConfigMenu
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
+            /*
             if (gameObject.GetComponent<SpriteRenderer>() != null)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-
+            */
             InputManager.Instance.PopModalInputHandler();
             this.gameObject.GetComponent<MenuFollowCursor>().enabled = false;
         }

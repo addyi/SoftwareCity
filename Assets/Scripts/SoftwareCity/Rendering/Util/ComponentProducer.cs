@@ -1,5 +1,7 @@
 ﻿using DataModel;
+using DataModel.Metrics;
 using DataModel.ProjectTree.Components;
+using SoftwareCity.Rendering.Utils.Colorizer;
 using SoftwareCity.Rendering.Utils.Information;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,10 +9,11 @@ using UnityEngine.Rendering;
 namespace SoftwareCity.Rendering.Utils {
     public class ComponentProducer : MonoBehaviour {
 
-        /// <summary>
-        /// IMPLEMENT !!!!!!!
-        /// </summary>
-        private static readonly Vector3 localScaleOfDocument = new Vector3(0.2f, 1f, 0.2f);
+
+        private readonly string linesOfCode = "ncloc";
+        private readonly string testSuccess = "test_success_density";
+        private readonly string functions = "functions";
+        private readonly string commentLinesDensity = "comment_lines_density";
 
         [SerializeField]
         private GameObject documentPrefab;
@@ -28,9 +31,9 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.AddComponent<FileInformation>();
             documentGameObject.GetComponent<FileInformation>().UpdateValues(documentComponent);
             documentGameObject.AddComponent<ComponentClickListener>();
-            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid();
-            documentGameObject.GetComponent<Renderer>().sharedMaterial = contentMaterial;
-            documentGameObject.GetComponent<Renderer>().sharedMaterial.color = Color.red;
+            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(FindSpecificMetricValue(testSuccess, documentComponent));
+            documentGameObject.GetComponent<Renderer>().material = contentMaterial;
+            documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(FindSpecificMetricValue(functions, documentComponent));
             documentGameObject.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             documentGameObject.GetComponent<Renderer>().lightProbeUsage = LightProbeUsage.Off;
             documentGameObject.GetComponent<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
@@ -40,7 +43,7 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.transform.position = Vector3.zero;
             documentGameObject.name = documentComponent.Name;
 
-            documentGameObject.transform.localScale = CalculateDocumentSize();
+            documentGameObject.transform.localScale = CalculateDocumentSize(FindSpecificMetricValue(linesOfCode, documentComponent)/100.0f, FindSpecificMetricValue(commentLinesDensity, documentComponent) / 100.0f);
 
             return documentGameObject;
         }
@@ -49,21 +52,18 @@ namespace SoftwareCity.Rendering.Utils {
         /// Calculate the positions of the pyramid corners at the top.
         /// </summary>
         /// <param name="documentGameObject"></param>
-        private Mesh CalculatePyramid()
+        private Mesh CalculatePyramid(float percent)
         {
-            float percent = Random.Range(0.0f, 1.0f);
-
-            return this.gameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(percent);
+            return this.gameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(percent / 100.0f);
         }
 
         /// <summary>
         /// Calculate the specific size depend on the the metric.
         /// </summary>
         /// <returns></returns>
-        private Vector3 CalculateDocumentSize()
+        private Vector3 CalculateDocumentSize(float widthDepth, float height)
         {
-            float widthHeight = Random.Range(0.1f, 1.0f);
-            return new Vector3(widthHeight, Random.Range(0.1f, 2.0f), widthHeight);
+            return new Vector3(0.1f + widthDepth, 1f + height, 0.1f + widthDepth);
         }
 
         /// <summary>
@@ -99,6 +99,18 @@ namespace SoftwareCity.Rendering.Utils {
             helperGameobject.name = "Helper";
 
             return helperGameobject;
+        }
+
+        private float FindSpecificMetricValue(string key, TreeComponent documentComponent)
+        {
+            foreach (TreeMetric m in documentComponent.Metrics)
+            {
+                if (m.Key.Equals(key))
+                {
+                    return (float)m.Value;
+                }
+            }
+            return 0.0f;
         }
     }
 }

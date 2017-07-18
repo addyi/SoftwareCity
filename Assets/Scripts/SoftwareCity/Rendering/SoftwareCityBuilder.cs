@@ -5,6 +5,7 @@ using SoftwareCity.Rendering.Utils;
 using DataModel.ProjectTree.Components;
 using SoftwareCity.Rendering.Utils.Information;
 using DataModel;
+using SoftwareCity.Rendering.Utils.Colorizer;
 
 namespace SoftwareCity.Rendering
 {

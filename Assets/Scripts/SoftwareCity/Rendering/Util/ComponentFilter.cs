@@ -38,7 +38,8 @@ namespace SoftwareCity.Rendering.Utils
             {
                 if (child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.DIRECTORY 
                     || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.PROJECT 
-                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.SUB_PROJECT)
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.SUB_PROJECT
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.UNDEFINED)
                     packages.Add(child);
             }
 

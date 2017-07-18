@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SoftwareCity.Rendering.Utils
+namespace SoftwareCity.Rendering.Utils.Colorizer
 {
     public class PackageColorizer : MonoBehaviour {
 
