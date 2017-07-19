@@ -10,11 +10,11 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
     {
         private GameObject panelParent;
         private GameObject metricPanel;
-        
+
 
         private ConfigurationWindowObserver<string> metrics;
         private List<string> metricList;
-        private PanelObserver panelHandler;
+        private PanelExchanger panelHandler;
         public GameObject buttonPrefab;
         public GameObject panelScrollView;
 
@@ -25,6 +25,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         {
             panelParent = GameObject.Find("ConfigurationCanvas");
             metricPanel = panelParent.transform.FindChild("ChoosePyramidPanel").gameObject;
+
+            panelHandler = GetComponent<PanelExchanger>();
             Debug.Log(metricPanel.ToString());
 
             metricList = new List<string> { "Lines Of Code", "Bugs", "Code Smells", "Issues", "Functions" };
@@ -38,6 +40,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 GameObject metricButton = Instantiate<GameObject>(buttonPrefab);
                 metricButton.transform.SetParent(panelScrollView.transform);
                 metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
+                metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
                 metricButton.GetComponentInChildren<Text>().text = s;
                 DisableImage(metricButton);
                 metricButton.GetComponent<Button>().onClick.AddListener(Clicked);
@@ -52,8 +55,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 
         void Clicked()
         {
-            actualPanel.SetActive(false);
-            nextPanel.SetActive(true);
+            panelHandler.NextPanel("ChooseHeightPanel");
         }
     }
 }

@@ -40,6 +40,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         void Start()
         {
             allButtons = GetComponentsInChildren<Button>();
+            Debug.Log(allButtons.Length);
             actualTag = SearchTag();
             if(actualTag.Equals("SamplePanel") && OverviewElements.IsEmpty())
             {
@@ -59,7 +60,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 
                         break;
                     case "ColorPanel":
-                        CheckBeforeRemove();
+                        //CheckBeforeRemove();
                         //NotifySecondMetricSelected();
                         break;
                     case "PyramidPanel":

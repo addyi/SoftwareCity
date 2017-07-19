@@ -13,7 +13,7 @@ namespace ConfigurationWindow.ConfigurationObserver
 
         [SerializeField]
         private GameObject[] availablePanels;
-        
+
         private void Start()
         {
             RenderringPanel(canvasParent, true);

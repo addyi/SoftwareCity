@@ -19,15 +19,15 @@ namespace ConfigurationWindow.ButtonEventHandling
             allActiveButtons = GetComponentsInChildren<Button>();
             string externTag = GameObject.FindGameObjectWithTag("Extern").tag;
             localProject = GetLocalProject();
-            CheckBeforeClick(externTag);
-            AddingListener();
+            //CheckBeforeClick(externTag);
+            //AddingListener();
         }
 
         public void RefreshDisplay()
         {
             Debug.Log(disabledButton);
-            if (disabledButton)
-                DisableButton();
+            //if (disabledButton) 
+                //DisableButton();
         }
 
         private bool GetLocalProject()
