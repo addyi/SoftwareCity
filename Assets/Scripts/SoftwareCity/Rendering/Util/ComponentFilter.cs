@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DataModel;
+using SoftwareCity.Rendering.Utils.Information;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,8 @@ namespace SoftwareCity.Rendering.Utils
             List<GameObject> documents = new List<GameObject>();
             foreach (GameObject child in childs)
             {
-                if (child.GetComponent<Information>().GetSQObjectType().Equals("document"))
+                if (child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.FILE 
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.UNIT_TEST)
                     documents.Add(child);
             }
 
@@ -34,7 +36,10 @@ namespace SoftwareCity.Rendering.Utils
             List<GameObject> packages = new List<GameObject>();
             foreach (GameObject child in childs)
             {
-                if (child.GetComponent<Information>().GetSQObjectType().Equals("package"))
+                if (child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.DIRECTORY 
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.PROJECT 
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.SUB_PROJECT
+                    || child.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.UNDEFINED)
                     packages.Add(child);
             }
 

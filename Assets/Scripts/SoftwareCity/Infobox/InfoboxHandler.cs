@@ -19,7 +19,7 @@ namespace SoftwareCity.Infobox
         {
             if (infoboxWidth <= 0)
             {
-                infoboxWidth = GetComponent<Collider>().bounds.size.z;
+                infoboxWidth = GetComponent<Renderer>().bounds.size.z;
                 GetComponent<Collider>().enabled = false;
             }
 

@@ -1,0 +1,57 @@
+{
+  "availablemetrics": [{
+      "name": "Lines of Code",
+      "key": "ncloc",
+      "defaultvalue": 0.0,
+      "datatype": "int"
+    },
+    {
+      "name": "Test Success Density",
+      "key": "test_success_density",
+      "defaultvalue": 100.0,
+      "datatype": "percentege"
+    },
+    {
+      "name": "Code Smells",
+      "key": "code_smells",
+      "defaultvalue": 100,
+      "datatype": "int"
+    },
+    {
+      "name": "Comment Lines Density",
+      "key": "comment_lines_density",
+      "defaultvalue": 0.0,
+      "datatype": "percentege"
+    },
+    {
+      "name": "Bugs",
+      "key": "bugs",
+      "defaultvalue": 0.0,
+      "datatype": "int"
+    },
+    {
+      "name": "Vulnerabilities",
+      "key": "vulnerabilities",
+      "defaultvalue": 0.0,
+      "datatype": ""
+    },
+    {
+      "name": "Violations",
+      "key": "violations",
+      "defaultvalue": 0.0,
+      "datatype": "int"
+    },
+    {
+      "name": "Functions",
+      "key": "functions",
+      "defaultvalue": 0.0,
+      "datatype": "int"
+    },
+    {
+      "name": "Coverage",
+      "key": "coverage",
+      "defaultvalue": 0.0,
+      "datatype": "percentege"
+    }
+  ]
+}

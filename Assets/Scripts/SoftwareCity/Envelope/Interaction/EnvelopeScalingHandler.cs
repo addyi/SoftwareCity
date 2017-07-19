@@ -62,7 +62,7 @@ namespace SoftwareCity.Envelope.Interaction
 
             if (!(currentLocalScale.x + multiplier < 0.1f || currentLocalScale.y + multiplier < 0.1f || currentLocalScale.z + multiplier < 0.1f) || eventData.CumulativeDelta.y > 0.0f)
             {
-                envelope.transform.localScale += new Vector3(multiplier, multiplier, multiplier) * eventData.CumulativeDelta.y;
+                envelope.transform.localScale += new Vector3(multiplier, 0.0f, multiplier) * eventData.CumulativeDelta.y;
 
                 enviroment.transform.position = new Vector3(enviroment.transform.position.x, currentEnviromentPosition.y + ((envelope.transform.localScale.y - startScale) / 2f), enviroment.transform.position.z);
 

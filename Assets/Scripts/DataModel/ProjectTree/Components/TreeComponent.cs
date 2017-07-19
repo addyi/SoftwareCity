@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DataModel.Metrics;
 using Webservice.Response.ComponentTree;
-
+using UnityEngine;
 
 namespace DataModel.ProjectTree.Components
 {
-    abstract class TreeComponent : IComparable
+    public abstract class TreeComponent : IComparable
     {
-        // TODO ADDYI fucking toString methode 
         public string ID;
         public string Key;
         public string Name;
@@ -18,7 +16,7 @@ namespace DataModel.ProjectTree.Components
         public SqQualifier Qualifier;
         public List<TreeMetric> Metrics = new List<TreeMetric>();
 
-        protected TreeComponent(Component component)
+        protected TreeComponent(SqComponent component)
         {
             ID = component.id;
             Key = component.key;
@@ -62,7 +60,7 @@ namespace DataModel.ProjectTree.Components
                 }
                 catch (Exception e)
                 {
-                    ;
+                    Debug.Log(e.Message);
                 }
             }
             return m;
@@ -70,14 +68,9 @@ namespace DataModel.ProjectTree.Components
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                throw new ArgumentException("Illegal Argument: null Object");
-            }
-            if (!(obj is TreeComponent))
-            {
-                throw new ArgumentException("Illegal Argument: obj isn't a TreeComponent");
-            }
+            if (obj == null || !(obj is TreeComponent))
+                return false;
+
             TreeComponent other = (TreeComponent)obj;
             return ID == other.ID && Key == other.Key && Name == other.Name
                 && Path == other.Path && Qualifier == other.Qualifier;
@@ -109,8 +102,8 @@ namespace DataModel.ProjectTree.Components
 
         public override string ToString()
         {
-            string res= Name + "\n\t" + Path + "\n\t";
-            foreach(TreeMetric tm in Metrics)
+            string res = Name + "\n\t" + Path + "\n\t";
+            foreach (TreeMetric tm in Metrics)
             {
                 res += tm.ToString();
             }

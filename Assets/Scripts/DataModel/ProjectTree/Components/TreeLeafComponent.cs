@@ -6,11 +6,11 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
-    abstract class TreeLeafComponent : TreeComponent
+    public abstract class TreeLeafComponent : TreeComponent
     {
         public string Language;
 
-        protected TreeLeafComponent(Component component):base(component)
+        protected TreeLeafComponent(SqComponent component):base(component)
         {
             Language = component.language;            
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataModel;
+using SoftwareCity.Rendering.Utils.Information;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,8 +27,9 @@ namespace SoftwareCity.Rendering.Utils
             float displacementFactorDepth = FindOutDisplacementFactorDepth(childs);
 
             GameObject prevGameObject = childs[0];
-
-            if (prevGameObject.GetComponent<Information>().GetSQObjectType().Equals("document"))
+            
+            if (prevGameObject.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.FILE 
+                || prevGameObject.GetComponent<BaseInformation>().GetQualifier() == SqQualifier.UNIT_TEST)
                 prevGameObject.transform.position = new Vector3(0.0f, prevGameObject.transform.position.y, 0.0f);
             else
                 prevGameObject.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
@@ -104,7 +107,7 @@ namespace SoftwareCity.Rendering.Utils
             float prevDisplacementFactorWidth = 0.0f;
             Vector3 childSize;
 
-            string lastSQType = "";
+            SqQualifier lastSQQualifier = SqQualifier.DIRECTORY;
 
             foreach (GameObject child in childs)
             {
@@ -112,7 +115,7 @@ namespace SoftwareCity.Rendering.Utils
 
                 if (childSize.x >= displacementFactorWidth)
                 {
-                    lastSQType = child.GetComponent<Information>().GetSQObjectType();
+                    lastSQQualifier = child.GetComponent<BaseInformation>().GetQualifier();
                     prevDisplacementFactorWidth = displacementFactorWidth;
                     displacementFactorWidth = childSize.x;
                 }
@@ -123,7 +126,7 @@ namespace SoftwareCity.Rendering.Utils
                 }
             }
 
-            if (lastSQType.Equals("package"))
+            if (SqQualifier.DIRECTORY == lastSQQualifier || SqQualifier.PROJECT == lastSQQualifier || SqQualifier.SUB_PROJECT == lastSQQualifier || SqQualifier.UNDEFINED == lastSQQualifier)
                 return (displacementFactorWidth / 2) + (prevDisplacementFactorWidth / 2) + 0.1f;
             return displacementFactorWidth + 0.1f;
         }
@@ -140,7 +143,7 @@ namespace SoftwareCity.Rendering.Utils
 
             Vector3 childSize;
 
-            string lastSQType = "";
+            SqQualifier lastSQQualifier = SqQualifier.DIRECTORY;
 
             foreach (GameObject child in childs)
             {
@@ -148,7 +151,7 @@ namespace SoftwareCity.Rendering.Utils
 
                 if (childSize.z >= displacementFactorDepth)
                 {
-                    lastSQType = child.GetComponent<Information>().GetSQObjectType();
+                    lastSQQualifier = child.GetComponent<BaseInformation>().GetQualifier();
                     prevDisplacementFactorDepth = displacementFactorDepth;
                     displacementFactorDepth = childSize.z;
                 }
@@ -159,7 +162,7 @@ namespace SoftwareCity.Rendering.Utils
                 }
             }
 
-            if (lastSQType.Equals("package"))
+            if (SqQualifier.DIRECTORY == lastSQQualifier || SqQualifier.PROJECT == lastSQQualifier || SqQualifier.SUB_PROJECT == lastSQQualifier || SqQualifier.UNDEFINED == lastSQQualifier)
                 return (displacementFactorDepth * 0.5f) + (prevDisplacementFactorDepth * 0.5f) + 0.1f;
             return displacementFactorDepth + 0.1f;
         }

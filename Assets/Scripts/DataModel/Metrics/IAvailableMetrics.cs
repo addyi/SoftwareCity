@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DiskIO.AvailableMetrics;
 
 namespace DataModel.Metrics
 {
     interface IAvailableMetrics
     {
-        // TODO YACINE New Class AvailableMetric(ohne S)
-        // TODO YACINE New Class AvailableMetricS
+        List<Metric> GetAvailableMetrics();
+        void SetAvailableMetrics(List<Metric> AvailableMetrics);
+        string GetAvailableMetricsAsString();
     }
 }
