@@ -6,9 +6,10 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public class DirComponent : TreeComponent
     {
-        public readonly List<TreeComponent> components = new List<TreeComponent>();
+        public List<TreeComponent> components = new List<TreeComponent>();
 
         public DirComponent(SqComponent component) : base(component)
         {
