@@ -9,7 +9,10 @@ namespace ConfigurationWindow.ButtonEventHandling
 {
     public class LoginPanelValidator : MonoBehaviour
     {
-        public InputField uriTextInput;
+        //public InputField uriTextInput;
+
+        private InputField[] inputField;
+        private GameObject passwordInput;
 
 
         private Uri resultLink;
@@ -19,29 +22,36 @@ namespace ConfigurationWindow.ButtonEventHandling
 
         private void Start()
         {
-            uriTextInput.onEndEdit.AddListener(delegate { CheckInput(uriTextInput); });
+            inputField = GetComponentsInChildren<InputField>();
+            foreach(InputField input in inputField)
+            {
+                input.onEndEdit.AddListener(delegate { CheckInput(input); });
+            }
+            //uriTextInput.onEndEdit.AddListener(delegate { CheckInput(uriTextInput); });
         }
 
-        void RefreshDisplay()
+        void RefreshDisplay(InputField input)
         {
             if(!result)
             {
-                uriTextInput.GetComponent<Image>().color = Color.red;
+                input.GetComponent<Image>().color = Color.red;
             } else
             {
-                uriTextInput.GetComponent<Image>().color = Color.white;
+                input.GetComponent<Image>().color = Color.white;
             }
         }
 
         void CheckInput(InputField input)
         {
-
             textLabel = input.text;
+            //Debug.Log(textLabel);
+            if (input.tag.Equals("URLInput"))
+                Debug.Log("Url input: " + textLabel);
             result = Uri.TryCreate(textLabel, UriKind.Absolute, out resultLink)
                 && (resultLink.Scheme == Uri.UriSchemeHttp || resultLink.Scheme == Uri.UriSchemeHttps);
             if(result)
                 Debug.Log(resultLink.Scheme);
-            RefreshDisplay();
+            RefreshDisplay(input);
         }
     }
 }
