@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using System.IO;
 using System.Xml;
+using DataModel.ProjectTree.Components;
 
 namespace DiskIO.ProjectTreeSaveLoader
 {
@@ -10,13 +11,13 @@ namespace DiskIO.ProjectTreeSaveLoader
     {
         private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
 
-        public static void SaveProjectComponent<T>(T obj)
+        public static void SaveProjectComponent(ProjectComponent obj)
         {
             using (MemoryStream ms = new MemoryStream())
             {
                 using (XmlDictionaryWriter writer = XmlDictionaryWriter.CreateBinaryWriter(ms))
                 {
-                    DataContractSerializer dcs = new DataContractSerializer(typeof(T));
+                    DataContractSerializer dcs = new DataContractSerializer(typeof(ProjectComponent));
 
                     dcs.WriteObject(writer, obj);
                     writer.Flush();
@@ -25,15 +26,15 @@ namespace DiskIO.ProjectTreeSaveLoader
             }
         }
 
-        public static T LoadProjectComponent<T>()
+        public static ProjectComponent LoadProjectComponent()
         {
             byte[] data = File.ReadAllBytes(path);
             using (MemoryStream memoryStream = new MemoryStream(data))
             {
                 using (XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(memoryStream, XmlDictionaryReaderQuotas.Max))
                 {
-                    DataContractSerializer dcs = new DataContractSerializer(typeof(T));
-                    return (T)dcs.ReadObject(reader);
+                    DataContractSerializer dcs = new DataContractSerializer(typeof(ProjectComponent));
+                    return (ProjectComponent)dcs.ReadObject(reader);
                 }
             }
 

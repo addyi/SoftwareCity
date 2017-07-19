@@ -17,8 +17,8 @@ public class ButtonFunctions : MonoBehaviour
 
         Model m = Model.GetInstance();
 
-        ComponentTreeStream.SaveProjectComponent<ProjectComponent>(m.GetTree());
-        Debug.Log(ComponentTreeStream.LoadProjectComponent<ProjectComponent>());
+        ComponentTreeStream.SaveProjectComponent(m.GetTree());
+        Debug.Log(ComponentTreeStream.LoadProjectComponent());
     }
 
     public void CreateEnvironment()
