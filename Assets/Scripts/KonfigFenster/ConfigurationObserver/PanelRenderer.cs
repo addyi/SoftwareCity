@@ -42,6 +42,21 @@ namespace ConfigurationWindow.ConfigurationObserver
             {
                 button.enabled = check;
             }
+
+            foreach(InputField inputField in panel.GetComponentsInChildren<InputField>())
+            {
+                inputField.enabled = check;
+            }
+
+            foreach(ScrollRect scrollRect in panel.GetComponentsInChildren<ScrollRect>())
+            {
+                scrollRect.enabled = check;
+            }
+
+            foreach(Scrollbar scrollbar in panel.GetComponentsInChildren<Scrollbar>())
+            {
+                scrollbar.enabled = check;
+            }
         }
     }
 }
