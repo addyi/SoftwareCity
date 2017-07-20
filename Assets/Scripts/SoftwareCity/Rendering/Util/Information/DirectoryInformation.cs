@@ -8,6 +8,10 @@ namespace SoftwareCity.Rendering.Utils.Information
 
         private string childString = "";
 
+        /// <summary>
+        /// Set the specific values.
+        /// </summary>
+        /// <param name="treeComponent"></param>
         public override void UpdateValues(TreeComponent treeComponent)
         {
             base.UpdateValues(treeComponent);
@@ -20,6 +24,10 @@ namespace SoftwareCity.Rendering.Utils.Information
             }
         }
 
+        /// <summary>
+        /// To format the directory information as string.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return "<b>Type:</b> <size=40pt>" + qualifier +

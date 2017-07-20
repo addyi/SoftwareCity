@@ -5,14 +5,25 @@ namespace SoftwareCity.Rendering.Utils.Information
 {
     public class FileInformation : BaseInformation {
 
+        /// <summary>
+        /// Save the language.
+        /// </summary>
         private string language;
 
+        /// <summary>
+        /// Update values.
+        /// </summary>
+        /// <param name="treeComponent"></param>
         public override void UpdateValues(TreeComponent treeComponent)
         {
             base.UpdateValues(treeComponent);
             this.language = ((TreeLeafComponent)treeComponent).Language;
         }
 
+        /// <summary>
+        /// Print the file informations in a specific format.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string metricString = "";
