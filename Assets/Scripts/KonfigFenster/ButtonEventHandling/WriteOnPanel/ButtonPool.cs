@@ -1,4 +1,5 @@
-﻿using ConfigurationWindow.ConfigurationObserver;
+﻿using ConfigurationWindow.ButtonEventHandling.ReadFromPanel;
+using ConfigurationWindow.ConfigurationObserver;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,11 +29,14 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 
         private PanelExchanger changePanel;
 
+        private InputManager inserter;
+
         //the list to load all projects from SonarQube
         private List<string> allProjects;
         // Use this for initialization
-        void Awake()
+        void Start()
         {
+            inserter = GetComponentInParent<InputManager>();
             changePanel = this.GetComponent<PanelExchanger>();
             //here the list will be loaded
             //example projects for test
@@ -45,7 +49,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 button.transform.localScale = new Vector3(1f, 1f, 1f);
                 button.GetComponentInChildren<Text>().text = s;
                 DisableImage(button);
-                button.GetComponent<Button>().onClick.AddListener(Clicked);
+                button.GetComponent<Button>().onClick.AddListener(() => Clicked(button.GetComponentInChildren<Text>().text));
             }
         }
 
@@ -58,9 +62,10 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// The button listener to switch between panels.
         /// </summary>
-        void Clicked()
+        void Clicked(string data)
         {
-            changePanel.NextPanel("ProjectSample");
+            inserter.InsertElement(data);
+            changePanel.NextPanel("HeightPanel");
         }
     }
 }

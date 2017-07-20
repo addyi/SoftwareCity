@@ -8,15 +8,18 @@ namespace ConfigurationWindow.ButtonEventHandling
     public class MainPanelObserver : MonoBehaviour
     {
         //private ConfigurationObserver observer;
+        private Orchestrator.Orchestrator orchestrator;
+
+
         private bool localProject;
-        private Button[] allActiveButtons;
         private GameObject deactivateButton;
         private bool disabledButton;
         // Use this for initialization
         void Start()
         {
-            //observer.GetLocalProject();
-            allActiveButtons = GetComponentsInChildren<Button>();
+            orchestrator = GetComponentInParent<Orchestrator.Orchestrator>();
+            //TODO Check if LocalProject exist.
+            //orchestrator.GetLocalProject();
             string externTag = GameObject.FindGameObjectWithTag("Extern").tag;
             localProject = GetLocalProject();
             //CheckBeforeClick(externTag);
@@ -48,20 +51,6 @@ namespace ConfigurationWindow.ButtonEventHandling
         private void DisableButton()
         {
             deactivateButton.GetComponent<Button>().interactable = false;
-        }
-
-        private void AddingListener()
-        {
-            for(int i = 0; i < allActiveButtons.Length; i++)
-            {
-                int temp = i;
-                allActiveButtons[i].onClick.AddListener(() => Clicked(temp));
-            }
-        }
-
-        private void Clicked(int i)
-        {
-            
         }
     }
 }

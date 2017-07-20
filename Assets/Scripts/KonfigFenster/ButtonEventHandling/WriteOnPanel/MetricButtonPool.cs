@@ -24,7 +24,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         void Awake()
         {
             panelParent = GameObject.Find("ConfigurationCanvas");
-            metricPanel = panelParent.transform.FindChild("ChoosePyramidPanel").gameObject;
+            metricPanel = panelParent.transform.FindChild("PyramidPanel").gameObject;
 
             panelHandler = GetComponent<PanelExchanger>();
             Debug.Log(metricPanel.ToString());
@@ -55,7 +55,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 
         void Clicked()
         {
-            panelHandler.NextPanel("ChooseHeightPanel");
+            panelHandler.NextPanel("ColorPanel");
         }
     }
 }

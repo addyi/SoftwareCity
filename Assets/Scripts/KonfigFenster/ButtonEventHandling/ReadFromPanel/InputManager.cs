@@ -7,7 +7,7 @@ using System;
 
 namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
-    public class OnClickHandler : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
         /// <summary>
         /// An array, to save all buttons from the panel.
@@ -40,14 +40,14 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         void Start()
         {
             allButtons = GetComponentsInChildren<Button>();
-            Debug.Log(allButtons.Length);
+            //Debug.Log(allButtons.Length);
             actualTag = SearchTag();
             if(actualTag.Equals("SamplePanel") && OverviewElements.IsEmpty())
             {
                 OverviewElements.Initialize();
             }
-            AddingListener();
-            AddingJumpBackListener();
+            //AddingListener();
+            //AddingJumpBackListener();
         }
 
         private void OnGUI()
@@ -90,9 +90,15 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             return temp;
         }
 
+        public void InsertElement(string name)
+        {
+            OverviewElements.InsertElement(name);
+        }
+
         /// <summary>
         /// This method adds for every button an eventlistener to observe which one was clicked.
         /// </summary>
+        /*
         void AddingListener()
         {
             for(int i = 1; i < allButtons.Length; i++)
@@ -134,7 +140,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             if (saveLastButton != null && !saveLastButton.interactable && SearchTag().Equals("HeightPanel"))
                 saveLastButton.interactable = true;
         }
-
+        */
         /// <summary>
         /// Check all buttons in the metric Panel, before the one button get disabled.
         /// </summary>

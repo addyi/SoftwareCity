@@ -59,7 +59,9 @@ namespace ConfigurationWindow.ConfigurationObserver
         public void NextPanel(string nextPanelTag)
         {
             print(EventSystem.current.currentSelectedGameObject);
-            panelRenderer.RenderringPanel(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject, false);
+            print(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+            
+            panelRenderer.RenderringPanel(EventSystem.current.currentSelectedGameObject.transform.root.gameObject, false);
             panelRenderer.RenderringPanel(GameObject.FindGameObjectWithTag(nextPanelTag), true);
         }
         /*
