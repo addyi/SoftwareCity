@@ -1,36 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using ConfigurationWindow.ButtonEventHandling;
+using UnityEngine.EventSystems;
 
 namespace ConfigurationWindow.ConfigurationObserver
 {
     public class PanelExchanger : MonoBehaviour
     {
-        private PanelObserver panelObserver;
+        private PanelRenderer panelRenderer;
 
-        private PanelStorage mapOfPanels;
+       // private PanelStorage mapOfPanels;
 
         [SerializeField]
         private MainPanelObserver mainPanel;
 
-        private GameObject[] availablePanels;
-        private readonly string[] ALLPANELS =
-            {"MainPanel", "LoginPanel", "ProjectSample", "ChooseHeightPanel", "ChooseColorPanel", "ChoosePyramidPanel", "OverviewPanel"};
+       // private GameObject[] availablePanels;
+        //private readonly string[] ALLPANELS =
+        //    {"MainPanel", "LoginPanel", "ProjectSample", "ChooseHeightPanel", "ChooseColorPanel", "ChoosePyramidPanel", "OverviewPanel"};
 
 
         private void Start()
         {
-            mapOfPanels = new PanelStorage();
+            //mapOfPanels = new PanelStorage();
             //mainPanel = this.GetComponentInChildren<MainPanelObserver>();
-            panelObserver = GetComponentInParent<PanelObserver>();
-            availablePanels = panelObserver.GetPanels();
-            InsertElements();
-            Debug.Log(mapOfPanels.GetPanel("MainPanel"));
+            panelRenderer = GetComponentInParent<PanelRenderer>();
+            //availablePanels = panelObserver.GetPanels();
+           // InsertElements();
+           // Debug.Log(mapOfPanels.GetPanel("MainPanel"));
 
             
         }
-
+        /*
         private void InsertElements()
         {
             for(int i = 0; i  < ALLPANELS.Length; i++)
@@ -38,7 +37,8 @@ namespace ConfigurationWindow.ConfigurationObserver
                 mapOfPanels.InsertPanel(ALLPANELS[i], availablePanels[i]);
             }
         }
-
+        */
+        /*
         public void PreviousPanel(string panel)
         {
             panelObserver.RenderringPanel(mapOfPanels.GetPanel(panel), false);
@@ -47,14 +47,22 @@ namespace ConfigurationWindow.ConfigurationObserver
                 mainPanel.RefreshDisplay();
             panelObserver.RenderringPanel(mapOfPanels.GetPanel(SearchPreviousPanel(panel)), true);
         }
-
+        */
         //TODO How to change between Panels, not linear.
+        /*
         public void NextPanel(string panel) 
         {
             panelObserver.RenderringPanel(mapOfPanels.GetPanel(panel), false);
             panelObserver.RenderringPanel(mapOfPanels.GetPanel(SearchNextPanel(panel)), true);
         }
-
+        */
+        public void NextPanel(string nextPanelTag)
+        {
+            print(EventSystem.current.currentSelectedGameObject);
+            panelRenderer.RenderringPanel(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject, false);
+            panelRenderer.RenderringPanel(GameObject.FindGameObjectWithTag(nextPanelTag), true);
+        }
+        /*
         private string SearchPreviousPanel(string actualPanel)
         {
             string result = "";
@@ -66,7 +74,8 @@ namespace ConfigurationWindow.ConfigurationObserver
             Debug.Log(actualPanel);
             return result;
         }
-
+        */
+        /*
         private string SearchNextPanel(string actualPanel)
         {
             string result = "";
@@ -83,6 +92,6 @@ namespace ConfigurationWindow.ConfigurationObserver
             bool exists = false;
             return exists;
         }
-
+        */
     }
 }
