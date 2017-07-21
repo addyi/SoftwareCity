@@ -60,7 +60,7 @@ namespace SoftwareCity.Envelope.Interaction
 
             Vector3 currentLocalScale = envelope.transform.localScale;
 
-            if (!(currentLocalScale.x + multiplier < 0.1f || currentLocalScale.y + multiplier < 0.1f || currentLocalScale.z + multiplier < 0.1f) || eventData.CumulativeDelta.y > 0.0f)
+            if (!(currentLocalScale.x + multiplier < 0.1f || currentLocalScale.z + multiplier < 0.1f) || eventData.CumulativeDelta.y > 0.0f)
             {
                 envelope.transform.localScale += new Vector3(multiplier, 0.0f, multiplier) * eventData.CumulativeDelta.y;
 

@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 namespace SoftwareCity.Rendering.Utils {
     public class ComponentProducer : MonoBehaviour {
 
+        private readonly Model model = Model.GetInstance();
 
         private readonly string linesOfCode = "ncloc";
         private readonly string testSuccess = "test_success_density";
@@ -31,9 +32,7 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.AddComponent<FileInformation>();
             documentGameObject.GetComponent<FileInformation>().UpdateValues(documentComponent);
             documentGameObject.AddComponent<ComponentClickListener>();
-            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(FindSpecificMetricValue(testSuccess, documentComponent));
             documentGameObject.GetComponent<Renderer>().material = contentMaterial;
-            documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(FindSpecificMetricValue(functions, documentComponent));
             documentGameObject.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             documentGameObject.GetComponent<Renderer>().lightProbeUsage = LightProbeUsage.Off;
             documentGameObject.GetComponent<Renderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
@@ -44,6 +43,8 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.name = documentComponent.Name;
 
             documentGameObject.transform.localScale = CalculateDocumentSize(FindSpecificMetricValue(linesOfCode, documentComponent)/100.0f, FindSpecificMetricValue(commentLinesDensity, documentComponent) / 100.0f);
+            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(FindSpecificMetricValue(testSuccess, documentComponent));
+            documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(FindSpecificMetricValue(functions, documentComponent));
 
             return documentGameObject;
         }
