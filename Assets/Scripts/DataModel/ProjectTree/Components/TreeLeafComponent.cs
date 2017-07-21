@@ -6,6 +6,7 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public abstract class TreeLeafComponent : TreeComponent
     {
         public string Language;

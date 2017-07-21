@@ -9,5 +9,7 @@ namespace DataModel.ProjectTree
     {
         ProjectComponent BuildProjectTree(SqComponent baseComponent, List<SqComponent> components);
         ProjectComponent GetTree();
+        void SetTree(ProjectComponent tree);
+        void DeleteTree();
     }
 }

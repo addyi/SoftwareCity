@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public abstract class TreeComponent : IComparable
     {
         public string ID;

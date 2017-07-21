@@ -3,6 +3,7 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public class FilComponent : TreeLeafComponent
     {
         public FilComponent(SqComponent component) : base(component)
