@@ -95,6 +95,10 @@ namespace DataModel
 
         public ProjectComponent GetTree() { return project; }
 
+        public void SetTree(ProjectComponent tree) { project = tree; }
+
+        public void DeleteTree() { project = null; }
+
         public string GetUsername()
         {
             return userCredentials.username;
