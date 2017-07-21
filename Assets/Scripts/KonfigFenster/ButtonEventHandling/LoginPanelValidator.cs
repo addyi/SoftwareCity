@@ -1,4 +1,5 @@
-﻿using ConfigurationWindow.ConfigurationObserver;
+﻿using ConfigurationWindow.ButtonEventHandling.WriteOnPanel;
+using ConfigurationWindow.ConfigurationObserver;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,20 +13,44 @@ namespace ConfigurationWindow.ButtonEventHandling
     {
         //public InputField uriTextInput;
 
+        /// <summary>
+        /// A reference to all inputfields, to add listener to them.
+        /// </summary>
         private InputField[] inputField;
+        /// <summary>
+        /// A reference to the checkButton to add specific listener.
+        /// </summary>
         private GameObject checkButton;
 
+        /// <summary>
+        /// A reference to the Orchestrator script, to make the call to the server.
+        /// </summary>
         private GameObject orchestrator;
+        /// <summary>
+        /// A reference to the PanelExchanger script, to change between panels.
+        /// </summary>
         private GameObject panelHandler;
 
-
+        /// <summary>
+        /// urlInput saves the input from the textlabel URI.
+        /// </summary>
         private string urlInput;
+        /// <summary>
+        /// usernameInput saves the input from the textlabel Username.
+        /// </summary>
         private string usernameInput;
+        /// <summary>
+        /// passwordInput saves the input from the textlabe Password.
+        /// </summary>
         private string passwordInput;
 
-        private Uri resultLink;
+        /// <summary>
+        /// Template container to get the input from the inputlabel.
+        /// </summary>
         private string textLabel;
-        private readonly string URI;
+        /// <summary>
+        /// Checks the input if there is some signs in the inputlabel.
+        /// </summary>
         private bool result;
 
         private void Start()
@@ -59,7 +84,18 @@ namespace ConfigurationWindow.ButtonEventHandling
                                {
                                    //Alles ok User kann weiter machen
                                    Debug.Log(err);
-
+                                   orchestrator.GetComponent<Orchestrator.Orchestrator>().LoadOnlineProjects((listOfProjects, error) =>
+                                   {
+                                       switch(error)
+                                       {
+                                           case 200:
+                                               //Alles hat funktioniert
+                                               //TODO Richard Liste der porjekte in eine andere liste einfügen und die buttons erstellen.
+                                               Debug.Log("Kann Projekte laden Länge der liste: " + listOfProjects.Count);
+                                               panelHandler.GetComponent<ButtonPool>().AddButtons(listOfProjects);
+                                               break;
+                                       }
+                                   });
                                    panelHandler.GetComponent<PanelExchanger>().NextPanel("SamplePanel");
                                }
                                else
