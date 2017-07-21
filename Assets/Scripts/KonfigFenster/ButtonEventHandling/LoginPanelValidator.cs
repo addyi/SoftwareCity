@@ -11,7 +11,6 @@ namespace ConfigurationWindow.ButtonEventHandling
 {
     public class LoginPanelValidator : MonoBehaviour
     {
-        //public InputField uriTextInput;
 
         /// <summary>
         /// A reference to all inputfields, to add listener to them.
@@ -67,6 +66,9 @@ namespace ConfigurationWindow.ButtonEventHandling
             checkButton.GetComponent<Button>().onClick.AddListener(ControlAuthentication);
         }
 
+        /// <summary>
+        /// Before the submit from the button the input data from the user will be verified.
+        /// </summary>
         public void ControlAuthentication()
         {
             Debug.Log("Test");
@@ -116,6 +118,10 @@ namespace ConfigurationWindow.ButtonEventHandling
             }
         }
 
+        /// <summary>
+        /// Refreshes the display after every input from the user to inform the user, if he forgot some inputs.
+        /// </summary>
+        /// <param name="input">A reference to the Inputfield to show exactly where the user needs an input.</param>
         public void RefreshDisplay(InputField input)
         {
             Debug.Log(urlInput);
@@ -128,6 +134,10 @@ namespace ConfigurationWindow.ButtonEventHandling
             }
         }
 
+        /// <summary>
+        /// Saves the input in string.
+        /// </summary>
+        /// <param name="input">An reference to know which Inputfield is active.</param>
         void CheckInput(InputField input)
         {
             textLabel = input.text;
@@ -148,6 +158,10 @@ namespace ConfigurationWindow.ButtonEventHandling
             RefreshDisplay(input);
         }
 
+        /// <summary>
+        /// Verify the input from the user in the URLInput label and to check if the InputField is empty.
+        /// </summary>
+        /// <param name="input">The actually input from the user is saved in the string: urlinput.</param>
         private void CheckURLInput(string input)
         {
             if (String.IsNullOrEmpty(input))
@@ -159,6 +173,10 @@ namespace ConfigurationWindow.ButtonEventHandling
             }
         }
 
+        /// <summary>
+        /// Verify the input from the user, if this field is empty the usernameInput is empty.
+        /// </summary>
+        /// <param name="input">The actually input from the user is saved in the string: usernameInput.</param>
         private void CheckUserInput(string input)
         {
             Debug.Log(input);
@@ -169,6 +187,11 @@ namespace ConfigurationWindow.ButtonEventHandling
             result = true;
         }
 
+
+        /// <summary>
+        /// Verify the input from the user, this field can only be empty if the usernameInput is empty otherwise it informs the user.
+        /// </summary>
+        /// <param name="input">The actually input from the user is saved in the string: passwordInput.</param>
         private void CheckPasswordInput(string input)
         {
 

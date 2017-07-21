@@ -8,7 +8,7 @@ namespace ConfigurationWindow.ButtonEventHandling
     public class MainPanelObserver : MonoBehaviour
     {
         //private ConfigurationObserver observer;
-        private Orchestrator.Orchestrator orchestrator;
+        private GameObject orchestrator;
 
 
         private bool localProject;
@@ -17,12 +17,12 @@ namespace ConfigurationWindow.ButtonEventHandling
         // Use this for initialization
         void Start()
         {
-            orchestrator = GetComponentInParent<Orchestrator.Orchestrator>();
+            orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             //TODO Check if LocalProject exist.
             //orchestrator.GetLocalProject();
             string externTag = GameObject.FindGameObjectWithTag("Extern").tag;
             localProject = GetLocalProject();
-            //CheckBeforeClick(externTag);
+            CheckBeforeClick(externTag);
             //AddingListener();
         }
 

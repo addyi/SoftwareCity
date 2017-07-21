@@ -6,30 +6,68 @@ using UnityEngine.UI;
 using DiskIO.AvailableMetrics;
 using System.Linq;
 using ConfigurationWindow.ButtonEventHandling.ReadFromPanel;
+using UnityEngine.EventSystems;
 
 namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 {
     public class MetricButtonPool : MonoBehaviour
     {
+        /// <summary>
+        /// A reference to the button in the prefab directory.
+        /// </summary>
         public GameObject buttonPrefab;
-        public GameObject panelScrollView;
+        /// <summary>
+        /// A reference to put all buttons in the right position.
+        /// </summary>
+        public GameObject heightContent;
+        //public GameObject colorContent;
+        //public GameObject pyramidContnet;
 
+        /// <summary>
+        /// A reference to the script PanelExchanger, to switch between panels.
+        /// </summary>
         private PanelExchanger panelHandler;
+        /// <summary>
+        /// The Orchestrator is there to get all availablemetrics and to inform the other components.
+        /// </summary>
         private GameObject orchestrator;
+        /// <summary>
+        /// The inputhandler is there to add the names of an submit button and show them in the overviewpanel.
+        /// </summary>
         private GameObject inputHandler;
 
 
+        private GameObject currentPanel;
+
+
+        /// <summary>
+        /// a list of metrics from the json file
+        /// </summary>
         private List<Metric> _metricList;
+        /// <summary>
+        /// A sublist from the _metricList. In this list they are only metrics with percentage.
+        /// </summary>
         private List<Metric> pyramidList;
         
         // Use this for initialization
         void Awake()
         {
+            this.currentPanel = GameObject.FindGameObjectWithTag("HeightPanel");
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GetComponent<PanelExchanger>();
             GetMetricList();
             AddButtons();
+        }
+
+        /// <summary>
+        /// After every button submit the script should start the method RefreshDisplay() again to check which panel is now active.
+        /// </summary>
+        public void RefreshDisplay()
+        {
+            //TODO How to get the panel??
+            currentPanel = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
+            print(currentPanel);
         }
 
         /// <summary>
@@ -52,13 +90,15 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             foreach(Metric m in _metricList)
             {
                 GameObject metricButton = Instantiate<GameObject>(buttonPrefab);
-                metricButton.transform.SetParent(panelScrollView.transform);
+                metricButton.transform.SetParent(heightContent.transform);
                 metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
                 metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
                 metricButton.GetComponentInChildren<Text>().text = m.name;
                 DisableImage(metricButton);
                 metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(m));
             }
+
+            
             /*
             foreach (string s in metricList)
             {
@@ -73,16 +113,25 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             */
         }
 
+        /// <summary>
+        /// Disable the images in the buttons to not getting any conflicts between the buttons from different panels.
+        /// </summary>
+        /// <param name="metricButton"></param>
         private void DisableImage(GameObject metricButton)
         {
             metricButton.GetComponent<Image>().enabled = false;
             metricButton.GetComponentInChildren<Text>().enabled = false;
         }
 
+        /// <summary>
+        /// The listener for a button, to switch between panels and inform the orchestrator.
+        /// </summary>
+        /// <param name="m">An Metric object to collect them and afterwards inform the orchestrator.</param>
         void Clicked(Metric m)
         {
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
             panelHandler.NextPanel("ColorPanel");
+            RefreshDisplay();
         }
     }
 }

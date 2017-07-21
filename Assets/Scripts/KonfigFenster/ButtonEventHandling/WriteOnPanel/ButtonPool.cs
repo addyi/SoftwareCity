@@ -59,18 +59,6 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 button.GetComponentInChildren<Text>().text = project.nm;
                 button.GetComponent<Button>().onClick.AddListener(() => Clicked(project));
             }
-            /*
-            foreach (string s in allProjects)
-            {
-                GameObject button = Instantiate(buttonPrefab) as GameObject;
-                button.transform.SetParent(panelScrollView.transform);
-                button.transform.localPosition = new Vector3(button.transform.localPosition.x, button.transform.localPosition.y, 0.0f);
-                button.transform.localScale = new Vector3(1f, 1f, 1f);
-                button.GetComponentInChildren<Text>().text = s;
-                DisableImage(button);
-                button.GetComponent<Button>().onClick.AddListener(() => Clicked(button.GetComponentInChildren<Text>().text));
-            }
-            */
         }
 
         /// <summary>

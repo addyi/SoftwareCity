@@ -7,24 +7,16 @@ namespace ConfigurationWindow.ConfigurationObserver
 {
     public class PanelRenderer : MonoBehaviour
     {
-        /*
-        [SerializeField]
-        private GameObject canvasParent;
-        // Use this for initialization
-      
-        [SerializeField]
-        private GameObject[] availablePanels;
-  */
         private void Start()
         {
             RenderringPanel(GameObject.FindGameObjectWithTag("MainPanel"), true);
         }
-        /*
-        public GameObject[] GetPanels()
-        {
-            return availablePanels;
-        }
-        */
+        
+        /// <summary>
+        /// Enables/Disable all images, text, button, inputfield, scrollrect and scrollbar in a panel.
+        /// </summary>
+        /// <param name="panel">A reference from the panel which should be enable/disable.</param>
+        /// <param name="check">An boolean to enable or disable the panel.</param>
         public void RenderringPanel(GameObject panel, bool check)
         {
             //Debug.Log(panel.ToString());
