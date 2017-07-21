@@ -40,3 +40,7 @@ obj/
 *.opendb
 WSATestCertificate.pfx
 WSATestCertificate.pfx.meta
+
+
+Assets/Storage/localProjectTreeStore.data
+Assets/Storage/localProjectTreeStore.data.meta

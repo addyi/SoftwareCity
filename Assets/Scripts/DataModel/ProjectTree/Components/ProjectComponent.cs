@@ -4,6 +4,7 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public class ProjectComponent : DirComponent
     {
         public ProjectComponent(SqComponent component) : base(component)
