@@ -35,6 +35,10 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private GameObject orchestrator;
 
+        private GameObject[] allButtons;
+
+        private List<SQProject> resetList;
+
         // Use this for initialization
         void Start()
         {
@@ -49,8 +53,11 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <param name="listOfproject">A list with all projects from the server or one button from the local project.</param>
         public void AddButtons(List<SQProject> listOfproject)
         {
+            allButtons = new GameObject[listOfproject.Count];
             Debug.Log("Can now add Buttons");
-            foreach(SQProject project in listOfproject)
+            resetList = listOfproject;
+            int i = 0;
+            foreach(SQProject project in resetList)
             {
                 GameObject button = Instantiate<GameObject>(buttonPrefab);
                 button.transform.SetParent(panelScrollView.transform);
@@ -58,7 +65,18 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 button.transform.localScale = new Vector3(1f, 1f, 1f);
                 button.GetComponentInChildren<Text>().text = project.nm;
                 button.GetComponent<Button>().onClick.AddListener(() => Clicked(project));
+                allButtons[i] = button;
+                i++;
             }
+        }
+
+        public void Reset()
+        {
+            foreach(GameObject button in allButtons)
+            {
+                Destroy(button);
+            }
+            resetList.Clear();
         }
 
         /// <summary>

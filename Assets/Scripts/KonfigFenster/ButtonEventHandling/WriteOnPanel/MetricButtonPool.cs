@@ -20,8 +20,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// A reference to put all buttons in the right position.
         /// </summary>
         public GameObject heightContent;
-        //public GameObject colorContent;
-        //public GameObject pyramidContnet;
+        public GameObject colorContent;
+        public GameObject pyramidContent;
 
         /// <summary>
         /// A reference to the script PanelExchanger, to switch between panels.
@@ -39,7 +39,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 
         private GameObject currentPanel;
 
-
+        private List<Metric> savedMetrics;
         /// <summary>
         /// a list of metrics from the json file
         /// </summary>
@@ -56,8 +56,11 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GetComponent<PanelExchanger>();
+            savedMetrics = new List<Metric>();
             GetMetricList();
-            AddButtons();
+            AddButtons("ColorPanel", heightContent.transform, _metricList);
+            AddButtons("PyramidPanel",colorContent.transform, _metricList);
+            AddButtons("OverviewPanel", pyramidContent.transform, pyramidList);
         }
 
         /// <summary>
@@ -85,17 +88,17 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// Adding buttons in the panel.
         /// </summary>
-        private void AddButtons()
+        private void AddButtons(string panelTag, Transform panel, List<Metric>metricList)
         {
-            foreach(Metric m in _metricList)
+            foreach(Metric m in metricList)
             {
                 GameObject metricButton = Instantiate<GameObject>(buttonPrefab);
-                metricButton.transform.SetParent(heightContent.transform);
+                metricButton.transform.SetParent(panel.transform);
                 metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
                 metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
                 metricButton.GetComponentInChildren<Text>().text = m.name;
                 DisableImage(metricButton);
-                metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(m));
+                metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(m, panelTag));
             }
 
             
@@ -127,11 +130,21 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// The listener for a button, to switch between panels and inform the orchestrator.
         /// </summary>
         /// <param name="m">An Metric object to collect them and afterwards inform the orchestrator.</param>
-        void Clicked(Metric m)
+        void Clicked(Metric m, string panelTag )
         {
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
-            panelHandler.NextPanel("ColorPanel");
-            RefreshDisplay();
+            Debug.Log(m.key);
+            savedMetrics.Add(m);
+            panelHandler.NextPanel(panelTag);
+            switch (panelTag)
+            {
+                case "PyramidPanel":
+                    //orchestrator.GetComponent<Orchestrator.Orchestrator>().SecondMetricSelected();
+                    break;
+                case "OverviewPanel":
+                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(savedMetrics.ToArray());
+                    break;
+            }
         }
     }
 }

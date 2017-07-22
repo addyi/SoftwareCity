@@ -30,6 +30,7 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// </summary>
         private GameObject panelHandler;
 
+        private GameObject errorCodeLabel;
         /// <summary>
         /// urlInput saves the input from the textlabel URI.
         /// </summary>
@@ -54,6 +55,8 @@ namespace ConfigurationWindow.ButtonEventHandling
 
         private void Start()
         {
+            errorCodeLabel = GameObject.FindGameObjectWithTag("ErrorCodeLabel");
+            errorCodeLabel.GetComponent<Text>().color = Color.red;
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GameObject.FindGameObjectWithTag("PanelExchanger");
             inputField = GetComponentsInChildren<InputField>();
@@ -64,6 +67,11 @@ namespace ConfigurationWindow.ButtonEventHandling
             }
 
             checkButton.GetComponent<Button>().onClick.AddListener(ControlAuthentication);
+        }
+
+        public void RefreshDisplay()
+        {
+            errorCodeLabel.GetComponent<Text>().text = "";
         }
 
         /// <summary>
@@ -94,6 +102,7 @@ namespace ConfigurationWindow.ButtonEventHandling
                                                //Alles hat funktioniert
                                                //TODO Richard Liste der porjekte in eine andere liste einfügen und die buttons erstellen.
                                                Debug.Log("Kann Projekte laden Länge der liste: " + listOfProjects.Count);
+                                               RefreshDisplay();
                                                panelHandler.GetComponent<ButtonPool>().AddButtons(listOfProjects);
                                                break;
                                        }
@@ -103,12 +112,14 @@ namespace ConfigurationWindow.ButtonEventHandling
                                else
                                {
                                    //Benutzername/Pw ist falsch.
+                                   errorCodeLabel.GetComponent<Text>().text = "Benutzername/Password sind falsch";
                                }
                                break;
                            case 404:
                                //urlinput ist falsch
                                result = false;
                                RefreshDisplay(GameObject.FindGameObjectWithTag("URLInput").GetComponent<InputField>());
+                               errorCodeLabel.GetComponent<Text>().text = urlInput + " is false";
                                break;
                            default:
                                //Fehlermeldung an User ist schief gelaufen
