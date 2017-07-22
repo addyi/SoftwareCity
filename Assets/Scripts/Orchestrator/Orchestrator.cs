@@ -9,31 +9,50 @@ using DiskIO.AvailableMetrics;
 using System;
 using Webservice.Response.ComponentTree;
 using DataModel.ProjectTree.Components;
+using DiskIO.ProjectTreeSaveLoader;
 
 namespace Orchestrator
 {
+    public enum CityLoadingState
+    {
+        NotReady,
+        Ready,
+        LodingError
+    }
+
     public class Orchestrator : MonoBehaviour
     {
 
         private readonly Model model = Model.GetInstance();
-
+        private CityLoadingState cityLoadingState = CityLoadingState.NotReady;
+        private string toLoadProjectKey = "";
 
         // Use this for initialization
         void Start()
         {
+            // Read availablemetrics from disk and store them in the model
             model.SetAvailableMetrics(AvailableMetricConfigReader.ReadConfigFile());
-            // TODO ADDYI load city from disk
+
+            LoadLocalProject();
+
+
             CredentialsValid("http://sonarqube.eosn.de/", "user", "123456", (success, code) =>
             {
-                SelectProject("geo-quiz-app");
+                if (code == 200)
+                {
+                    SelectProject("geo-quiz-app");
+                    SecondMetricSelected();
+                    Debug.Log(IsCityReady());
+                }
             });
+
 
 
         }
 
-        public void GetLocalProject()
+        public ProjectComponent GetLocalProject()
         {
-            throw new NotImplementedException();
+            return model.GetTree();
         }
 
         /// <summary>
@@ -83,12 +102,34 @@ namespace Orchestrator
 
         public void SecondMetricSelected()
         {
-            throw new NotImplementedException();
+            if (!IsLocalProjectRequestedProject(toLoadProjectKey))
+            {
+                // If the url is set the credentials are valid
+                if (model.GetBaseUrl() != null)
+                {
+                    model.DeleteTree();
+                    LoadOnlineProject(toLoadProjectKey, 1);
+                }
+            }
+            else
+            {
+                cityLoadingState = CityLoadingState.Ready;
+            }
+        }
+
+        public CityLoadingState IsCityReady()
+        {
+            return cityLoadingState;
         }
 
         public void ShowCity()
         {
             throw new NotImplementedException();
+
+            if (IsCityReady() == CityLoadingState.Ready)
+            {
+                // TODO TOBIAS render city
+            }
         }
 
         private bool IsLocalProjectRequestedProject(string projectKey)
@@ -101,13 +142,10 @@ namespace Orchestrator
 
         public void SelectProject(string projectKey)
         {
-            if (!IsLocalProjectRequestedProject(projectKey))
-            {
-                LoadProject(projectKey, 1);
-            }
+            toLoadProjectKey = projectKey;
         }
 
-        private void LoadProject(string projectKey, int page)
+        private void LoadOnlineProject(string projectKey, int page)
         {
             SqComponentTreeUriBuilder uriBuilder
                 = new SqComponentTreeUriBuilder(model.GetBaseUrl(), projectKey,
@@ -130,16 +168,35 @@ namespace Orchestrator
                            int TotalNumOfPages = res.paging.total / res.paging.pageSize + 1;
                            if (page < TotalNumOfPages)
                            {
-                               LoadProject(projectKey, page + 1);
+                               LoadOnlineProject(projectKey, page + 1);
+                           }
+                           else
+                           {
+                               if (cityLoadingState != CityLoadingState.LodingError) { cityLoadingState = CityLoadingState.Ready; }
+                               ComponentTreeStream.SaveProjectComponent(model.GetTree());
                            }
                            break;
                        default:
                            Debug.Log("Addyi ResponseCode: " + err);
+                           cityLoadingState = CityLoadingState.LodingError;
                            break;
                    }
                }));
         }
 
-
+        private void LoadLocalProject()
+        {
+            try
+            {
+                ProjectComponent tree = ComponentTreeStream.LoadProjectComponent();
+                model.SetTree(tree);
+                Debug.Log("Loaded Project from Disk");
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Not able to load Project from disk: " + e.Message);
+                model.SetTree(null);
+            }
+        }
     }
 }
