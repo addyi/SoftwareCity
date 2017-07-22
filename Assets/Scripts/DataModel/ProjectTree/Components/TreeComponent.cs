@@ -34,6 +34,13 @@ namespace DataModel.ProjectTree.Components
 
         public abstract TreeComponent InsertComponentAt(string[] path, TreeComponent component);
 
+        /// <summary>
+        /// Max value of the defined metic in howl tree
+        /// </summary>
+        /// <param name="MetricKey">sonarqube metric key</param>
+        /// <returns>max value</returns>
+        public abstract double GetMaxForMetric(string MetricKey);
+
         public virtual TreeComponent UpdateComponent(TreeComponent component)
         {
             if (component != null && Name == component.Name)
