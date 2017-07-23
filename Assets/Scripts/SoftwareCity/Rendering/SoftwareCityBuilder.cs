@@ -262,6 +262,7 @@ namespace SoftwareCity.Rendering
             this.gameObject.transform.parent.GetComponent<EnvelopeDimension>().UpdateDimensionPoints();
         }
 
+
         public float GetHeight()
         {
             return maxDocumentHeight;
