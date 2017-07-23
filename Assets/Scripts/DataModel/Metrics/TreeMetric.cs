@@ -6,9 +6,9 @@ namespace DataModel.Metrics
     public class TreeMetric
     {
         public string Key;
-        public double Value;
+        public float Value;
 
-        public TreeMetric(string Key, double Value)
+        public TreeMetric(string Key, float Value)
         {
             this.Key = Key;
             this.Value = Value;

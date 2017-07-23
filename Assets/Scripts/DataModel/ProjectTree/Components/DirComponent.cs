@@ -48,12 +48,12 @@ namespace DataModel.ProjectTree.Components
             return tc.InsertComponentAt(SubArray(path, 1, path.Length - 1), component);
         }
 
-        public override double GetMaxForMetric(string MetricKey)
+        public override float GetMaxForMetric(string MetricKey)
         {
-            double res = 0;
+            float res = 0;
             foreach (TreeComponent tc in components)
             {
-                double componentMax = tc.GetMaxForMetric(MetricKey);
+                float componentMax = tc.GetMaxForMetric(MetricKey);
                 if (componentMax > res)
                 {
                     res = componentMax;

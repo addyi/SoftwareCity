@@ -26,7 +26,7 @@ namespace DataModel.ProjectTree.Components
             return null;
         }
 
-        public override double GetMaxForMetric(string MetricKey)
+        public override float GetMaxForMetric(string MetricKey)
         {
             foreach (TreeMetric tm in Metrics)
             {

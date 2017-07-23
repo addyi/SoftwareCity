@@ -17,18 +17,18 @@ namespace DiskIO.AvailableMetrics
         /// <summary>
         /// Gets or sets the default value.
         /// </summary>
-        public double defaultvalue;
+        public float defaultValue;
 
         /// <summary>
         /// Gets or sets the datatype.
         /// </summary>
         public string datatype;
 
-        public Metric(string n, string k, double dv, string dt)
+        public Metric(string n, string k, float dv, string dt)
         {
             this.name = n;
             this.key = k;
-            this.defaultvalue = dv;
+            this.defaultValue = dv;
             this.datatype = dt;
         }
 
@@ -38,7 +38,7 @@ namespace DiskIO.AvailableMetrics
             return this.name == metric.name &&
                    this.key == metric.key &&
                    this.datatype == metric.datatype &&
-                   this.defaultvalue == metric.defaultvalue;
+                   this.defaultValue == metric.defaultValue;
         }
 
 

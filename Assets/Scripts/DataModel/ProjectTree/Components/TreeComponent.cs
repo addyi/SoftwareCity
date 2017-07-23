@@ -39,7 +39,7 @@ namespace DataModel.ProjectTree.Components
         /// </summary>
         /// <param name="MetricKey">sonarqube metric key</param>
         /// <returns>max value</returns>
-        public abstract double GetMaxForMetric(string MetricKey);
+        public abstract float GetMaxForMetric(string MetricKey);
 
         public virtual TreeComponent UpdateComponent(TreeComponent component)
         {
@@ -64,7 +64,7 @@ namespace DataModel.ProjectTree.Components
                 try
                 {
                     double d = Convert.ToDouble(measure.value);
-                    m.Add(new TreeMetric(measure.metric, d));
+                    m.Add(new TreeMetric(measure.metric, (float)d));
                 }
                 catch (Exception e)
                 {

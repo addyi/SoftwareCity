@@ -56,14 +56,14 @@ namespace SoftwareCity.Rendering
 
         private float maxHeight;
 
-        //private Model model;
+        private Model model;
 
-        //private Metric[] selectedMetrics;
+        private Metric[] selectedMetrics;
 
         private void Start()
         {
-           // model = Model.GetInstance();
-           // selectedMetrics = model.GetSelectedMetrics();
+            model = Model.GetInstance();
+            selectedMetrics = model.GetSelectedMetrics();
             Build(Model.GetInstance().GetTree());
         }
 
@@ -80,7 +80,7 @@ namespace SoftwareCity.Rendering
             componentProducer = GetComponent<ComponentProducer>();
             envelope = GameObject.FindGameObjectWithTag("Envelope");
 
-            //maxHeight = root.getMaxHeight();
+            maxHeight = root.GetMaxForMetric(selectedMetrics[1].key);
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
@@ -161,7 +161,7 @@ namespace SoftwareCity.Rendering
             }
             else
             {
-                GameObject documentGameObject = componentProducer.GenerateDocument(treeObject);
+                GameObject documentGameObject = componentProducer.GenerateDocument(treeObject, selectedMetrics, maxHeight);
 
                 if (documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y > maxDocumentHeight)
                     maxDocumentHeight = documentGameObject.GetComponentInChildren<Renderer>().bounds.size.y;
