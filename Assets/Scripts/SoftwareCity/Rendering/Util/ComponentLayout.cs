@@ -101,7 +101,7 @@ namespace SoftwareCity.Rendering.Utils
         /// </summary>
         /// <param name="childs"></param>
         /// <returns></returns>
-        private static float FindOutDisplacementFactorWidth(List<GameObject> childs)
+        public static float FindOutDisplacementFactorWidth(List<GameObject> childs)
         {
             float displacementFactorWidth = 0.0f;
             float prevDisplacementFactorWidth = 0.0f;
@@ -136,7 +136,7 @@ namespace SoftwareCity.Rendering.Utils
         /// </summary>
         /// <param name="childs"></param>
         /// <returns></returns>
-        private static float FindOutDisplacementFactorDepth(List<GameObject> childs)
+        public static float FindOutDisplacementFactorDepth(List<GameObject> childs)
         {
             float displacementFactorDepth = 0.0f;
             float prevDisplacementFactorDepth = 0.0f;
