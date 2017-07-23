@@ -9,15 +9,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
     public class OverviewPanelResult : MonoBehaviour
     {
-        /// <summary>
-        /// If the backButton was pressed so the overview panel should rewrite the TextLabels.
-        /// </summary>
-        private static bool changeRequest;
-
-        /// <summary>
-        /// Represent the back button from the overviewpanel, to jump to the preview panel.
-        /// </summary>
-        private Button backButton;
 
         /// <summary>
         /// An array of Text is to get all the TextFields from the Overviewpanel.
@@ -28,37 +19,29 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         void Start()
         {
             overviewResult = GetComponentsInChildren<Text>();
-            backButton = GameObject.FindGameObjectWithTag("BackButton").GetComponent<Button>();
-            //Debug.Log(OverviewElements.GetElement(0));
-            //OverviewElements.Print();
-            backButton.onClick.AddListener(JumpBack);
-            changeRequest = true;
         }
 
-        private void OnGUI()
-        {
-            if (changeRequest)
-            {
-                CheckString();
-                changeRequest = false;
-            }
-        }
+        //private void OnGUI()
+        //{
+        //    if (changeRequest)
+        //    {
+        //        CheckString();
+        //        changeRequest = false;
+        //    }
+        //}
 
         /// <summary>
-        /// An Listener for the back Button, to get to the preview Panel.
+        /// Removes all elements, which shows which button was pressed, from the list.
         /// </summary>
-        private void JumpBack()
+        public void ResetList()
         {
-            if (OverviewElements.Length() > 0)
-                OverviewElements.RemoveElement(OverviewElements.Length() - 1);
-            changeRequest = true;
-
+            OverviewElements.ClearList();
         }
 
         /// <summary>
         /// Checking the datastore elements and push them in the Overviewpanel in the textfield.
         /// </summary>
-        void CheckString()
+        public void WriteOnPanel()
         {
             string dummy;
             string tab = "\t\t\t";
@@ -78,7 +61,8 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                 }
                 if (dummy.StartsWith("Area:"))
                 {
-                    overviewResult[i].text = "Area:" + tab + "bbb";
+                    overviewResult[i].text = "Area:" + tab + temp;
+                    j++;
                 }
                 if (dummy.StartsWith("Height"))
                 {

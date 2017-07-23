@@ -89,6 +89,10 @@ namespace ConfigurationWindow.ButtonEventHandling
                        Debug.Log(err);
                        switch(err)
                        {
+                           case 0:
+                               errorCodeLabel.GetComponent<Text>().text = "URI is invalid: " + urlInput;
+                               break;
+
                            case 200:
                                if(possible)
                                {

@@ -46,6 +46,11 @@ namespace ConfigurationWindow.DataStorage
             overviewData.Remove(overviewData[i]);
         }
 
+        public static void ClearList()
+        {
+            overviewData.Clear();
+        }
+
         /// <summary>
         /// To get an element from the Datastorage.
         /// </summary>

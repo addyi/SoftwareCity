@@ -36,8 +36,14 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private GameObject inputHandler;
 
+        /// <summary>
+        /// A reference to the script OverviewPanelResult, to show which button was clicked and summarize it.
+        /// </summary>
+        private GameObject showPanelResult;
 
         private GameObject currentPanel;
+
+        private Metric saveAreaMetric;
 
         private List<Metric> savedMetrics;
         /// <summary>
@@ -56,6 +62,9 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GetComponent<PanelExchanger>();
+            showPanelResult = GameObject.FindGameObjectWithTag("OverviewPanel");
+
+
             savedMetrics = new List<Metric>();
             GetMetricList();
             AddButtons("ColorPanel", heightContent.transform, _metricList);
@@ -79,6 +88,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         private void GetMetricList()
         {
             _metricList = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetAvailableMetrics();
+            saveAreaMetric = _metricList.Find(x => x.key.Equals("ncloc"));
+            _metricList.Remove(saveAreaMetric);
             //TODO change percentege if merge with develop!!
             pyramidList = _metricList
                 .Where( x => x.datatype.Equals("percentege")).ToList<Metric>();
@@ -132,19 +143,27 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <param name="m">An Metric object to collect them and afterwards inform the orchestrator.</param>
         void Clicked(Metric m, string panelTag )
         {
+            if (panelTag.Equals("ColorPanel"))
+            {
+                inputHandler.GetComponent<InputManager>().InsertElement(saveAreaMetric.name);
+                savedMetrics.Add(saveAreaMetric);
+            }
+
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
             Debug.Log(m.key);
             savedMetrics.Add(m);
-            panelHandler.NextPanel(panelTag);
             switch (panelTag)
             {
                 case "PyramidPanel":
                     //orchestrator.GetComponent<Orchestrator.Orchestrator>().SecondMetricSelected();
                     break;
                 case "OverviewPanel":
+                    showPanelResult.GetComponent<OverviewPanelResult>().WriteOnPanel();
                     orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(savedMetrics.ToArray());
                     break;
             }
+
+            panelHandler.NextPanel(panelTag);
         }
     }
 }
