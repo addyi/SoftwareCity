@@ -6,6 +6,7 @@ using DataModel.ProjectTree.Components;
 using SoftwareCity.Rendering.Utils.Information;
 using DataModel;
 using SoftwareCity.Rendering.Utils.Colorizer;
+using DiskIO.AvailableMetrics;
 
 namespace SoftwareCity.Rendering
 {
@@ -53,8 +54,16 @@ namespace SoftwareCity.Rendering
 
         private GameObject envelope;
 
+        private float maxHeight;
+
+        //private Model model;
+
+        //private Metric[] selectedMetrics;
+
         private void Start()
         {
+           // model = Model.GetInstance();
+           // selectedMetrics = model.GetSelectedMetrics();
             Build(Model.GetInstance().GetTree());
         }
 
@@ -70,6 +79,8 @@ namespace SoftwareCity.Rendering
             packageColorizer = GetComponent<PackageColorizer>();
             componentProducer = GetComponent<ComponentProducer>();
             envelope = GameObject.FindGameObjectWithTag("Envelope");
+
+            //maxHeight = root.getMaxHeight();
 
             GameObject rootGameObject = TraverseTree(root, packageLevel);
 
