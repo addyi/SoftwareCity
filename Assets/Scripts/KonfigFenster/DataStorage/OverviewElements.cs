@@ -34,7 +34,8 @@ namespace ConfigurationWindow.DataStorage
         /// <param name="data">The string which will be saved in the storage.</param>
         public static void InsertElement(string data)
         {
-            overviewData.Add(data);
+            if (!overviewData.Contains(data))
+                overviewData.Add(data);
         }
 
         /// <summary>
@@ -43,6 +44,7 @@ namespace ConfigurationWindow.DataStorage
         /// <param name="i">To remove from an index.</param>
         public static void RemoveElement(int i)
         {
+
             overviewData.Remove(overviewData[i]);
         }
 
@@ -75,10 +77,12 @@ namespace ConfigurationWindow.DataStorage
         /// </summary>
         public static void Print()
         {
+            string temp = "";
             foreach(string s in overviewData)
             {
-                Debug.Log(s);
+                temp += s + " ";
             }
+            Debug.Log(temp);
         }
     }
 }

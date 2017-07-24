@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ConfigurationWindow.DataStorage;
 using System;
+using ConfigurationWindow.ConfigurationObserver;
 
 namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
 {
@@ -68,6 +69,14 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         //    }
         //}
 
+        public void RemoveLastElement()
+        {
+            if(OverviewElements.Length() > 0)
+            {
+                OverviewElements.RemoveElement(OverviewElements.Length() - 1);
+            }
+            OverviewElements.Print();
+        }
         /// <summary>
         /// Searching with the help of the array: ALLPANELTAGS, to look up which panel is active now.
         /// </summary>
@@ -141,24 +150,25 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// <summary>
         /// Check all buttons in the metric Panel, before the one button get disabled.
         /// </summary>
-        public void CheckBeforeRemove()
+        public void CheckBeforeRemove(GameObject clickedButton)
         {
-            if (wasRemoved)
-            {
-                saveLastButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                foreach (Button b in allButtons)
-                {
-                    if (b.GetComponentInChildren<Text>().text.Equals(OverviewElements.GetElement(OverviewElements.Length() - 1)))
-                    {
-                        saveLastButton = b;
-                        saveLastButton.interactable = false;
-                        wasRemoved = true;
-                    }
-                }
-            }
+            //clickedButton.GetComponent<Button>().interactable = false;
+            //if (wasRemoved)
+            //{
+            //    saveLastButton.gameObject.SetActive(true);
+            //}
+            //else
+            //{
+            //    foreach (Button b in allButtons)
+            //    {
+            //        if (b.GetComponentInChildren<Text>().text.Equals(OverviewElements.GetElement(OverviewElements.Length() - 1)))
+            //        {
+            //            saveLastButton = b;
+            //            saveLastButton.interactable = false;
+            //            wasRemoved = true;
+            //        }
+            //    }
+            //}
         }
     }
 }

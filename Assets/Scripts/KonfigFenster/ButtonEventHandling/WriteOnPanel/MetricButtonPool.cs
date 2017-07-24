@@ -54,7 +54,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// A sublist from the _metricList. In this list they are only metrics with percentage.
         /// </summary>
         private List<Metric> pyramidList;
-        
+
         // Use this for initialization
         void Awake()
         {
@@ -68,7 +68,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             savedMetrics = new List<Metric>();
             GetMetricList();
             AddButtons("ColorPanel", heightContent.transform, _metricList);
-            AddButtons("PyramidPanel",colorContent.transform, _metricList);
+            AddButtons("PyramidPanel", colorContent.transform, _metricList);
             AddButtons("OverviewPanel", pyramidContent.transform, pyramidList);
         }
 
@@ -109,7 +109,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
                 metricButton.GetComponentInChildren<Text>().text = m.name;
                 DisableImage(metricButton);
-                metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(m, panelTag));
+                metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(metricButton, m, panelTag));
             }
 
             
@@ -141,7 +141,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// The listener for a button, to switch between panels and inform the orchestrator.
         /// </summary>
         /// <param name="m">An Metric object to collect them and afterwards inform the orchestrator.</param>
-        void Clicked(Metric m, string panelTag )
+        void Clicked(GameObject clickedButton, Metric m, string panelTag )
         {
             if (panelTag.Equals("ColorPanel"))
             {
@@ -162,8 +162,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                     orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(savedMetrics.ToArray());
                     break;
             }
-
             panelHandler.NextPanel(panelTag);
+            inputHandler.GetComponent<InputManager>().CheckBeforeRemove(clickedButton);
         }
     }
 }

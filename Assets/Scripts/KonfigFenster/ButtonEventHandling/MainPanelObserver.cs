@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using ConfigurationWindow.DataStorage;
+using DataModel.ProjectTree.Components;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,17 +13,17 @@ namespace ConfigurationWindow.ButtonEventHandling
         private GameObject orchestrator;
 
 
-        private bool localProject;
+        private bool isAvailable;
         private GameObject deactivateButton;
+        private ProjectComponent localProject;
         private bool disabledButton;
         // Use this for initialization
         void Start()
         {
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             //TODO Check if LocalProject exist.
-            //orchestrator.GetLocalProject();
+            localProject = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetLocalProject();
             string externTag = GameObject.FindGameObjectWithTag("Extern").tag;
-            localProject = GetLocalProject();
             CheckBeforeClick(externTag);
             //AddingListener();
         }
@@ -33,20 +35,22 @@ namespace ConfigurationWindow.ButtonEventHandling
                 //DisableButton();
         }
 
-        private bool GetLocalProject()
+        public void SelectLocalProject()
         {
-            return false;
+            OverviewElements.InsertElement(localProject.Name);
+            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(localProject.Key);
         }
 
         private void CheckBeforeClick(string tag)
         {
-            if(tag != null && !localProject)
+            if(tag != null && localProject == null)
             {
                 deactivateButton = GameObject.FindGameObjectWithTag(tag);
                 DisableButton();
                 disabledButton = true;
             }
         }
+
 
         private void DisableButton()
         {

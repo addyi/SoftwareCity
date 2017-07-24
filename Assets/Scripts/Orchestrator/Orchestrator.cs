@@ -36,15 +36,15 @@ namespace Orchestrator
             LoadLocalProject();
 
 
-            CredentialsValid("http://sonarqube.eosn.de/", "user", "123456", (success, code) =>
-            {
-                if (code == 200)
-                {
-                    SelectProject("geo-quiz-app");
-                    SecondMetricSelected();
-                    Debug.Log(IsCityReady());
-                }
-            });
+            //CredentialsValid("http://sonarqube.eosn.de/", "user", "123456", (success, code) =>
+            //{
+            //    if (code == 200)
+            //    {
+            //        SelectProject("geo-quiz-app");
+            //        SecondMetricSelected();
+            //        Debug.Log(IsCityReady());
+            //    }
+            //});
 
 
 
