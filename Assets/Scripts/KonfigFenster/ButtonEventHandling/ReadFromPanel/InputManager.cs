@@ -41,35 +41,32 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         {
             allButtons = GetComponentsInChildren<Button>();
             //Debug.Log(allButtons.Length);
-            actualTag = SearchTag();
-            if(actualTag.Equals("SamplePanel") && OverviewElements.IsEmpty())
-            {
-                OverviewElements.Initialize();
-            }
+            //actualTag = SearchTag();
+            OverviewElements.Initialize();
             //AddingListener();
             //AddingJumpBackListener();
         }
 
-        private void OnGUI()
-        {
-            if (wasClicked)
-            {
-                switch (actualTag)
-                {
-                    case "HeightPanel":
+        //private void OnGUI()
+        //{
+        //    if (wasClicked)
+        //    {
+        //        switch (actualTag)
+        //        {
+        //            case "HeightPanel":
 
-                        break;
-                    case "ColorPanel":
-                        //CheckBeforeRemove();
-                        //NotifySecondMetricSelected();
-                        break;
-                    case "PyramidPanel":
+        //                break;
+        //            case "ColorPanel":
+        //                //CheckBeforeRemove();
+        //                //NotifySecondMetricSelected();
+        //                break;
+        //            case "PyramidPanel":
 
-                        break;
-                }
-                wasClicked = false;
-            }
-        }
+        //                break;
+        //        }
+        //        wasClicked = false;
+        //    }
+        //}
 
         /// <summary>
         /// Searching with the help of the array: ALLPANELTAGS, to look up which panel is active now.
@@ -144,7 +141,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// <summary>
         /// Check all buttons in the metric Panel, before the one button get disabled.
         /// </summary>
-        void CheckBeforeRemove()
+        public void CheckBeforeRemove()
         {
             if (wasRemoved)
             {
