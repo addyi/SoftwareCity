@@ -15,9 +15,12 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// </summary>
         private Text[] overviewResult;
 
+        private GameObject orchestrator;
+
         // Use this for initialization
         void Start()
         {
+            orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             overviewResult = GetComponentsInChildren<Text>();
         }
 

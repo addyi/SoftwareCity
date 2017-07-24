@@ -92,7 +92,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             _metricList.Remove(saveAreaMetric);
             //TODO change percentege if merge with develop!!
             pyramidList = _metricList
-                .Where( x => x.datatype.Equals("percentege")).ToList<Metric>();
+                .Where( x => x.datatype.Equals("percentage")).ToList<Metric>();
             _metricList.RemoveAll(x => pyramidList.Contains(x));
         }
 
@@ -155,7 +155,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             switch (panelTag)
             {
                 case "PyramidPanel":
-                    //orchestrator.GetComponent<Orchestrator.Orchestrator>().SecondMetricSelected();
+                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SecondMetricSelected();
                     break;
                 case "OverviewPanel":
                     showPanelResult.GetComponent<OverviewPanelResult>().WriteOnPanel();
