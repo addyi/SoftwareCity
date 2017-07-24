@@ -55,9 +55,12 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private List<Metric> pyramidList;
 
+
+        private bool isActive;
         // Use this for initialization
         void Awake()
         {
+
             this.currentPanel = GameObject.FindGameObjectWithTag("HeightPanel");
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
@@ -145,12 +148,12 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         {
             if (panelTag.Equals("ColorPanel"))
             {
+                DisableButton(m.name);
                 inputHandler.GetComponent<InputManager>().InsertElement(saveAreaMetric.name);
                 savedMetrics.Add(saveAreaMetric);
             }
 
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
-            Debug.Log(m.key);
             savedMetrics.Add(m);
             switch (panelTag)
             {
@@ -163,7 +166,28 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                     break;
             }
             panelHandler.NextPanel(panelTag);
-            inputHandler.GetComponent<InputManager>().CheckBeforeRemove(clickedButton);
+        }
+
+        public void EnableButton()
+        {
+            Button[] activeButtons = colorContent.GetComponentsInChildren<Button>();
+            foreach(Button b in activeButtons)
+            {
+                if (!b.interactable)
+                    b.interactable = true;
+            }
+        }
+
+        private void DisableButton(string name)
+        {
+            Button[] activeButtons = colorContent.GetComponentsInChildren<Button>();
+            foreach (Button b in activeButtons)
+            {
+                if(b.GetComponentInChildren<Text>().text.Equals(name))
+                {
+                    b.interactable = false;
+                }
+            }
         }
     }
 }
