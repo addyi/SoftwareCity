@@ -113,7 +113,7 @@ namespace SoftwareCity.Rendering.Utils {
                     return (float)m.Value;
                 }
             }
-            return metric.defaultValue;
+            return (float)metric.defaultValue;
         }
     }
 }
