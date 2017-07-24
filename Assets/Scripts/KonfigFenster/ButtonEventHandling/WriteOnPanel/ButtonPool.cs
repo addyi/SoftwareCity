@@ -34,9 +34,13 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// A reference to the Orchestrator script.
         /// </summary>
         private GameObject orchestrator;
-
+        /// <summary>
+        /// An container to get all buttons and afterwards to destroiy them all, if the panels switch between login panel and main panel.
+        /// </summary>
         private GameObject[] allButtons;
-
+        /// <summary>
+        /// A list to save all online projects from the server.
+        /// </summary>
         private List<SQProject> resetList;
 
         // Use this for initialization
@@ -70,6 +74,9 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             }
         }
 
+        /// <summary>
+        /// Destroing all Buttons in the SamplePanel, to not having any duplicate.
+        /// </summary>
         public void Reset()
         {
             foreach(GameObject button in allButtons)
@@ -80,7 +87,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         }
 
         /// <summary>
-        /// The button listener to switch between panels.
+        /// The button listener to switch between panels and to call the orchestrator, which project button was pressed.
         /// </summary>
         void Clicked(SQProject project)
         {

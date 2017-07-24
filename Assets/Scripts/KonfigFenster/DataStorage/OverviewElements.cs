@@ -48,6 +48,9 @@ namespace ConfigurationWindow.DataStorage
             overviewData.Remove(overviewData[i]);
         }
 
+        /// <summary>
+        /// Removes all elements from the overviewData list.
+        /// </summary>
         public static void ClearList()
         {
             overviewData.Clear();

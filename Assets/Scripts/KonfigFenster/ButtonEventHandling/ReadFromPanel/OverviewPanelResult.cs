@@ -14,7 +14,9 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// An array of Text is to get all the TextFields from the Overviewpanel.
         /// </summary>
         private Text[] overviewResult;
-
+        /// <summary>
+        /// A reference to the GameObject where the orchestrator script is, to call the methods from orchestrator. 
+        /// </summary>
         private GameObject orchestrator;
 
         // Use this for initialization
@@ -24,14 +26,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
             overviewResult = GetComponentsInChildren<Text>();
         }
 
-        //private void OnGUI()
-        //{
-        //    if (changeRequest)
-        //    {
-        //        CheckString();
-        //        changeRequest = false;
-        //    }
-        //}
 
         /// <summary>
         /// Removes all elements, which shows which button was pressed, from the list.
@@ -56,9 +50,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                     temp = OverviewElements.GetElement(j);
                 dummy = overviewResult[i].text;
                 if (dummy.StartsWith("Projectname:"))
-                {
-                    //temp = temp.Trim();
-                    Debug.Log(temp);
+                { 
                     overviewResult[i].text = "Projectname:\t" + temp;
                     j++;
                 }
@@ -83,14 +75,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                     Debug.Log(OverviewElements.GetElement(j));
                     overviewResult[i].text = "Pyramid:" + tab + temp;
                     j++;
-                }
-                if (dummy.StartsWith("Square"))
-                {
-                    overviewResult[i].text = "Square:" + tab + "ff";
-                }
-                if (dummy.StartsWith("Circle"))
-                {
-                    overviewResult[i].text = "Circle:" + tab + "ggg";
                 }
             }
         }

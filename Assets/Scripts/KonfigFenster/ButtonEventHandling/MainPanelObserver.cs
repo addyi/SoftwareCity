@@ -9,12 +9,18 @@ namespace ConfigurationWindow.ButtonEventHandling
 {
     public class MainPanelObserver : MonoBehaviour
     {
-        //private ConfigurationObserver observer;
+        /// <summary>
+        /// A reference to the GameObject where the Orchestrator script is, to call the methods from orchestrator.
+        /// </summary>
         private GameObject orchestrator;
 
-
-        private bool isAvailable;
+        /// <summary>
+        /// A reference to the select local project button, to disable it afterwards, if needed.
+        /// </summary>
         private GameObject deactivateButton;
+        /// <summary>
+        /// The ProjectComponent saves the local project from storage.
+        /// </summary>
         private ProjectComponent localProject;
         private bool disabledButton;
         // Use this for initialization
@@ -28,19 +34,19 @@ namespace ConfigurationWindow.ButtonEventHandling
             //AddingListener();
         }
 
-        public void RefreshDisplay()
-        {
-            Debug.Log(disabledButton);
-            //if (disabledButton) 
-                //DisableButton();
-        }
-
+        /// <summary>
+        /// A listener for the button to commit the local project to the orchestrator.
+        /// </summary>
         public void SelectLocalProject()
         {
             OverviewElements.InsertElement(localProject.Name);
             orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(localProject.Key);
         }
 
+        /// <summary>
+        /// If an local project exists the button is enabled, otherwise disabled.
+        /// </summary>
+        /// <param name="tag"></param>
         private void CheckBeforeClick(string tag)
         {
             if(tag != null && localProject == null)
@@ -51,7 +57,9 @@ namespace ConfigurationWindow.ButtonEventHandling
             }
         }
 
-
+        /// <summary>
+        /// Disables the select local project button.
+        /// </summary>
         private void DisableButton()
         {
             deactivateButton.GetComponent<Button>().interactable = false;

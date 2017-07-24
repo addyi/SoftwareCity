@@ -20,8 +20,15 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// A reference to put all buttons in the right position.
         /// </summary>
         public GameObject heightContent;
+        /// <summary>
+        /// A reference to the color label, to insert the buttons there.
+        /// </summary>
         public GameObject colorContent;
+        /// <summary>
+        /// A reference to the pyramid label, to insert the buttons there.
+        /// </summary>
         public GameObject pyramidContent;
+
 
         /// <summary>
         /// A reference to the script PanelExchanger, to switch between panels.
@@ -35,17 +42,20 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// The inputhandler is there to add the names of an submit button and show them in the overviewpanel.
         /// </summary>
         private GameObject inputHandler;
-
         /// <summary>
         /// A reference to the script OverviewPanelResult, to show which button was clicked and summarize it.
         /// </summary>
         private GameObject showPanelResult;
 
-        private GameObject currentPanel;
 
+        /// <summary>
+        /// Saves the default metric for the area.
+        /// </summary>
         private Metric saveAreaMetric;
-
-        private List<Metric> savedMetrics;
+        /// <summary>
+        /// A list, which saves the metric from the last clicked button.
+        /// </summary>
+        private List<Metric> clickedMetrics;
         /// <summary>
         /// a list of metrics from the json file
         /// </summary>
@@ -55,34 +65,20 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private List<Metric> pyramidList;
 
-
-        private bool isActive;
         // Use this for initialization
         void Awake()
         {
-
-            this.currentPanel = GameObject.FindGameObjectWithTag("HeightPanel");
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GetComponent<PanelExchanger>();
             showPanelResult = GameObject.FindGameObjectWithTag("OverviewPanel");
 
 
-            savedMetrics = new List<Metric>();
+            clickedMetrics = new List<Metric>();
             GetMetricList();
             AddButtons("ColorPanel", heightContent.transform, _metricList);
             AddButtons("PyramidPanel", colorContent.transform, _metricList);
             AddButtons("OverviewPanel", pyramidContent.transform, pyramidList);
-        }
-
-        /// <summary>
-        /// After every button submit the script should start the method RefreshDisplay() again to check which panel is now active.
-        /// </summary>
-        public void RefreshDisplay()
-        {
-            //TODO How to get the panel??
-            currentPanel = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
-            print(currentPanel);
         }
 
         /// <summary>
@@ -114,20 +110,6 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 DisableImage(metricButton);
                 metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(metricButton, m, panelTag));
             }
-
-            
-            /*
-            foreach (string s in metricList)
-            {
-                GameObject metricButton = Instantiate<GameObject>(buttonPrefab);
-                metricButton.transform.SetParent(panelScrollView.transform);
-                metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
-                metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
-                metricButton.GetComponentInChildren<Text>().text = s;
-                DisableImage(metricButton);
-                metricButton.GetComponent<Button>().onClick.AddListener(Clicked);
-            }
-            */
         }
 
         /// <summary>
@@ -150,11 +132,11 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             {
                 DisableButton(m.name);
                 inputHandler.GetComponent<InputManager>().InsertElement(saveAreaMetric.name);
-                savedMetrics.Add(saveAreaMetric);
+                clickedMetrics.Add(saveAreaMetric);
             }
 
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
-            savedMetrics.Add(m);
+            clickedMetrics.Add(m);
             switch (panelTag)
             {
                 case "PyramidPanel":
@@ -162,12 +144,15 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                     break;
                 case "OverviewPanel":
                     showPanelResult.GetComponent<OverviewPanelResult>().WriteOnPanel();
-                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(savedMetrics.ToArray());
+                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(clickedMetrics.ToArray());
                     break;
             }
             panelHandler.NextPanel(panelTag);
         }
 
+        /// <summary>
+        /// Enables the button, after the panels get resetted.
+        /// </summary>
         public void EnableButton()
         {
             Button[] activeButtons = colorContent.GetComponentsInChildren<Button>();
@@ -178,6 +163,10 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             }
         }
 
+        /// <summary>
+        /// Disables a specific button.
+        /// </summary>
+        /// <param name="name">The name describes which button was pressed.</param>
         private void DisableButton(string name)
         {
             Button[] activeButtons = colorContent.GetComponentsInChildren<Button>();

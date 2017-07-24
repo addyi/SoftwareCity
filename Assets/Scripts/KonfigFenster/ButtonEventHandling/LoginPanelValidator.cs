@@ -69,6 +69,9 @@ namespace ConfigurationWindow.ButtonEventHandling
             checkButton.GetComponent<Button>().onClick.AddListener(ControlAuthentication);
         }
 
+        /// <summary>
+        /// Every time the login panel reloads the error message will be refreshed.
+        /// </summary>
         public void RefreshDisplay()
         {
             errorCodeLabel.GetComponent<Text>().text = "";
@@ -122,7 +125,7 @@ namespace ConfigurationWindow.ButtonEventHandling
                            case 404:
                                //urlinput ist falsch
                                result = false;
-                               RefreshDisplay(GameObject.FindGameObjectWithTag("URLInput").GetComponent<InputField>());
+                               RefreshInputLabel(GameObject.FindGameObjectWithTag("URLInput").GetComponent<InputField>());
                                errorCodeLabel.GetComponent<Text>().text = urlInput + " is false";
                                break;
                            default:
@@ -137,7 +140,7 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// Refreshes the display after every input from the user to inform the user, if he forgot some inputs.
         /// </summary>
         /// <param name="input">A reference to the Inputfield to show exactly where the user needs an input.</param>
-        public void RefreshDisplay(InputField input)
+        public void RefreshInputLabel(InputField input)
         {
             Debug.Log(urlInput);
             if(!result)
@@ -170,7 +173,7 @@ namespace ConfigurationWindow.ButtonEventHandling
                     CheckPasswordInput(textLabel);
                     break;
             }
-            RefreshDisplay(input);
+            RefreshInputLabel(input);
         }
 
         /// <summary>
