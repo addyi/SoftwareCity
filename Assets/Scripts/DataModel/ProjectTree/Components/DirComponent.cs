@@ -6,9 +6,10 @@ using Webservice.Response.ComponentTree;
 
 namespace DataModel.ProjectTree.Components
 {
+    [Serializable]
     public class DirComponent : TreeComponent
     {
-        public readonly List<TreeComponent> components = new List<TreeComponent>();
+        public List<TreeComponent> components = new List<TreeComponent>();
 
         public DirComponent(SqComponent component) : base(component)
         {
@@ -45,8 +46,20 @@ namespace DataModel.ProjectTree.Components
             components.Add(tc);
             //TODO ADDYI FIX SORT ELSE EXCEPTION components.Sort();
             return tc.InsertComponentAt(SubArray(path, 1, path.Length - 1), component);
+        }
 
-
+        public override double GetMaxForMetric(string MetricKey)
+        {
+            double res = 0;
+            foreach (TreeComponent tc in components)
+            {
+                double componentMax = tc.GetMaxForMetric(MetricKey);
+                if (componentMax > res)
+                {
+                    res = componentMax;
+                }
+            }
+            return res;
         }
 
         public TreeComponent FindSubComponentInNode(string componentName)

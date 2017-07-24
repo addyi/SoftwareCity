@@ -1,11 +1,12 @@
-﻿
+﻿using System;
 
 namespace DataModel.Metrics
 {
+    [Serializable]
     public class TreeMetric
     {
-        public readonly string Key;
-        public readonly double Value;
+        public string Key;
+        public double Value;
 
         public TreeMetric(string Key, double Value)
         {

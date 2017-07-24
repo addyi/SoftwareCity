@@ -1,420 +1,0 @@
-@ProjectComponentHhttp://schemas.datacontract.org/2004/07/DataModel.ProjectTree.Components	i)http://www.w3.org/2001/XMLSchema-instance@IDôAVvyUXiRDyw51T9taWRI@Keyôgeo-quiz-app@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô33@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô24@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô2.7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô1967@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@Valueô9@NameôGeoQuiz@Path©@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôPROJECT@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôsrc@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsju20ys4rdwn6A@Keyôgeo-quiz-app:src/main@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô31@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameômain@Pathôsrc/main@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôres@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsnu20ys4rdwn6e@Keyô geo-quiz-app:src/main/res/layout@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô380@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô0.3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôlayout@Pathôsrc/main/res/layout@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6a@Keyô;geo-quiz-app:src/main/res/layout/activity_battle_ground.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô1.9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô52@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_battle_ground.xml@Pathô.src/main/res/layout/activity_battle_ground.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6b@Keyô2geo-quiz-app:src/main/res/layout/activity_main.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô115@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_main.xml@Pathô%src/main/res/layout/activity_main.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6c@Keyô>geo-quiz-app:src/main/res/layout/activity_round_statistics.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô138@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_round_statistics.xml@Pathô1src/main/res/layout/activity_round_statistics.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6d@Keyô4geo-quiz-app:src/main/res/layout/activity_winner.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô75@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_winner.xml@Pathô'src/main/res/layout/activity_winner.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsnu20ys4rdwn6Z@Keyô%geo-quiz-app:src/main/res/layout-land@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô220@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôlayout-land@Pathôsrc/main/res/layout-land@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6X@KeyôCgeo-quiz-app:src/main/res/layout-land/activity_round_statistics.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô139@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_round_statistics.xml@Pathô6src/main/res/layout-land/activity_round_statistics.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6Y@Keyô9geo-quiz-app:src/main/res/layout-land/activity_winner.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô81@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôactivity_winner.xml@Pathô,src/main/res/layout-land/activity_winner.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsou20ys4rdwn6p@Keyô geo-quiz-app:src/main/res/values@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô60@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô4.8@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôvalues@Pathôsrc/main/res/values@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6l@Keyô+geo-quiz-app:src/main/res/values/colors.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameô
-colors.xml@Pathôsrc/main/res/values/colors.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6m@Keyô+geo-quiz-app:src/main/res/values/dimens.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô12.5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameô
-dimens.xml@Pathôsrc/main/res/values/dimens.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsou20ys4rdwn6n@Keyô,geo-quiz-app:src/main/res/values/strings.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô39@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôstrings.xml@Pathôsrc/main/res/values/strings.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsou20ys4rdwn6o@Keyô+geo-quiz-app:src/main/res/values/styles.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô22.2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameô
-styles.xml@Pathôsrc/main/res/values/styles.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsmu20ys4rdwn6W@Keyô"geo-quiz-app:src/main/res/drawable@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô36@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôdrawable@Pathôsrc/main/res/drawable@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsmu20ys4rdwn6S@Keyô?geo-quiz-app:src/main/res/drawable/ic_add_circle_black_24dp.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôic_add_circle_black_24dp.xml@Pathô2src/main/res/drawable/ic_add_circle_black_24dp.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsmu20ys4rdwn6T@Keyô9geo-quiz-app:src/main/res/drawable/ic_done_black_24dp.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôic_done_black_24dp.xml@Pathô,src/main/res/drawable/ic_done_black_24dp.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsmu20ys4rdwn6U@Keyô@geo-quiz-app:src/main/res/drawable/ic_info_accent_color_24dp.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôic_info_accent_color_24dp.xml@Pathô3src/main/res/drawable/ic_info_accent_color_24dp.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsmu20ys4rdwn6V@KeyôBgeo-quiz-app:src/main/res/drawable/ic_remove_circle_black_24dp.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôic_remove_circle_black_24dp.xml@Pathô5src/main/res/drawable/ic_remove_circle_black_24dp.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsnu20ys4rdwn6g@Keyôgeo-quiz-app:src/main/res/menu@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô8@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameômenu@Pathôsrc/main/res/menu@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6f@Keyô/geo-quiz-app:src/main/res/menu/options_menu.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô8@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôoptions_menu.xml@Pathô"src/main/res/menu/options_menu.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsnu20ys4rdwn6i@Keyô#geo-quiz-app:src/main/res/values-de@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô35@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameô	values-de@Pathôsrc/main/res/values-de@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6h@Keyô/geo-quiz-app:src/main/res/values-de/strings.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô35@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôstrings.xml@Pathô"src/main/res/values-de/strings.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsnu20ys4rdwn6k@Keyô#geo-quiz-app:src/main/res/values-en@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô35@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameô	values-en@Pathôsrc/main/res/values-en@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsnu20ys4rdwn6j@Keyô/geo-quiz-app:src/main/res/values-en/strings.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô35@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôstrings.xml@Pathô"src/main/res/values-en/strings.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn5_@Keyô)geo-quiz-app:src/main/AndroidManifest.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô31@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@NameôAndroidManifest.xml@Pathôsrc/main/AndroidManifest.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôjava@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôde@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôeosn@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôgeoquiz@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsju20ys4rdwn6H@Keyô6geo-quiz-app:src/main/java/de/eosn/geoquiz/application@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô12@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô7.7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôapplication@Pathô)src/main/java/de/eosn/geoquiz/application@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6G@Keyô?geo-quiz-app:src/main/java/de/eosn/geoquiz/application/App.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô7.7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô12@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@NameôApp.java@Pathô2src/main/java/de/eosn/geoquiz/application/App.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsju20ys4rdwn6F@Keyô5geo-quiz-app:src/main/java/de/eosn/geoquiz/activities@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô10@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô645@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô13@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô3.2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô45@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameô
-activities@Pathô(src/main/java/de/eosn/geoquiz/activities@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6B@KeyôOgeo-quiz-app:src/main/java/de/eosn/geoquiz/activities/BattleGroundActivity.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô18@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô5.6@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô268@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@NameôBattleGroundActivity.java@PathôBsrc/main/java/de/eosn/geoquiz/activities/BattleGroundActivity.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6C@KeyôGgeo-quiz-app:src/main/java/de/eosn/geoquiz/activities/MainActivity.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô10@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô90@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@NameôMainActivity.java@Pathô:src/main/java/de/eosn/geoquiz/activities/MainActivity.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6D@KeyôRgeo-quiz-app:src/main/java/de/eosn/geoquiz/activities/RoundStatisticsActivity.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô10@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô2.5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô195@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@Valueô2@NameôRoundStatisticsActivity.java@PathôEsrc/main/java/de/eosn/geoquiz/activities/RoundStatisticsActivity.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6E@KeyôIgeo-quiz-app:src/main/java/de/eosn/geoquiz/activities/WinnerActivity.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô7@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô92@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@NameôWinnerActivity.java@Pathô<src/main/java/de/eosn/geoquiz/activities/WinnerActivity.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsju20ys4rdwn6J@Keyô3geo-quiz-app:src/main/java/de/eosn/geoquiz/database@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô31@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôdatabase@Pathô&src/main/java/de/eosn/geoquiz/database@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6I@KeyôFgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/DatabaseSetup.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô31@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@NameôDatabaseSetup.java@Pathô9src/main/java/de/eosn/geoquiz/database/DatabaseSetup.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsku20ys4rdwn6P@Keyô@geo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô13@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô396@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô17@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô0.8@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô44@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@NameôrealmObjects@Pathô3src/main/java/de/eosn/geoquiz/database/realmObjects@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6K@KeyôRgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects/GameSettings.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô15@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô0.6@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô154@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@Valueô2@NameôGameSettings.java@PathôEsrc/main/java/de/eosn/geoquiz/database/realmObjects/GameSettings.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6L@KeyôMgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects/LatLong.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô33@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@NameôLatLong.java@Pathô@src/main/java/de/eosn/geoquiz/database/realmObjects/LatLong.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn6M@KeyôLgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects/Player.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô2@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô2.4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô41@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@NameôPlayer.java@Pathô?src/main/java/de/eosn/geoquiz/database/realmObjects/Player.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsku20ys4rdwn6N@KeyôKgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects/Round.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô11@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô102@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@Nameô
-Round.java@Pathô>src/main/java/de/eosn/geoquiz/database/realmObjects/Round.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòFilComponent@IDôAVvyUXsku20ys4rdwn6O@KeyôJgeo-quiz-app:src/main/java/de/eosn/geoquiz/database/realmObjects/Task.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô8@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@Valueô4@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô66@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameô	Task.java@Pathô=src/main/java/de/eosn/geoquiz/database/realmObjects/Task.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@IDôAVvyUXsku20ys4rdwn6R@Keyô4geo-quiz-app:src/main/java/de/eosn/geoquiz/fragments@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô75@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô18.5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameô	fragments@Pathô'src/main/java/de/eosn/geoquiz/fragments@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsku20ys4rdwn6Q@KeyôGgeo-quiz-app:src/main/java/de/eosn/geoquiz/fragments/TimerFragment.java@Languageôjava@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÉ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô	functions@Valueô9@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô18.5@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô75@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÉ@NameôTimerFragment.java@Pathô:src/main/java/de/eosn/geoquiz/fragments/TimerFragment.java@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôdebug@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôres@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsju20ys4rdwn5-@Keyô!geo-quiz-app:src/debug/res/values@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô75@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôvalues@Pathôsrc/debug/res/values@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòFilComponent@IDôAVvyUXsju20ys4rdwn59@Keyô5geo-quiz-app:src/debug/res/values/google_maps_api.xml@Languageôxml@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcomment_lines_density@Valueô75@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôtest_success_density@Valueô100@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôncloc@Valueô3@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@Nameôgoogle_maps_api.xml@Pathô(src/debug/res/values/google_maps_api.xml@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelôFILE@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@NameôandroidTest@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôjava@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôde@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôeosn@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsiu20ys4rdwn58@Keyô1geo-quiz-app:src/androidTest/java/de/eosn/geoquiz@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôgeoquiz@Pathô$src/androidTest/java/de/eosn/geoquiz@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôtest@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôjava@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôde@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@ID.nilòtrue@Key.nilòtrue@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Nameôeosn@Path.nilòtrue@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	UNDEFINED@
-components@TreeComponent.typeòDirComponent@IDôAVvyUXsou20ys4rdwn6r@Keyô*geo-quiz-app:src/test/java/de/eosn/geoquiz@Metrics	a9http://schemas.datacontract.org/2004/07/DataModel.Metrics@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôcode_smells@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyô
-violations@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôbugs@ValueÅ@
-TreeMetric9http://schemas.datacontract.org/2004/07/DataModel.Metrics@Keyôvulnerabilities@ValueÅ@Nameôgeoquiz@Pathôsrc/test/java/de/eosn/geoquiz@	Qualifier	a1http://schemas.datacontract.org/2004/07/DataModelô	DIRECTORY@
-components
