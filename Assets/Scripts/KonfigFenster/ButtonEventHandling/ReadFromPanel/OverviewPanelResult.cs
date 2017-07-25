@@ -10,47 +10,35 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
     public class OverviewPanelResult : MonoBehaviour
     {
 
-        private static bool changeRequest;
-
-        private Button backButton;
-
         /// <summary>
         /// An array of Text is to get all the TextFields from the Overviewpanel.
         /// </summary>
         private Text[] overviewResult;
+        /// <summary>
+        /// A reference to the GameObject where the orchestrator script is, to call the methods from orchestrator. 
+        /// </summary>
+        private GameObject orchestrator;
 
         // Use this for initialization
         void Start()
         {
+            orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             overviewResult = GetComponentsInChildren<Text>();
-            backButton = GameObject.FindGameObjectWithTag("BackButton").GetComponent<Button>();
-            //Debug.Log(OverviewElements.GetElement(0));
-            //OverviewElements.Print();
-            backButton.onClick.AddListener(JumpBack);
-            changeRequest = true;
         }
 
-        private void OnGUI()
-        {
-            if (changeRequest)
-            {
-                CheckString();
-                changeRequest = false;
-            }
-        }
 
-        private void JumpBack()
+        /// <summary>
+        /// Removes all elements, which shows which button was pressed, from the list.
+        /// </summary>
+        public void ResetList()
         {
-            if (OverviewElements.Length() > 0)
-                OverviewElements.RemoveElement(OverviewElements.Length() - 1);
-            changeRequest = true;
-
+            OverviewElements.ClearList();
         }
 
         /// <summary>
         /// Checking the datastore elements and push them in the Overviewpanel in the textfield.
         /// </summary>
-        void CheckString()
+        public void WriteOnPanel()
         {
             string dummy;
             string tab = "\t\t\t";
@@ -62,15 +50,14 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                     temp = OverviewElements.GetElement(j);
                 dummy = overviewResult[i].text;
                 if (dummy.StartsWith("Projectname:"))
-                {
-                    //temp = temp.Trim();
-                    Debug.Log(temp);
+                { 
                     overviewResult[i].text = "Projectname:\t" + temp;
                     j++;
                 }
                 if (dummy.StartsWith("Area:"))
                 {
-                    overviewResult[i].text = "Area:" + tab + "bbb";
+                    overviewResult[i].text = "Area:" + tab + temp;
+                    j++;
                 }
                 if (dummy.StartsWith("Height"))
                 {
@@ -88,14 +75,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                     Debug.Log(OverviewElements.GetElement(j));
                     overviewResult[i].text = "Pyramid:" + tab + temp;
                     j++;
-                }
-                if (dummy.StartsWith("Square"))
-                {
-                    overviewResult[i].text = "Square:" + tab + "ff";
-                }
-                if (dummy.StartsWith("Circle"))
-                {
-                    overviewResult[i].text = "Circle:" + tab + "ggg";
                 }
             }
         }
