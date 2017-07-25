@@ -37,15 +37,30 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.transform.position = Vector3.zero;
             documentGameObject.name = documentComponent.Name;
 
-            float defaultMetric = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
-            float heightMetric = FindSpecificMetricValue(selectedMetrics[1], documentComponent);
-            documentGameObject.transform.localScale = CalculateDocumentSize(defaultMetric, heightMetric, maxHeight);
+            if(((FilComponent)documentComponent).Language.Equals("xml"))
+            {
+                //GameObject dummy = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                //dummy.transform.SetParent(documentGameObject.transform);
+                //dummy.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
 
-            float colorMetric = FindSpecificMetricValue(selectedMetrics[2], documentComponent);
-            documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(colorMetric);
+                float widthDepth = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
+                documentGameObject.transform.localScale = CalculateDocumentSize(widthDepth, 0.0f, maxHeight);
+                documentGameObject.GetComponent<Renderer>().material.color = Color.gray;
+                documentGameObject.GetComponent<MeshFilter>().mesh = CalculateTube();
 
-            float pyramidMetric = FindSpecificMetricValue(selectedMetrics[3], documentComponent);
-            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(pyramidMetric);
+            } else
+            {
+                float defaultMetric = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
+                float heightMetric = FindSpecificMetricValue(selectedMetrics[1], documentComponent);
+                documentGameObject.transform.localScale = CalculateDocumentSize(defaultMetric, heightMetric, maxHeight);
+
+                float colorMetric = FindSpecificMetricValue(selectedMetrics[2], documentComponent);
+                documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(colorMetric);
+
+                float pyramidMetric = FindSpecificMetricValue(selectedMetrics[3], documentComponent);
+                documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(pyramidMetric);
+            }
+
 
             return documentGameObject;
         }
@@ -59,13 +74,18 @@ namespace SoftwareCity.Rendering.Utils {
             return this.gameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(percent / 100.0f);
         }
 
+        private Mesh CalculateTube()
+        {
+            return this.gameObject.GetComponent<TubeMesh>().CreateTube();
+        }
+
         /// <summary>
         /// Calculate the specific size depend on the the metric.
         /// </summary>
         /// <returns></returns>
         private Vector3 CalculateDocumentSize(float widthDepth, float height, float maxHeight)
         {
-            float defaultHeight = 5.0f;
+            float defaultHeight = 0.5f;
            // if(maxHeight > 0.0f)
            // {
                 float currentDocumentHeight = (height+defaultHeight) / (maxHeight+defaultHeight);
