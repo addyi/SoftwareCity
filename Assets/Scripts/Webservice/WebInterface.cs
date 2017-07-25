@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using Webservice.Response.GenericArrayResponse;
-
+using Webservice.Response.ArrayResponseSQProject;
+using Webservice.Response.Project;
 
 namespace Webservice
 {
@@ -28,8 +28,8 @@ namespace Webservice
                     {
                         string json = www.downloadHandler.text;
                         json = "{\"array\":" + json + "}";
-                        GenericArrayResponse<T> resArrObj = JsonUtility.FromJson<GenericArrayResponse<T>>(json);
-                        callback(resArrObj.array, www.responseCode);
+                        T resArrObj = JsonUtility.FromJson<T>(json);
+                        callback(resArrObj, www.responseCode);
                     }
                     else
                     {

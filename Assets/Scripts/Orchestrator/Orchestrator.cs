@@ -10,6 +10,7 @@ using System;
 using Webservice.Response.ComponentTree;
 using DataModel.ProjectTree.Components;
 using DiskIO.ProjectTreeSaveLoader;
+using Webservice.Response.ArrayResponseSQProject;
 
 namespace Orchestrator
 {
@@ -66,12 +67,12 @@ namespace Orchestrator
             if (model.GetUsername() != "" && model.GetPassword() != "")
                 uriBuilder.UserCredentials(model.GetUsername(), model.GetPassword());
 
-            StartCoroutine(WebInterface.WebRequest<List<SQProject>>(
+            StartCoroutine(WebInterface.WebRequest<ArrayResponseSQProject>(
                uriBuilder.GetSqUri(),
                (res, err) =>
                {
                    Debug.Log("LoadProjectList ResponseCode: " + err);
-                   callback(res, err);
+                   callback(new List<SQProject> (res.array), err);
                }));
         }
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Webservice.Response.Project;
 
-
-namespace Webservice.Response.GenericArrayResponse
+namespace Webservice.Response.ArrayResponseSQProject
 {
     [Serializable]
-    class GenericArrayResponse<T>
+    class ArrayResponseSQProject
     {
-        public T array = default(T);
+        public SQProject[] array = default(SQProject[]);
     }
 }

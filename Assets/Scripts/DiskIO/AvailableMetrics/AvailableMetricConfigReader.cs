@@ -16,7 +16,8 @@ namespace DiskIO.AvailableMetrics
         /// <summary>
         /// Path to JSON file with availabe metrics.
         /// </summary>
-        private static readonly string ConfigFilePath = Application.dataPath + "/Storage/availablemetricsConf.json";
+        //private static readonly string ConfigFilePath = Application.dataPath + "/Storage/availablemetricsConf.json";
+        private static readonly string ConfigFilePath = Path.Combine(Application.streamingAssetsPath, "availablemetricsConf.json");
 
         /// <summary>
         /// Reading predefined metrics that are requested by the WebInterface to SonarQube.
