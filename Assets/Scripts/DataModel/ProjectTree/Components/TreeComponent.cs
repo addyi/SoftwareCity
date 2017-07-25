@@ -17,6 +17,8 @@ namespace DataModel.ProjectTree.Components
         public SqQualifier Qualifier;
         public List<TreeMetric> Metrics = new List<TreeMetric>();
 
+        public TreeComponent() { }
+
         protected TreeComponent(SqComponent component)
         {
             ID = component.id;

@@ -9,7 +9,9 @@ namespace DiskIO.ProjectTreeSaveLoader
 
     public static class ComponentTreeStream
     {
-        private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
+        //private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
+
+        private static readonly string path = Path.Combine(Application.streamingAssetsPath, "localProjectTreeStore.data");
 
         public static void SaveProjectComponent(ProjectComponent obj)
         {
@@ -28,7 +30,9 @@ namespace DiskIO.ProjectTreeSaveLoader
 
         public static ProjectComponent LoadProjectComponent()
         {
-            byte[] data = File.ReadAllBytes(path);
+            Debug.Log(path);
+
+            byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
             using (MemoryStream memoryStream = new MemoryStream(data))
             {
                 using (XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(memoryStream, XmlDictionaryReaderQuotas.Max))

@@ -8,6 +8,8 @@ namespace DataModel.Metrics
         public string Key;
         public float Value;
 
+        public TreeMetric() { }
+
         public TreeMetric(string Key, float Value)
         {
             this.Key = Key;

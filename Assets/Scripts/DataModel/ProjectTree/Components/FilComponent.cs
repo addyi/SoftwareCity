@@ -6,6 +6,8 @@ namespace DataModel.ProjectTree.Components
     [Serializable]
     public class FilComponent : TreeLeafComponent
     {
+        public FilComponent() { }
+
         public FilComponent(SqComponent component) : base(component)
         {
             if (Qualifier != SqQualifier.FILE)

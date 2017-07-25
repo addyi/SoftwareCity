@@ -7,6 +7,8 @@ namespace DataModel.ProjectTree.Components
     [Serializable]
     public class ProjectComponent : DirComponent
     {
+        public ProjectComponent() { }
+
         public ProjectComponent(SqComponent component) : base(component)
         {
             if (component.qualifier == "TRK")

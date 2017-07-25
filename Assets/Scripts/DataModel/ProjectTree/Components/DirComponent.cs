@@ -11,6 +11,8 @@ namespace DataModel.ProjectTree.Components
     {
         public List<TreeComponent> components = new List<TreeComponent>();
 
+        public DirComponent() { }
+
         public DirComponent(SqComponent component) : base(component)
         {
             if (Qualifier != SqQualifier.DIRECTORY

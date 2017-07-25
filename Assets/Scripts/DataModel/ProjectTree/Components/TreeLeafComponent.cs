@@ -12,6 +12,8 @@ namespace DataModel.ProjectTree.Components
     {
         public string Language;
 
+        public TreeLeafComponent() { }
+
         protected TreeLeafComponent(SqComponent component) : base(component)
         {
             Language = component.language;
