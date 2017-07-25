@@ -2,7 +2,7 @@
 namespace DiskIO.AvailableMetrics
 {
     [Serializable]
-    public class Metric
+    public class Metric : ICloneable
     {
         /// <summary>
         /// Gets or sets the name.
@@ -32,6 +32,11 @@ namespace DiskIO.AvailableMetrics
             this.datatype = dt;
         }
 
+        public object Clone()
+        {
+            return new Metric(this.name, this.key, this.defaultValue, this.datatype);
+        }
+
         public override bool Equals(object obj)
         {
             Metric metric = obj as Metric;
@@ -41,6 +46,6 @@ namespace DiskIO.AvailableMetrics
                    this.defaultValue == metric.defaultValue;
         }
 
-
+        
     }
 }

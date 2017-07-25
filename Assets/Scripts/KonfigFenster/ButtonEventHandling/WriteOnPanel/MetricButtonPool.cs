@@ -86,7 +86,12 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private void GetMetricList()
         {
-            _metricList = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetAvailableMetrics();
+            _metricList = new List<Metric>();
+            foreach (Metric metric in orchestrator.GetComponent<Orchestrator.Orchestrator>().GetAvailableMetrics())
+            {
+                _metricList.Add((Metric)metric.Clone());
+            }
+
             saveAreaMetric = _metricList.Find(x => x.key.Equals("ncloc"));
             _metricList.Remove(saveAreaMetric);
             //TODO change percentege if merge with develop!!
