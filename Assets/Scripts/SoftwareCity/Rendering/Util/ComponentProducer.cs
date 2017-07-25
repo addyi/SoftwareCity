@@ -115,6 +115,11 @@ namespace SoftwareCity.Rendering.Utils {
             }
             return (float)metric.defaultValue;
         }
+
+        public void SetDocumentPrefab(GameObject documentPrefab)
+        {
+            this.documentPrefab = documentPrefab;
+        }
     }
 }
 
