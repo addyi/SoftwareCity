@@ -15,7 +15,7 @@ namespace SoftwareCity.Rendering.Utils {
         [SerializeField]
         private Material contentMaterial;
 
-        private readonly float maxEnviromentHeight = 1.5f;
+        private readonly float maxEnviromentHeight = 5.0f;
 
         /// <summary>
         /// Create a new document gameobject with the specific informations.
@@ -65,8 +65,13 @@ namespace SoftwareCity.Rendering.Utils {
         /// <returns></returns>
         private Vector3 CalculateDocumentSize(float widthDepth, float height, float maxHeight)
         {
-            float currentDocumentHeight = height / maxHeight;
-            return new Vector3((0.1f + widthDepth)/100.0f, currentDocumentHeight * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
+            float defaultHeight = 5.0f;
+           // if(maxHeight > 0.0f)
+           // {
+                float currentDocumentHeight = (height+defaultHeight) / (maxHeight+defaultHeight);
+                return new Vector3((0.1f + widthDepth)/100.0f, currentDocumentHeight * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
+           // }
+           // return new Vector3((0.1f + widthDepth) / 100.0f, 0.1f * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
         }
 
         /// <summary>
