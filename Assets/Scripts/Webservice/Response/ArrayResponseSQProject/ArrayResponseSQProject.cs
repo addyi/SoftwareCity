@@ -9,6 +9,9 @@ namespace Webservice.Response.ArrayResponseSQProject
     [Serializable]
     class ArrayResponseSQProject
     {
+        /// <summary>
+        /// Array of all the requestable SQProjects
+        /// </summary>
         public SQProject[] array = default(SQProject[]);
     }
 }

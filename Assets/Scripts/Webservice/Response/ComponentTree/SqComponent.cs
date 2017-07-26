@@ -3,67 +3,51 @@ using System;
 
 namespace Webservice.Response.ComponentTree
 {
+    /// <summary>
+    /// This is a POCO for JOSN deserialization of SonarQube components
+    /// </summary>
     [Serializable]
-    public class SqComponent : IComparable
+    public class SqComponent
     {
+        /// <summary>
+        /// Id of the component
+        /// </summary>
         public string id;
+        /// <summary>
+        /// Key of the component
+        /// </summary>
         public string key;
+        /// <summary>
+        /// Name of the component
+        /// </summary>
         public string name;
+        /// <summary>
+        /// Qualifier of the component (BRC, DIR, FIL, TRK, UTS)
+        /// look at SQ API Doku
+        /// </summary>      
         public string qualifier;
+        /// <summary>
+        /// Path of the component
+        /// </summary>
         public string path;
+        /// <summary>
+        /// language of the component e.g. java, xml
+        /// </summary>
         public string language;
+        /// <summary>
+        /// List of the Measures of the component
+        /// </summary>
         public List<Measure> measures;
 
-        public int CompareTo(object obj)
-        {
-            if (obj == null)
-                throw new ArgumentException("Illegal Argument: null Objecto");
-            if (!(obj is SqComponent))
-                throw new ArgumentException("Illegal Argument: obj isn't a Component");
-
-            SqComponent other = (SqComponent)obj;
-
-            int qualifierComparison = CompareQualifier(other.qualifier);
-            if (qualifierComparison != 0)
-                return qualifierComparison;
-            int pathDepthComparison = ComparePathDepth(other.path);
-            if (pathDepthComparison != 0)
-                return pathDepthComparison;
-
-            return path.CompareTo(other.path);
-        }
-
-        private int ComparePathDepth(string path)
-        {
-            int ThisPathDepth = this.path.Split('/').Length;
-            int OtherPathDepth = path.Split('/').Length;
-            return ThisPathDepth.CompareTo(OtherPathDepth);
-        }
-
-        private int CompareQualifier(string qualifier)
-        {
-            int ThisQualifier = QualifierToInt(this.qualifier);
-            int OtherQualifier = QualifierToInt(qualifier);
-            return ThisQualifier.CompareTo(OtherQualifier);
-        }
-
-        private static int QualifierToInt(string qualifier)
-        {
-            switch (qualifier)
-            {
-                case "BRC": return 1;
-                case "DIR": return 2;
-                case "FIL": return 3;
-                case "TRK": return 0;
-                case "UTS": return 4;
-                default: throw new ArgumentException("Unknown Argument for Qualifier: \"" + qualifier + "\"");
-            }
-        }
-
+        /// <summary>
+        /// As the name suggests this method returns a representation of this class as string
+        /// </summary>
+        /// <returns>The representation of this class as string</returns>
         public override string ToString()
         {
-            return string.Format("(Component: id={0}, key={1}, name={2}, qualifier={3}, path={4}, language={5}, measures={6})", id, key, name, qualifier, path, language, measures);
+            return string.Format("(Component: id={0}, key={1}, name={2}, qualifier={3}, " +
+                "path={4}, language={5}, measures={6})", id, key, name,
+                qualifier, path, language, measures);
         }
-
     }
 }
