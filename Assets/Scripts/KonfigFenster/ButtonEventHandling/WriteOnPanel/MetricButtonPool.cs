@@ -183,5 +183,16 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 }
             }
         }
+
+        public void JumpBack()
+        {
+            if(MainPanelObserver.isLocal)
+            {
+                panelHandler.GetComponent<PanelExchanger>().NextPanel("MainPanel");
+            } else
+            {
+                panelHandler.GetComponent<PanelExchanger>().NextPanel("SamplePanel");
+            }
+        }
     }
 }
