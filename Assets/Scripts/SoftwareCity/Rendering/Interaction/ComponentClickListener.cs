@@ -35,6 +35,11 @@ public class ComponentClickListener : MonoBehaviour, IInputClickHandler
         GetComponent<Renderer>().material.color = Color.yellow;
     }
 
+    /// <summary>
+    /// Create title string.
+    /// </summary>
+    /// <param name="info"></param>
+    /// <returns></returns>
     private string ContentTitle(BaseInformation info)
     {
         return info.TitleToString();
