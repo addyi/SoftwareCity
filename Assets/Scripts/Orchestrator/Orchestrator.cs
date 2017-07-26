@@ -25,7 +25,7 @@ namespace Orchestrator
     {
 
         private readonly Model model = Model.GetInstance();
-        private CityLoadingState cityLoadingState = CityLoadingState.NotReady;
+        private static CityLoadingState cityLoadingState = CityLoadingState.NotReady;
         private string toLoadProjectKey = "";
         [SerializeField]
         private GameObject enviroment;
@@ -130,19 +130,11 @@ namespace Orchestrator
         public void ShowCity()
         {
             //throw new NotImplementedException();
-
-            //if (IsCityReady() == CityLoadingState.Ready)
-            //{
-                // TODO TOBIAS render city
-                if (!enviromentExist)
-                {
-                    Instantiate(enviroment, transform.localPosition, transform.localRotation);
-                    enviromentExist = true;
-                }
-
-
-
-            //}
+            if (IsCityReady() == CityLoadingState.Ready && !enviromentExist)
+            {
+                Instantiate(enviroment, transform.localPosition, transform.localRotation);
+                enviromentExist = true;
+            }
         }
 
         private bool IsLocalProjectRequestedProject(string projectKey)
@@ -185,7 +177,10 @@ namespace Orchestrator
                            }
                            else
                            {
-                               if (cityLoadingState != CityLoadingState.LodingError) { cityLoadingState = CityLoadingState.Ready; }
+                               if (cityLoadingState != CityLoadingState.LodingError)
+                               {
+                                   cityLoadingState = CityLoadingState.Ready;
+                               }
                                ComponentTreeStream.SaveProjectComponent(model.GetTree());
                            }
                            break;
