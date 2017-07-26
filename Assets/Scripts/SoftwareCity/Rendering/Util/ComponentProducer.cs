@@ -3,6 +3,7 @@ using DataModel.ProjectTree.Components;
 using DiskIO.AvailableMetrics;
 using SoftwareCity.Rendering.Utils.Colorizer;
 using SoftwareCity.Rendering.Utils.Information;
+using SoftwareCity.Rendering.Utils.Models;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -39,14 +40,10 @@ namespace SoftwareCity.Rendering.Utils {
 
             if(((FilComponent)documentComponent).Language.Equals("xml"))
             {
-                //GameObject dummy = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                //dummy.transform.SetParent(documentGameObject.transform);
-                //dummy.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
-
                 float widthDepth = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
                 documentGameObject.transform.localScale = CalculateDocumentSize(widthDepth, 0.0f, maxHeight);
                 documentGameObject.GetComponent<Renderer>().material.color = Color.gray;
-                documentGameObject.GetComponent<MeshFilter>().mesh = CalculateTube();
+                documentGameObject.GetComponent<MeshFilter>().mesh = this.gameObject.GetComponent<Cylinder>().Mesh();
 
             } else
             {
@@ -71,12 +68,7 @@ namespace SoftwareCity.Rendering.Utils {
         /// <param name="documentGameObject"></param>
         private Mesh CalculatePyramid(float percent)
         {
-            return this.gameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(percent / 100.0f);
-        }
-
-        private Mesh CalculateTube()
-        {
-            return this.gameObject.GetComponent<TubeMesh>().CreateTube();
+            return this.gameObject.GetComponent<Pyramid>().Mesh(percent / 100.0f);
         }
 
         /// <summary>

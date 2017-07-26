@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
-using UnityEditor;
-using UnityEngine.TestTools;
 using NUnit.Framework;
-using System.Collections;
-using SoftwareCity.Rendering.Utils;
+using SoftwareCity.Rendering.Utils.Models;
 
-public class CustomMeshGeneratorTest {
+public class PyramidTest {
 
 	[Test]
-	public void GeneratePyramidTest() {
+	public void Mesh() {
         GameObject testGameObject = new GameObject();
-        testGameObject.AddComponent<CustomMeshGenerator>();
+        testGameObject.AddComponent<Pyramid>();
 
-        Mesh testMesh = testGameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(0.5f);
+        Mesh testMesh = testGameObject.GetComponent<Pyramid>().Mesh(0.5f);
 
         Vector3[] testMeshVertices = testMesh.vertices;
+
+        Assert.AreEqual(testMesh.vertices.Length, 24);
+        Assert.AreEqual(testMesh.normals.Length, 24);
+        Assert.AreEqual(testMesh.uv.Length, 24);
+        Assert.AreEqual(testMesh.triangles.Length, 36);
 
         //bottom
         Assert.Contains(new Vector3(0.5f, 0.0f, 0.5f), testMeshVertices);

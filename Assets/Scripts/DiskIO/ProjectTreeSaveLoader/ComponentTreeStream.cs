@@ -30,7 +30,6 @@ namespace DiskIO.ProjectTreeSaveLoader
 
         public static ProjectComponent LoadProjectComponent()
         {
-            Debug.Log(path);
 
             byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
             using (MemoryStream memoryStream = new MemoryStream(data))

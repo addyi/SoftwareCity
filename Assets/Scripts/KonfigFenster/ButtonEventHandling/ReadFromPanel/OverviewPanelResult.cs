@@ -71,8 +71,6 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                 }
                 if (dummy.StartsWith("Pyramid"))
                 {
-                    Debug.Log(OverviewElements.Length());
-                    Debug.Log(OverviewElements.GetElement(j));
                     overviewResult[i].text = "Pyramid:" + tab + temp;
                     j++;
                 }

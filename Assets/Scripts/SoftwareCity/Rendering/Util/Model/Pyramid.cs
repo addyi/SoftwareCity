@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace SoftwareCity.Rendering.Utils
+namespace SoftwareCity.Rendering.Utils.Models
 {
-    public class CustomMeshGenerator : MonoBehaviour {
+    public class Pyramid : MonoBehaviour {
 
         /// <summary>
         /// Vertice in direction bottom north west.
@@ -112,7 +112,7 @@ namespace SoftwareCity.Rendering.Utils
         /// </summary>
         /// <param name="percent"></param>
         /// <returns></returns>
-        public Mesh GeneratePyramid(float percent)
+        public Mesh Mesh(float percent)
         {
             Mesh mesh = new Mesh();
 
