@@ -78,6 +78,5 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                 }
             }
         }
-
     }
 }

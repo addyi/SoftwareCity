@@ -27,12 +27,16 @@ namespace Orchestrator
         private readonly Model model = Model.GetInstance();
         private CityLoadingState cityLoadingState = CityLoadingState.NotReady;
         private string toLoadProjectKey = "";
+        [SerializeField]
+        private GameObject enviroment;
+        private bool enviromentExist;
 
         // Use this for initialization
         void Start()
         {
             // Read availablemetrics from disk and store them in the model
             model.SetAvailableMetrics(AvailableMetricConfigReader.ReadConfigFile());
+            enviromentExist = false;
 
             LoadLocalProject();
 
@@ -72,7 +76,7 @@ namespace Orchestrator
                (res, err) =>
                {
                    Debug.Log("LoadProjectList ResponseCode: " + err);
-                   callback(new List<SQProject> (res.array), err);
+                   callback(new List<SQProject>(res.array), err);
                }));
         }
 
@@ -125,12 +129,20 @@ namespace Orchestrator
 
         public void ShowCity()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
-            if (IsCityReady() == CityLoadingState.Ready)
-            {
+            //if (IsCityReady() == CityLoadingState.Ready)
+            //{
                 // TODO TOBIAS render city
-            }
+                if (!enviromentExist)
+                {
+                    Instantiate(enviroment, transform.localPosition, transform.localRotation);
+                    enviromentExist = true;
+                }
+
+
+
+            //}
         }
 
         private bool IsLocalProjectRequestedProject(string projectKey)
