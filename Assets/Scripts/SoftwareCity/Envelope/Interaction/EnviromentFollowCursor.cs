@@ -102,6 +102,12 @@ namespace SoftwareCity.Envelope.Interaction
             {
                 renderer.enabled = b;
             }
+
+            infobox = GameObject.FindGameObjectWithTag("Infobox");
+            foreach (Renderer renderer in infobox.gameObject.GetComponentsInChildren<Renderer>())
+            {
+                renderer.enabled = b;
+            }
         }
 
         /// <summary>
@@ -122,9 +128,9 @@ namespace SoftwareCity.Envelope.Interaction
         private void ActivateImage(bool b)
         {
             infobox = GameObject.FindGameObjectWithTag("Infobox");
-            foreach (Renderer renderer in infobox.gameObject.GetComponentsInChildren<Renderer>())
+            foreach(Image image in infobox.gameObject.GetComponentsInChildren<Image>())
             {
-                renderer.enabled = b;
+                image.enabled = b;
             }
         }
     }
