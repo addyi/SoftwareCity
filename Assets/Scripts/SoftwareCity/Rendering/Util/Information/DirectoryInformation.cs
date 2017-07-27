@@ -19,7 +19,7 @@ namespace SoftwareCity.Rendering.Utils.Information
             
             foreach(TreeComponent component in ((DirComponent)treeComponent).components)
             {
-                childString += "   " + ((qualifier == SqQualifier.UNDEFINED) ? SqQualifier.DIRECTORY : qualifier) + ": <b>" + component.Name + "</b>\n";
+                childString += "\n  <b>" + component.Name + "</b>";      
             }
         }
 
@@ -30,8 +30,7 @@ namespace SoftwareCity.Rendering.Utils.Information
         public override string ToString()
         {
             return 
-                "<b>Childs:</b> <size=40pt>\n" + this.childString + 
-                "</size>";
+                "The " + qualifier + " contains follow components: <size=40pt>\n" + this.childString + "</size>";
         }
     }
 }
