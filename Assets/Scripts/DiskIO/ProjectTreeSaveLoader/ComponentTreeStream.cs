@@ -45,16 +45,19 @@ namespace DiskIO.ProjectTreeSaveLoader
         {
             Debug.Log(path);
 
-            byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
-            using (MemoryStream memoryStream = new MemoryStream(data))
+            if(File.Exists(path))
             {
-                using (XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(memoryStream, XmlDictionaryReaderQuotas.Max))
+                byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
+                using (MemoryStream memoryStream = new MemoryStream(data))
                 {
-                    DataContractSerializer dcs = new DataContractSerializer(typeof(ProjectComponent));
-                    return (ProjectComponent)dcs.ReadObject(reader);
+                    using (XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(memoryStream, XmlDictionaryReaderQuotas.Max))
+                    {
+                        DataContractSerializer dcs = new DataContractSerializer(typeof(ProjectComponent));
+                        return (ProjectComponent)dcs.ReadObject(reader);
+                    }
                 }
             }
-
+            return null;
         }
 
     }
