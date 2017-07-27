@@ -6,7 +6,7 @@ using System.Collections;
 using DiskIO.AvailableMetrics;
 using System.Collections.Generic;
 
-public class DiskIOTest
+public class AvailableMetricConfigReaderTest
 {
 
     [Test]
@@ -14,7 +14,7 @@ public class DiskIOTest
     {
         List<Metric> avMetrics = new List<Metric>();
         avMetrics.Add(new Metric("Lines of Code", "ncloc", 0.0, "double"));
-        avMetrics.Add(new Metric("Test Success Density", "test_success_density", 100, "percentage"));
+        avMetrics.Add(new Metric("Test Success Density", "test_success_density", 0.0, "percentage"));
         avMetrics.Add(new Metric("Code Smells", "code_smells", 0.0, "double"));
         avMetrics.Add(new Metric("Comment Lines Density", "comment_lines_density", 0.0, "percentage"));
         avMetrics.Add(new Metric("Bugs", "bugs", 0.0, "double"));
@@ -27,13 +27,12 @@ public class DiskIOTest
         int i = 0;
         foreach (Metric m in readedMetrics)
         {
-           Assert.AreEqual(m, avMetrics.ToArray()[i]);
+            //Debug.Log(m.name+ " "+ avMetrics.ToArray()[i].name);
+            //Debug.Log(m.key + " " + avMetrics.ToArray()[i].key);
+            //Debug.Log(m.defaultValue + " " + avMetrics.ToArray()[i].defaultValue);
+            //Debug.Log(m.datatype + " " + avMetrics.ToArray()[i].datatype);
+            Assert.AreEqual(m, avMetrics.ToArray()[i]);
             i++;
         }
-
-
-
     }
-
-
 }
