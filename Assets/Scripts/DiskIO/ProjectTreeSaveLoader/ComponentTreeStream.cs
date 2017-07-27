@@ -11,12 +11,10 @@ namespace DiskIO.ProjectTreeSaveLoader
     /// </summary>
     public static class ComponentTreeStream
     {
-        //private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
-
         /// <summary>
         /// Path to saving the ProjectComponent object
         /// </summary>
-        private static readonly string path = Path.Combine(Application.streamingAssetsPath, "localProjectTreeStore.data");
+        private static readonly string path = Path.Combine(Application.persistentDataPath, "localProjectTreeStore.data");
 
         /// <summary>
         /// serialize and save ProjectComponent
@@ -32,6 +30,7 @@ namespace DiskIO.ProjectTreeSaveLoader
 
                     dcs.WriteObject(writer, projectComponent);
                     writer.Flush();
+                    Debug.Log("-------------->SaveProjectComponent: " + path);
                     File.WriteAllBytes(path, ms.ToArray());
                 }
             }
@@ -46,6 +45,7 @@ namespace DiskIO.ProjectTreeSaveLoader
 
             if(File.Exists(path))
             {
+                Debug.Log("-------------->LoadProjectComponent: " + path);
                 byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
                 using (MemoryStream memoryStream = new MemoryStream(data))
                 {
