@@ -77,13 +77,16 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// Destroing all Buttons in the SamplePanel, to not having any duplicate.
         /// </summary>
-        public void Reset()
+        public void RemoveButtons()
         {
-            foreach(GameObject button in allButtons)
+            if (allButtons != null)
             {
-                Destroy(button);
+                foreach (GameObject button in allButtons)
+                {
+                    Destroy(button);
+                }
+                resetList.Clear();
             }
-            resetList.Clear();
         }
 
         /// <summary>

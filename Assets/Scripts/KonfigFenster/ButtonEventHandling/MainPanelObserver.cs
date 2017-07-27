@@ -23,6 +23,8 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// </summary>
         private ProjectComponent localProject;
         private bool disabledButton;
+
+        public static bool isLocal;
         // Use this for initialization
         void Start()
         {
@@ -40,8 +42,14 @@ namespace ConfigurationWindow.ButtonEventHandling
         public void SelectLocalProject()
         {
             OverviewElements.InsertElement(localProject.Name);
+            isLocal = true;
             orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(localProject.Key);
         }
+
+        public void IsOnline(bool isOnline)
+        {
+            isLocal = isOnline;
+        } 
 
         /// <summary>
         /// If an local project exists the button is enabled, otherwise disabled.

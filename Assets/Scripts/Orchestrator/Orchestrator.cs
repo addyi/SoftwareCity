@@ -25,14 +25,18 @@ namespace Orchestrator
     {
 
         private readonly Model model = Model.GetInstance();
-        private CityLoadingState cityLoadingState = CityLoadingState.NotReady;
+        private static CityLoadingState cityLoadingState = CityLoadingState.NotReady;
         private string toLoadProjectKey = "";
+        [SerializeField]
+        private GameObject enviroment;
+        private bool enviromentExist;
 
         // Use this for initialization
         void Start()
         {
             // Read availablemetrics from disk and store them in the model
             model.SetAvailableMetrics(AvailableMetricConfigReader.ReadConfigFile());
+            enviromentExist = false;
 
             LoadLocalProject();
 
@@ -72,7 +76,7 @@ namespace Orchestrator
                (res, err) =>
                {
                    Debug.Log("LoadProjectList ResponseCode: " + err);
-                   callback(new List<SQProject> (res.array), err);
+                   callback(new List<SQProject>(res.array), err);
                }));
         }
 
@@ -125,11 +129,11 @@ namespace Orchestrator
 
         public void ShowCity()
         {
-            throw new NotImplementedException();
-
-            if (IsCityReady() == CityLoadingState.Ready)
+            //throw new NotImplementedException();
+            if (IsCityReady() == CityLoadingState.Ready && !enviromentExist)
             {
-                // TODO TOBIAS render city
+                Instantiate(enviroment, transform.localPosition, transform.localRotation);
+                enviromentExist = true;
             }
         }
 
@@ -173,7 +177,10 @@ namespace Orchestrator
                            }
                            else
                            {
-                               if (cityLoadingState != CityLoadingState.LodingError) { cityLoadingState = CityLoadingState.Ready; }
+                               if (cityLoadingState != CityLoadingState.LodingError)
+                               {
+                                   cityLoadingState = CityLoadingState.Ready;
+                               }
                                ComponentTreeStream.SaveProjectComponent(model.GetTree());
                            }
                            break;
@@ -197,6 +204,11 @@ namespace Orchestrator
                 Debug.Log("Not able to load Project from disk: " + e.Message);
                 model.SetTree(null);
             }
+        }
+
+        public void DestroyEnviroment()
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
         }
     }
 }
