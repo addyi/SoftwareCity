@@ -206,5 +206,10 @@ namespace Orchestrator
                 model.SetTree(null);
             }
         }
+
+        public void DestroyEnviroment()
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
+        }
     }
 }
