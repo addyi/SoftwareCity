@@ -6,14 +6,23 @@ using DataModel.ProjectTree.Components;
 
 namespace DiskIO.ProjectTreeSaveLoader
 {
-
+    /// <summary>
+    /// Static class for saving and loading a ProjectComponent object. 
+    /// </summary>
     public static class ComponentTreeStream
     {
         //private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
 
+        /// <summary>
+        /// Path to saving the ProjectComponent object
+        /// </summary>
         private static readonly string path = Path.Combine(Application.streamingAssetsPath, "localProjectTreeStore.data");
 
-        public static void SaveProjectComponent(ProjectComponent obj)
+        /// <summary>
+        /// serialize and save ProjectComponent
+        /// </summary>
+        /// <param name="projectComponent"></param>
+        public static void SaveProjectComponent(ProjectComponent projectComponent)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -21,13 +30,17 @@ namespace DiskIO.ProjectTreeSaveLoader
                 {
                     DataContractSerializer dcs = new DataContractSerializer(typeof(ProjectComponent));
 
-                    dcs.WriteObject(writer, obj);
+                    dcs.WriteObject(writer, projectComponent);
                     writer.Flush();
                     File.WriteAllBytes(path, ms.ToArray());
                 }
             }
         }
 
+        /// <summary>
+        /// load and deserialize the ProjectComponent object
+        /// </summary>
+        /// <returns></returns>
         public static ProjectComponent LoadProjectComponent()
         {
             Debug.Log(path);
