@@ -191,7 +191,6 @@ namespace Orchestrator
             {
                 ProjectComponent tree = ComponentTreeStream.LoadProjectComponent();
                 model.SetTree(tree);
-                Debug.Log("Loaded Project from Disk");
             }
             catch (Exception e)
             {

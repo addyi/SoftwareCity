@@ -3,6 +3,7 @@ using DataModel.ProjectTree.Components;
 using DiskIO.AvailableMetrics;
 using SoftwareCity.Rendering.Utils.Colorizer;
 using SoftwareCity.Rendering.Utils.Information;
+using SoftwareCity.Rendering.Utils.Models;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -15,7 +16,7 @@ namespace SoftwareCity.Rendering.Utils {
         [SerializeField]
         private Material contentMaterial;
 
-        private readonly float maxEnviromentHeight = 1.5f;
+        private readonly float maxEnviromentHeight = 5.0f;
 
         /// <summary>
         /// Create a new document gameobject with the specific informations.
@@ -37,15 +38,26 @@ namespace SoftwareCity.Rendering.Utils {
             documentGameObject.transform.position = Vector3.zero;
             documentGameObject.name = documentComponent.Name;
 
-            float defaultMetric = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
-            float heightMetric = FindSpecificMetricValue(selectedMetrics[1], documentComponent);
-            documentGameObject.transform.localScale = CalculateDocumentSize(defaultMetric, heightMetric, maxHeight);
+            if(((FilComponent)documentComponent).Language.Equals("xml"))
+            {
+                float widthDepth = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
+                documentGameObject.transform.localScale = CalculateDocumentSize(widthDepth, 0.0f, maxHeight);
+                documentGameObject.GetComponent<Renderer>().material.color = Color.gray;
+                documentGameObject.GetComponent<MeshFilter>().mesh = this.gameObject.GetComponent<Cylinder>().Mesh();
 
-            float colorMetric = FindSpecificMetricValue(selectedMetrics[2], documentComponent);
-            documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(colorMetric);
+            } else
+            {
+                float defaultMetric = FindSpecificMetricValue(selectedMetrics[0], documentComponent);
+                float heightMetric = FindSpecificMetricValue(selectedMetrics[1], documentComponent);
+                documentGameObject.transform.localScale = CalculateDocumentSize(defaultMetric, heightMetric, maxHeight);
 
-            float pyramidMetric = FindSpecificMetricValue(selectedMetrics[3], documentComponent);
-            documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(pyramidMetric);
+                float colorMetric = FindSpecificMetricValue(selectedMetrics[2], documentComponent);
+                documentGameObject.GetComponent<Renderer>().material.color = GetComponent<DocumentColorizer>().DocumentColor(colorMetric);
+
+                float pyramidMetric = FindSpecificMetricValue(selectedMetrics[3], documentComponent);
+                documentGameObject.GetComponent<MeshFilter>().mesh = CalculatePyramid(pyramidMetric);
+            }
+
 
             return documentGameObject;
         }
@@ -56,7 +68,7 @@ namespace SoftwareCity.Rendering.Utils {
         /// <param name="documentGameObject"></param>
         private Mesh CalculatePyramid(float percent)
         {
-            return this.gameObject.GetComponent<CustomMeshGenerator>().GeneratePyramid(percent / 100.0f);
+            return this.gameObject.GetComponent<Pyramid>().Mesh(percent / 100.0f);
         }
 
         /// <summary>
@@ -65,8 +77,13 @@ namespace SoftwareCity.Rendering.Utils {
         /// <returns></returns>
         private Vector3 CalculateDocumentSize(float widthDepth, float height, float maxHeight)
         {
-            float currentDocumentHeight = height / maxHeight;
-            return new Vector3((0.1f + widthDepth)/100.0f, currentDocumentHeight * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
+            float defaultHeight = 0.5f;
+           // if(maxHeight > 0.0f)
+           // {
+                float currentDocumentHeight = (height+defaultHeight) / (maxHeight+defaultHeight);
+                return new Vector3((0.1f + widthDepth)/100.0f, currentDocumentHeight * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
+           // }
+           // return new Vector3((0.1f + widthDepth) / 100.0f, 0.1f * maxEnviromentHeight, (0.1f + widthDepth) / 100.0f);
         }
 
         /// <summary>

@@ -43,7 +43,6 @@ namespace DiskIO.ProjectTreeSaveLoader
         /// <returns></returns>
         public static ProjectComponent LoadProjectComponent()
         {
-            Debug.Log(path);
 
             if(File.Exists(path))
             {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SoftwareCity.Envelope.Interaction;
+using UnityEngine.UI;
 
 namespace SoftwareCity.Infobox
 {

@@ -28,8 +28,21 @@ public class ComponentClickListener : MonoBehaviour, IInputClickHandler
         lastReference = this.gameObject;
         lastColor = this.gameObject.GetComponent<Renderer>().material.color;
 
-        GameObject.FindGameObjectWithTag("Infobox").GetComponentInChildren<Text>().text = ContentInformation(GetComponent<BaseInformation>());
+        Text[] textFields = GameObject.FindGameObjectWithTag("Infobox").GetComponentsInChildren<Text>();
+        textFields[0].text = ContentTitle(GetComponent<BaseInformation>());
+        textFields[1].text = ContentInformation(GetComponent<BaseInformation>());
+
         GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    /// <summary>
+    /// Create title string.
+    /// </summary>
+    /// <param name="info"></param>
+    /// <returns></returns>
+    private string ContentTitle(BaseInformation info)
+    {
+        return info.TitleToString();
     }
 
     /// <summary>

@@ -78,6 +78,11 @@ namespace SoftwareCity.Rendering.Utils.Information
         {
             return childs;
         }
+
+        public string TitleToString()
+        {
+            return ((qualifier==SqQualifier.UNDEFINED)?SqQualifier.DIRECTORY:qualifier) + ": <b>" + componentName + "</b>";
+        }
     }
 }
 
