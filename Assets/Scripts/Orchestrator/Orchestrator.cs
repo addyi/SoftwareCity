@@ -179,7 +179,7 @@ namespace Orchestrator
                 enviromentExist = true;
             }
         }
-        
+
         /// <summary>
         /// Select the local project as to render
         /// </summary>
@@ -278,10 +278,13 @@ namespace Orchestrator
         /// </summary>
         public void DestroyEnviroment()
         {
-            Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
-            enviromentExist = false;
-            cityLoadingState = CityLoadingState.NotReady;
-            toLoadProjectKey = "";
+            if (enviromentExist)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
+                enviromentExist = false;
+                cityLoadingState = CityLoadingState.NotReady;
+                toLoadProjectKey = "";
+            }
         }
     }
 }
