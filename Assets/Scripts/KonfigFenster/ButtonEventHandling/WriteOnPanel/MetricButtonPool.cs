@@ -119,6 +119,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 metricButton.transform.SetParent(panel.transform);
                 metricButton.transform.localPosition = new Vector3(metricButton.transform.localPosition.x, metricButton.transform.localPosition.y, 0.0f);
                 metricButton.transform.localScale = new Vector3(1f, 1f, 1f);
+
+                metricButton.transform.localEulerAngles = Vector3.zero;
                 metricButton.GetComponentInChildren<Text>().text = m.name;
                 DisableImage(metricButton);
                 metricButton.GetComponent<Button>().onClick.AddListener(() => Clicked(metricButton, m, panelTag));
