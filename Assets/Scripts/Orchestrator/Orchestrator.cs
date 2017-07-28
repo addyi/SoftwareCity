@@ -282,7 +282,6 @@ namespace Orchestrator
             {
                 Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
                 enviromentExist = false;
-                cityLoadingState = CityLoadingState.NotReady;
                 toLoadProjectKey = "";
             }
         }
