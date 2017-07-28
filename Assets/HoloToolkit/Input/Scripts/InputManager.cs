@@ -249,16 +249,15 @@ namespace HoloToolkit.Unity.InputModule
                         return;
                     }
                 }
-                
                 // Otherwise, just invoke the event on the modal handler itself
                 else
-                {*/
+                {
+                */
                     if (ExecuteEvents.ExecuteHierarchy(modalInput, eventData, eventHandler))
                     {
                         return;
                     }
-
-              //  }
+                //}
             }
 
             // If event was not handled by modal, pass it on to the current focused object

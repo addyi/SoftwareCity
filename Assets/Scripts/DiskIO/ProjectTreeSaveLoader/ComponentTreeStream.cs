@@ -40,7 +40,11 @@ namespace DiskIO.ProjectTreeSaveLoader
 
                     dcs.WriteObject(writer, projectComponent);
                     writer.Flush();
-                    Debug.Log("-------------->SaveProjectComponent: " + path);
+#if !UNITY_EDITOR && UNITY_METRO
+                    Debug.Log("Windows--->SaveProjectComponent: " + path);
+#else
+                    Debug.Log("Desktop--->SaveProjectComponent: " + path);
+#endif
                     File.WriteAllBytes(path, ms.ToArray());
                 }
             }
@@ -55,7 +59,11 @@ namespace DiskIO.ProjectTreeSaveLoader
 
             if(File.Exists(path))
             {
-                Debug.Log("-------------->LoadProjectComponent: " + path);
+#if !UNITY_EDITOR && UNITY_METRO
+                    Debug.Log("Windows--->LoadProjectComponent: " + path);
+#else
+                Debug.Log("Desktop--->LoadProjectComponent: " + path);
+#endif
                 byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
                 using (MemoryStream memoryStream = new MemoryStream(data))
                 {

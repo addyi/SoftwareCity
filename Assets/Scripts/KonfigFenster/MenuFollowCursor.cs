@@ -29,8 +29,8 @@ namespace SoftwareCity.ConfigMenu
         // Update is called once per frame
         void Update()
         {
-            this.gameObject.transform.position = cursor.transform.position + new Vector3(0.0f, 2f, 0.0f);
-            this.gameObject.transform.eulerAngles = new Vector3(cursor.transform.eulerAngles.x, cursor.transform.eulerAngles.y + 180f, cursor.transform.eulerAngles.z);
+            this.gameObject.transform.position = cursor.transform.position + new Vector3(0.0f, 0.0f, -0.1f);
+            this.gameObject.transform.eulerAngles = new Vector3(-cursor.transform.eulerAngles.x, cursor.transform.eulerAngles.y + 180f, -cursor.transform.eulerAngles.z);
         }
 
         /// <summary>
