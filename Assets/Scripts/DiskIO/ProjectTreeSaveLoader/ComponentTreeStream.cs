@@ -14,7 +14,10 @@ namespace DiskIO.ProjectTreeSaveLoader
         /// <summary>
         /// Path to saving the ProjectComponent object
         /// </summary>
-        private static readonly string path = Path.Combine(Application.persistentDataPath, "localProjectTreeStore.data");
+                
+        private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
+
+        //private static readonly string path = Path.Combine(Application.persistentDataPath, "localProjectTreeStore.data");
 
         /// <summary>
         /// serialize and save ProjectComponent

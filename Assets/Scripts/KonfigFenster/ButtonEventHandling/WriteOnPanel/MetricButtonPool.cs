@@ -29,6 +29,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         public GameObject pyramidContent;
 
+        private GameObject mainPanelObserver;
 
         /// <summary>
         /// A reference to the script PanelExchanger, to switch between panels.
@@ -55,7 +56,11 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// A list, which saves the metric from the last clicked button.
         /// </summary>
-        private List<Metric> clickedMetrics;
+        private List<Metric> _clickedMetrics;
+
+        private Metric[] clickedMetrics;
+
+
         /// <summary>
         /// a list of metrics from the json file
         /// </summary>
@@ -68,13 +73,16 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         // Use this for initialization
         void Awake()
         {
+            mainPanelObserver = GameObject.FindGameObjectWithTag("MainPanel");
             inputHandler = GameObject.FindGameObjectWithTag("SamplePanel");
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GetComponent<PanelExchanger>();
             showPanelResult = GameObject.FindGameObjectWithTag("OverviewPanel");
 
 
-            clickedMetrics = new List<Metric>();
+            clickedMetrics = new Metric[4];
+            _clickedMetrics = new List<Metric>();
+
             GetMetricList();
             AddButtons("ColorPanel", heightContent.transform, _metricList);
             AddButtons("PyramidPanel", colorContent.transform, _metricList);
@@ -137,19 +145,24 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             {
                 DisableButton(m.name);
                 inputHandler.GetComponent<InputManager>().InsertElement(saveAreaMetric.name);
-                clickedMetrics.Add(saveAreaMetric);
+                _clickedMetrics.Add(saveAreaMetric);
+                clickedMetrics[0] = saveAreaMetric;
+                clickedMetrics[1] = m;
+
             }
 
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
-            clickedMetrics.Add(m);
+            _clickedMetrics.Add(m);
             switch (panelTag)
             {
                 case "PyramidPanel":
+                    clickedMetrics[2] = m;
                     orchestrator.GetComponent<Orchestrator.Orchestrator>().SecondMetricSelected();
                     break;
                 case "OverviewPanel":
+                    clickedMetrics[3] = m;
                     showPanelResult.GetComponent<OverviewPanelResult>().WriteOnPanel();
-                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(clickedMetrics.ToArray());
+                    orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectMetrics(clickedMetrics);
                     break;
             }
             panelHandler.NextPanel(panelTag);
@@ -188,6 +201,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         {
             if(MainPanelObserver.isLocal)
             {
+                mainPanelObserver.GetComponent<MainPanelObserver>().RefreshDisplay();
                 panelHandler.GetComponent<PanelExchanger>().NextPanel("MainPanel");
             } else
             {

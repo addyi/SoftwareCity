@@ -22,7 +22,11 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// The ProjectComponent saves the local project from storage.
         /// </summary>
         private ProjectComponent localProject;
-        private bool disabledButton;
+
+        private bool disabledButton = false;
+
+        private string externTag;
+
 
         public static bool isLocal;
         // Use this for initialization
@@ -30,11 +34,21 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             //TODO Check if LocalProject exist.
-            localProject = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetLocalProject();
-            string externTag = GameObject.FindGameObjectWithTag("Extern").tag;
-            CheckBeforeClick(externTag);
+            deactivateButton = GameObject.FindGameObjectWithTag("Extern");
+            //deactivateButton = GameObject.FindGameObjectWithTag(externTag);
+            RefreshDisplay();
+
             //AddingListener();
         }
+
+        public void RefreshDisplay()
+        {
+            localProject = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetLocalProject();
+            Debug.Log(localProject);
+            CheckBeforeClick();
+        }
+
+
 
         /// <summary>
         /// A listener for the button to commit the local project to the orchestrator.
@@ -55,23 +69,25 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// <summary>
         /// If an local project exists the button is enabled, otherwise disabled.
         /// </summary>
-        /// <param name="tag"></param>
-        private void CheckBeforeClick(string tag)
+        private void CheckBeforeClick()
         {
-            if(tag != null && localProject == null)
+            if (localProject == null)
             {
-                deactivateButton = GameObject.FindGameObjectWithTag(tag);
+                DisableButton(disabledButton);
+            }
+            else
+            {
                 DisableButton();
-                disabledButton = true;
             }
         }
 
         /// <summary>
         /// Disables the select local project button.
         /// </summary>
-        private void DisableButton()
+        private void DisableButton(bool disable = true)
         {
-            deactivateButton.GetComponent<Button>().interactable = false;
+            deactivateButton.GetComponent<Button>().interactable = disable;
         }
+
     }
 }

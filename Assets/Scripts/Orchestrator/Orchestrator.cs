@@ -193,6 +193,7 @@ namespace Orchestrator
                 throw new ArgumentException("The requested project is not locally available");
             }
             cityLoadingState = CityLoadingState.Ready;
+            toLoadProjectKey = projectKey;
         }
 
         /// <summary>
@@ -279,6 +280,8 @@ namespace Orchestrator
         {
             Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
             enviromentExist = false;
+            cityLoadingState = CityLoadingState.NotReady;
+            toLoadProjectKey = "";
         }
     }
 }
