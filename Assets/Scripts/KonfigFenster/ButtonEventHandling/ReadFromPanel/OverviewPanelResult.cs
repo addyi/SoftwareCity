@@ -14,15 +14,10 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         /// An array of Text is to get all the TextFields from the Overviewpanel.
         /// </summary>
         private Text[] overviewResult;
-        /// <summary>
-        /// A reference to the GameObject where the orchestrator script is, to call the methods from orchestrator. 
-        /// </summary>
-        private GameObject orchestrator;
 
         // Use this for initialization
         void Start()
         {
-            orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             overviewResult = GetComponentsInChildren<Text>();
         }
 

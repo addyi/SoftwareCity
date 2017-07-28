@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ConfigurationWindow.ConfigurationObserver;
 using UnityEngine.UI;
 using DiskIO.AvailableMetrics;
 using System.Linq;
 using ConfigurationWindow.ButtonEventHandling.ReadFromPanel;
-using UnityEngine.EventSystems;
 
 namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 {
@@ -28,7 +26,9 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// A reference to the pyramid label, to insert the buttons there.
         /// </summary>
         public GameObject pyramidContent;
-
+        /// <summary>
+        /// A refernece to the MainPanelObserver script to call the method RefreshDisplay.
+        /// </summary>
         private GameObject mainPanelObserver;
 
         /// <summary>
@@ -54,10 +54,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         private Metric saveAreaMetric;
         /// <summary>
-        /// A list, which saves the metric from the last clicked button.
+        /// An array, which saves the metric from the last clicked button.
         /// </summary>
-        private List<Metric> _clickedMetrics;
-
         private Metric[] clickedMetrics;
 
 
@@ -81,7 +79,6 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
 
 
             clickedMetrics = new Metric[4];
-            _clickedMetrics = new List<Metric>();
 
             GetMetricList();
             AddButtons("ColorPanel", heightContent.transform, _metricList);
@@ -147,14 +144,12 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             {
                 DisableButton(m.name);
                 inputHandler.GetComponent<InputManager>().InsertElement(saveAreaMetric.name);
-                _clickedMetrics.Add(saveAreaMetric);
                 clickedMetrics[0] = saveAreaMetric;
                 clickedMetrics[1] = m;
 
             }
 
             inputHandler.GetComponent<InputManager>().InsertElement(m.name);
-            _clickedMetrics.Add(m);
             switch (panelTag)
             {
                 case "PyramidPanel":
@@ -199,6 +194,10 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
             }
         }
 
+        /// <summary>
+        /// If the backButton was pressed then it changes the panel, and if the boolean variable isLocal from MainPanelObserver,
+        /// then it renders the MainPanel. Otherwise it renders the SamplePanel.
+        /// </summary>
         public void JumpBack()
         {
             if(MainPanelObserver.isLocal)

@@ -1,7 +1,5 @@
 ﻿using ConfigurationWindow.DataStorage;
 using DataModel.ProjectTree.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +20,13 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// The ProjectComponent saves the local project from storage.
         /// </summary>
         private ProjectComponent localProject;
-
+        /// <summary>
+        /// An boolean to diable the loadLocalProjectButton.
+        /// </summary>
         private bool disabledButton = false;
-
-        private string externTag;
-
-
+        /// <summary>
+        /// If the loadLocalProjectButton was pressed, then it should change the correct panels, if the back button was pressed.
+        /// </summary>
         public static bool isLocal;
         // Use this for initialization
         void Start()
@@ -35,16 +34,15 @@ namespace ConfigurationWindow.ButtonEventHandling
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             //TODO Check if LocalProject exist.
             deactivateButton = GameObject.FindGameObjectWithTag("Extern");
-            //deactivateButton = GameObject.FindGameObjectWithTag(externTag);
             RefreshDisplay();
-
-            //AddingListener();
         }
 
+        /// <summary>
+        /// The panel refreshes everytime it was reloaded, to call the method CheckBeforeClick.
+        /// </summary>
         public void RefreshDisplay()
         {
             localProject = orchestrator.GetComponent<Orchestrator.Orchestrator>().GetLocalProject();
-            Debug.Log(localProject);
             CheckBeforeClick();
         }
 
@@ -60,6 +58,10 @@ namespace ConfigurationWindow.ButtonEventHandling
             orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectLocalProject(localProject.Key);
         }
 
+        /// <summary>
+        /// IF the loadOnlineProjectButton was pressed, then the value of isLocal is false.
+        /// </summary>
+        /// <param name="isOnline">The value for the boolean variable isLocal.</param>
         public void IsOnline(bool isOnline)
         {
             isLocal = isOnline;

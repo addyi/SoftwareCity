@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ConfigurationWindow.DataStorage
@@ -25,7 +24,7 @@ namespace ConfigurationWindow.DataStorage
         /// <returns>Returns an boolean if it is not initialized.</returns>
         public static bool IsEmpty()
         {
-            return overviewData == null;
+            return overviewData.Count == 0;
         }
 
         /// <summary>
@@ -42,10 +41,13 @@ namespace ConfigurationWindow.DataStorage
         /// Remove an element from the Datastorage.
         /// </summary>
         /// <param name="i">To remove from an index.</param>
-        public static void RemoveElement(int i)
+        /// <returns>Returns true if the element was removed succesfully, otherwise false.</returns>
+        public static bool RemoveElement(int i)
         {
-
-            overviewData.Remove(overviewData[i]);
+            if (i > 0)
+                return overviewData.Remove(overviewData[i]);
+            else
+                return false;
         }
 
         /// <summary>
@@ -78,14 +80,14 @@ namespace ConfigurationWindow.DataStorage
         /// <summary>
         /// Print the datastructure in the console.
         /// </summary>
-        public static void Print()
+        public static string Print()
         {
             string temp = "";
             foreach(string s in overviewData)
             {
                 temp += s + " ";
             }
-            Debug.Log(temp);
+            return temp;
         }
     }
 }

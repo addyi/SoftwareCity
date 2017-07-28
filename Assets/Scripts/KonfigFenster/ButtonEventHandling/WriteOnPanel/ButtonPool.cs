@@ -1,6 +1,5 @@
 ﻿using ConfigurationWindow.ButtonEventHandling.ReadFromPanel;
 using ConfigurationWindow.ConfigurationObserver;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,7 +57,6 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         public void AddButtons(List<SQProject> listOfproject)
         {
             allButtons = new GameObject[listOfproject.Count];
-            Debug.Log("Can now add Buttons");
             resetList = listOfproject;
             int i = 0;
             foreach(SQProject project in resetList)
@@ -79,7 +77,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// Destroing all Buttons in the SamplePanel, to not having any duplicate.
         /// </summary>
-        public void RemoveButtons()
+        public bool RemoveButtons()
         {
             if (allButtons != null)
             {
@@ -88,7 +86,10 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                     Destroy(button);
                 }
                 resetList.Clear();
+                return true;
             }
+            else
+                return false;
         }
 
         /// <summary>

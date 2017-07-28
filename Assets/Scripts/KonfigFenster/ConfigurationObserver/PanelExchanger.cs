@@ -22,10 +22,7 @@ namespace ConfigurationWindow.ConfigurationObserver
         /// </summary>
         /// <param name="nextPanelTag">An tag to find the next panel.</param>
         public void NextPanel(string nextPanelTag)
-        {
-            //print(EventSystem.current.currentSelectedGameObject);
-            //print(EventSystem.current.currentSelectedGameObject.transform.root.gameObject);
-            
+        {   
             panelRenderer.RenderringPanel(EventSystem.current.currentSelectedGameObject.transform.root.gameObject, false);
             panelRenderer.RenderringPanel(GameObject.FindGameObjectWithTag(nextPanelTag), true);
         }

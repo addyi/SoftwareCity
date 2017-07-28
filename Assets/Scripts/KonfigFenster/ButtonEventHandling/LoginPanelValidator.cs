@@ -1,10 +1,7 @@
 ﻿using ConfigurationWindow.ButtonEventHandling.WriteOnPanel;
 using ConfigurationWindow.ConfigurationObserver;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ConfigurationWindow.ButtonEventHandling
@@ -29,8 +26,12 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// A reference to the PanelExchanger script, to change between panels.
         /// </summary>
         private GameObject panelHandler;
-
+        /// <summary>
+        /// A reference to textLabel, to show error message for the user.
+        /// </summary>
         private GameObject errorCodeLabel;
+
+
         /// <summary>
         /// urlInput saves the input from the textlabel URI.
         /// </summary>
@@ -148,7 +149,6 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// <param name="input">A reference to the Inputfield to show exactly where the user needs an input.</param>
         public void RefreshInputLabel(InputField input)
         {
-            Debug.Log(urlInput);
             if(!result)
             {
                 input.GetComponent<Image>().color = Color.red;
@@ -159,13 +159,12 @@ namespace ConfigurationWindow.ButtonEventHandling
         }
 
         /// <summary>
-        /// Saves the input in string.
+        /// Saves the input from the user in an string container.
         /// </summary>
         /// <param name="input">An reference to know which Inputfield is active.</param>
         void CheckInput(InputField input)
         {
             textLabel = input.text;
-            Debug.Log(textLabel);
             switch(input.tag)
             {
                 case "URLInput":
@@ -203,7 +202,6 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// <param name="input">The actually input from the user is saved in the string: usernameInput.</param>
         private void CheckUserInput(string input)
         {
-            Debug.Log(input);
             if (String.IsNullOrEmpty(input))
                 usernameInput = "";
             else
@@ -218,7 +216,6 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// <param name="input">The actually input from the user is saved in the string: passwordInput.</param>
         private void CheckPasswordInput(string input)
         {
-
             if (String.IsNullOrEmpty(usernameInput) && String.IsNullOrEmpty(input))
                 result = false;
             else
