@@ -4,7 +4,7 @@
     /// Helper class to build the uri for the SQ API 
     /// request of the component tree
     /// </summary>
-    class SqComponentTreeUriBuilder : SqUriBuilder
+    public class SqComponentTreeUriBuilder : SqUriBuilder
     {
         /// <summary>
         /// Base constructor for the SqComponentTreeUriBuilder
