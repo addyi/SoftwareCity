@@ -43,12 +43,13 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
             OverviewElements.InsertElement(localProject.Name);
             isLocal = true;
-            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(localProject.Key);
+            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectLocalProject(localProject.Key);
         }
 
         public void IsOnline(bool isOnline)
         {
             isLocal = isOnline;
+            
         } 
 
         /// <summary>

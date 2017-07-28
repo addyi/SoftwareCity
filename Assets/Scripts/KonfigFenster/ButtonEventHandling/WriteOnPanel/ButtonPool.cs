@@ -94,7 +94,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         void Clicked(SQProject project)
         {
-            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(project.k);
+            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectOnlineProject(project.k);
             inserter.GetComponent<InputManager>().InsertElement(project.nm);
             changePanel.NextPanel("HeightPanel");
         }
