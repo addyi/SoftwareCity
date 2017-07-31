@@ -49,7 +49,7 @@ namespace DiskIO.ProjectTreeSaveLoader
             if(File.Exists(path))
             {
                 Debug.Log("-------------->LoadProjectComponent: " + path);
-                byte[] data = File.ReadAllBytes(path);
+                byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
                 using (MemoryStream memoryStream = new MemoryStream(data))
                 {
                     using (XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(memoryStream, XmlDictionaryReaderQuotas.Max))
