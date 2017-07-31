@@ -67,6 +67,8 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                 button.transform.SetParent(panelScrollView.transform);
                 button.transform.localPosition = new Vector3(button.transform.localPosition.x, button.transform.localPosition.y, 0.0f);
                 button.transform.localScale = new Vector3(1f, 1f, 1f);
+                button.transform.localEulerAngles = Vector3.zero;
+
                 button.GetComponentInChildren<Text>().text = project.nm;
                 button.GetComponent<Button>().onClick.AddListener(() => Clicked(project));
                 allButtons[i] = button;
@@ -94,7 +96,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// </summary>
         void Clicked(SQProject project)
         {
-            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectProject(project.k);
+            orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectOnlineProject(project.k);
             inserter.GetComponent<InputManager>().InsertElement(project.nm);
             changePanel.NextPanel("HeightPanel");
         }

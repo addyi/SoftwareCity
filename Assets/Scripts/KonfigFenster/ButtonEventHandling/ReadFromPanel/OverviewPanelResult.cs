@@ -41,7 +41,7 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
         public void WriteOnPanel()
         {
             string dummy;
-            string tab = "\t\t\t";
+            string tab = "\t\t";
             string temp = "";
             int j = 0;
             for (int i = 0; i < overviewResult.Length; i++)
@@ -56,17 +56,17 @@ namespace ConfigurationWindow.ButtonEventHandling.ReadFromPanel
                 }
                 if (dummy.StartsWith("Area:"))
                 {
-                    overviewResult[i].text = "Area:" + tab + temp;
+                    overviewResult[i].text = "Area:\t" + tab + temp;
                     j++;
                 }
                 if (dummy.StartsWith("Height"))
                 {
-                    overviewResult[i].text = "Height:" + tab + temp;
+                    overviewResult[i].text = "Height:\t" + tab + temp;
                     j++;
                 }
                 if (dummy.StartsWith("Color"))
                 {
-                    overviewResult[i].text = "Color:" + tab + temp;
+                    overviewResult[i].text = "Color:\t" + tab + temp;
                     j++;
                 }
                 if (dummy.StartsWith("Pyramid"))

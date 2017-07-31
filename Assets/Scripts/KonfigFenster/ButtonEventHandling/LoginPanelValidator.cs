@@ -87,52 +87,58 @@ namespace ConfigurationWindow.ButtonEventHandling
                 result = false;
             else
             {
-                orchestrator.GetComponent<Orchestrator.Orchestrator>().CredentialsValid(urlInput, usernameInput, passwordInput, (possible, err) =>
-                   {
-                       Debug.Log(err);
-                       switch(err)
+                try
+                {
+                    orchestrator.GetComponent<Orchestrator.Orchestrator>().CredentialsValid(urlInput, usernameInput, passwordInput, (possible, err) =>
                        {
-                           case 0:
-                               errorCodeLabel.GetComponent<Text>().text = "URI is invalid: " + urlInput;
-                               break;
+                           Debug.Log(err);
+                           switch (err)
+                           {
+                               case 0:
+                                   errorCodeLabel.GetComponent<Text>().text = "URI is invalid: " + urlInput;
+                                   break;
 
-                           case 200:
-                               if(possible)
-                               {
+                               case 200:
+                                   if (possible)
+                                   {
                                    //Alles ok User kann weiter machen
                                    Debug.Log(err);
-                                   orchestrator.GetComponent<Orchestrator.Orchestrator>().LoadOnlineProjects((listOfProjects, error) =>
-                                   {
-                                       switch(error)
+                                       orchestrator.GetComponent<Orchestrator.Orchestrator>().LoadOnlineProjects((listOfProjects, error) =>
                                        {
-                                           case 200:
+                                           switch (error)
+                                           {
+                                               case 200:
                                                //Alles hat funktioniert
                                                //TODO Richard Liste der porjekte in eine andere liste einfügen und die buttons erstellen.
                                                Debug.Log("Kann Projekte laden Länge der liste: " + listOfProjects.Count);
-                                               RefreshDisplay();
-                                               panelHandler.GetComponent<ButtonPool>().AddButtons(listOfProjects);
-                                               break;
-                                       }
-                                   });
-                                   panelHandler.GetComponent<PanelExchanger>().NextPanel("SamplePanel");
-                               }
-                               else
-                               {
+                                                   RefreshDisplay();
+                                                   panelHandler.GetComponent<ButtonPool>().AddButtons(listOfProjects);
+                                                   break;
+                                           }
+                                       });
+                                       panelHandler.GetComponent<PanelExchanger>().NextPanel("SamplePanel");
+                                   }
+                                   else
+                                   {
                                    //Benutzername/Pw ist falsch.
                                    errorCodeLabel.GetComponent<Text>().text = "Benutzername/Password sind falsch";
-                               }
-                               break;
-                           case 404:
+                                   }
+                                   break;
+                               case 404:
                                //urlinput ist falsch
                                result = false;
-                               RefreshInputLabel(GameObject.FindGameObjectWithTag("URLInput").GetComponent<InputField>());
-                               errorCodeLabel.GetComponent<Text>().text = urlInput + " is false";
-                               break;
-                           default:
+                                   RefreshInputLabel(GameObject.FindGameObjectWithTag("URLInput").GetComponent<InputField>());
+                                   errorCodeLabel.GetComponent<Text>().text = urlInput + " is false";
+                                   break;
+                               default:
                                //Fehlermeldung an User ist schief gelaufen
                                break;
-                       }
-                   });
+                           }
+                       });
+                } catch(UriFormatException exception)
+                {
+                    errorCodeLabel.GetComponent<Text>().text = exception.Message;
+                }
             }
         }
 
