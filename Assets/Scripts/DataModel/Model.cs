@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using DataModel.ProjectTree.Components;
 using DataModel.ProjectTree;
@@ -28,7 +28,7 @@ namespace DataModel
     /// <summary>
     /// Central Data dump
     /// </summary>
-    class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics, IUserData
+    public class Model : IProjectTree, IAvailableMetrics, ISelectedMetrics, IUserData
     {
         /// <summary>
         /// Singleton model instance
