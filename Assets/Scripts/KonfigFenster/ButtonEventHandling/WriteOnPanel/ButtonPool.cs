@@ -77,7 +77,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
         /// <summary>
         /// Destroing all Buttons in the SamplePanel, to not having any duplicate.
         /// </summary>
-        public bool RemoveButtons()
+        public void RemoveButtons()
         {
             if (allButtons != null)
             {
@@ -86,10 +86,7 @@ namespace ConfigurationWindow.ButtonEventHandling.WriteOnPanel
                     Destroy(button);
                 }
                 resetList.Clear();
-                return true;
             }
-            else
-                return false;
         }
 
         /// <summary>

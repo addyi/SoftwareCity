@@ -44,7 +44,7 @@ namespace ConfigurationWindow.DataStorage
         /// <returns>Returns true if the element was removed succesfully, otherwise false.</returns>
         public static bool RemoveElement(int i)
         {
-            if (i > 0)
+            if (i > -1)
                 return overviewData.Remove(overviewData[i]);
             else
                 return false;
