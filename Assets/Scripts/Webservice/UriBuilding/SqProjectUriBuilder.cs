@@ -4,7 +4,7 @@
     /// Helper class to build the uri for the SQ API 
     /// request of a list of viewable projects
     /// </summary>
-    class SqProjectUriBuilder : SqUriBuilder
+    public class SqProjectUriBuilder : SqUriBuilder
     {
         /// <summary>
         /// Base constructor for the SqProjectUriBuilder

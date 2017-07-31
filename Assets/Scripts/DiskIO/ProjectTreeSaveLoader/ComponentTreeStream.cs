@@ -4,6 +4,10 @@ using System.IO;
 using System.Xml;
 using DataModel.ProjectTree.Components;
 
+#if !UNITY_EDITOR && UNITY_METRO
+using Windows.Storage;
+#endif
+
 namespace DiskIO.ProjectTreeSaveLoader
 {
     /// <summary>
@@ -14,10 +18,13 @@ namespace DiskIO.ProjectTreeSaveLoader
         /// <summary>
         /// Path to saving the ProjectComponent object
         /// </summary>
-                
-        //private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
 
+        //private static readonly string path = Application.dataPath + "/Storage/localProjectTreeStore.data";
+#if !UNITY_EDITOR && UNITY_METRO
+        private static readonly string path = Path.Combine(ApplicationData.Current.RoamingFolder.Path, "localProjectTreeStore.data");
+#else
         private static readonly string path = Path.Combine(Application.persistentDataPath, "localProjectTreeStore.data");
+#endif
 
         /// <summary>
         /// serialize and save ProjectComponent
@@ -33,7 +40,11 @@ namespace DiskIO.ProjectTreeSaveLoader
 
                     dcs.WriteObject(writer, projectComponent);
                     writer.Flush();
-                    Debug.Log("-------------->SaveProjectComponent: " + path);
+#if !UNITY_EDITOR && UNITY_METRO
+                    Debug.Log("Windows--->SaveProjectComponent: " + path);
+#else
+                    Debug.Log("Desktop--->SaveProjectComponent: " + path);
+#endif
                     File.WriteAllBytes(path, ms.ToArray());
                 }
             }
@@ -48,7 +59,11 @@ namespace DiskIO.ProjectTreeSaveLoader
 
             if(File.Exists(path))
             {
-                Debug.Log("-------------->LoadProjectComponent: " + path);
+#if !UNITY_EDITOR && UNITY_METRO
+                    Debug.Log("Windows--->LoadProjectComponent: " + path);
+#else
+                Debug.Log("Desktop--->LoadProjectComponent: " + path);
+#endif
                 byte[] data = UnityEngine.Windows.File.ReadAllBytes(path);
                 using (MemoryStream memoryStream = new MemoryStream(data))
                 {

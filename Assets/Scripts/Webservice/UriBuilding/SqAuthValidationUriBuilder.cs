@@ -4,7 +4,7 @@
     /// Helper class to build the uri for the SQ API 
     /// request if the credentials are valid
     /// </summary>
-    class SqAuthValidationUriBuilder : SqUriBuilder
+    public class SqAuthValidationUriBuilder : SqUriBuilder
     {
         /// <summary>
         /// Base constructor for the SqAuthValidationUriBuilder

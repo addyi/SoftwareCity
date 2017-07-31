@@ -156,6 +156,7 @@ namespace Orchestrator
             {
                 model.DeleteTree();
                 LoadOnlineProject(toLoadProjectKey, 1);
+                cityLoadingState = CityLoadingState.Ready;
             }
         }
 
@@ -278,12 +279,11 @@ namespace Orchestrator
         /// </summary>
         public void DestroyEnviroment()
         {
-            if (enviromentExist)
-            {
-                Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
-                enviromentExist = false;
-                toLoadProjectKey = "";
-            }
+            Destroy(GameObject.FindGameObjectWithTag("Enviroment"));
+            enviromentExist = false;
+            toLoadProjectKey = "";
+            cityLoadingState = CityLoadingState.NotReady;
+            LoadLocalProject();
         }
     }
 }
