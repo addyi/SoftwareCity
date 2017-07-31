@@ -1,11 +1,23 @@
-﻿namespace Webservice.UriBuilding
+﻿using System;
+
+namespace Webservice.UriBuilding
 {
     /// <summary>
     /// Helper class to build the uri for the SQ API 
     /// request of the component tree
     /// </summary>
-    class SqComponentTreeUriBuilder : SqUriBuilder
+    public class SqComponentTreeUriBuilder : SqUriBuilder
     {
+        /// <summary>
+        /// page number for the sq api request 
+        /// </summary>
+        private int page = 0;
+
+        /// <summary>
+        /// size of the page (number of components per request) [Min 1; Max 500]
+        /// </summary>
+        private int pageSize = 0;
+
         /// <summary>
         /// Base constructor for the SqComponentTreeUriBuilder
         /// </summary>
@@ -14,55 +26,65 @@
         /// <param name="projectKey">SonarQube key for the requested project</param>
         /// <param name="metricKeys">List of key for the requested metrics 
         /// e.g. "ncloc,bugs,vulnerabilities,..."</param>
+        /// <exception cref="ArgumentException">metricKeys and projectKey mustn't be empty string</exception>
+        /// <exception cref="ArgumentNullException">metricKeys and projectKey mustn't be null</exception>
         public SqComponentTreeUriBuilder(string baseUri, string projectKey,
             string metricKeys) : base(baseUri)
         {
-            AppendToPath("api/measures/component_tree");
-            ProjectKey(projectKey);
-            MetricKeys(metricKeys);
-        }
+            if (metricKeys == null)
+                throw new ArgumentNullException(metricKeys);
+            if (metricKeys == "")
+                throw new ArgumentException("metricKeys mustn't be empty string");
+            if (projectKey == null)
+                throw new ArgumentNullException(projectKey);
+            if (projectKey == "")
+                throw new ArgumentException("projectKey mustn't be empty string");
 
-        /// <summary>
-        /// Define the metrics for the request
-        /// </summary>
-        /// <param name="metricKeys">List of key for the requested metrics 
-        /// e.g. "ncloc,bugs,vulnerabilities,..."</param>
-        private void MetricKeys(string metricKeys)
-        {
+            AppendToPath("api/measures/component_tree");
+            AppendToQuery(string.Format("baseComponentKey={0}", projectKey));
             AppendToQuery(string.Format("metricKeys={0}", metricKeys));
         }
 
         /// <summary>
         /// Set the page number for the request
         /// </summary>
-        /// <param name="page">page number for the request</param>
+        /// <param name="page">page number for the request (min 1)</param>
         /// <returns>Same Obj for method chaining</returns>
-        public SqUriBuilder Page(int page)
+        public SqComponentTreeUriBuilder Page(int page)
         {
-            return AppendToQuery(string.Format("p={0}", page));
-        }
-
-        /// <summary>
-        /// Set the size of the page (number of components per request)
-        /// </summary>
-        /// <param name="pageSize">size of the page</param>
-        /// <returns>Same Obj for method chaining</returns>
-        public SqUriBuilder PageSize(int pageSize)
-        {
-            if (pageSize <= 500 && pageSize > 0)
+            if (page > 0)
             {
-                return AppendToQuery(string.Format("ps={0}", pageSize));
+                this.page = page;
             }
             return this;
         }
 
         /// <summary>
-        /// Define the projectKey for the request
+        /// Set the size of the page (number of components per request)
         /// </summary>
-        /// <param name="projectKey">SonarQube key for the requested project</param>
-        private void ProjectKey(string projectKey)
+        /// <param name="pageSize">size of the page (min 1; max 500)</param>
+        /// <returns>Same Obj for method chaining</returns>
+        public SqComponentTreeUriBuilder PageSize(int pageSize)
         {
-            AppendToQuery(string.Format("baseComponentKey={0}", projectKey));
+            if (pageSize <= 500 && pageSize > 0)
+            {
+                this.pageSize = pageSize;
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the fully assembled Uri
+        /// </summary>
+        /// <returns>Fully assembled Uri</returns>
+        public Uri GetSqUri()
+        {
+            if (pageSize <= 500 && pageSize > 0)
+                AppendToQuery(string.Format("ps={0}", pageSize));
+            if (page > 0)
+                AppendToQuery(string.Format("p={0}", page));
+
+            return base.GetSqUri();
         }
     }
 }

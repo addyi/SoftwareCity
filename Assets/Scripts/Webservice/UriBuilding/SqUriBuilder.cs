@@ -3,9 +3,9 @@
 namespace Webservice.UriBuilding
 {
     /// <summary>
-    /// Abstract helper class to build the uri for the SonarQube API request
+    /// Helper class to build the uri for the SonarQube API request
     /// </summary>
-    public abstract class SqUriBuilder
+    public class SqUriBuilder
     {
         /// <summary>
         /// UriBuilder used for the creaton of the uri
@@ -16,7 +16,7 @@ namespace Webservice.UriBuilding
         /// Base constructor for the SQUriBuilder
         /// </summary>
         /// <param name="baseUri">Base Uri e.g. http://sonarqube.eosn.de/ (without /api)</param>
-        protected SqUriBuilder(string baseUri)
+        public SqUriBuilder(string baseUri)
         {
             uriBuilder = new UriBuilder(baseUri);
         }
@@ -28,8 +28,10 @@ namespace Webservice.UriBuilding
         /// <returns>Same Obj for method chaining</returns>
         public SqUriBuilder AppendToPath(string pathToAppend)
         {
+            if (pathToAppend == null || pathToAppend == "")
+                return this;
             if (uriBuilder.Path != null && uriBuilder.Path.Length > 1)
-                uriBuilder.Path = uriBuilder.Path.Substring(1) + "/" + pathToAppend;
+                uriBuilder.Path = uriBuilder.Path.Substring(0) + "/" + pathToAppend;
             else
                 uriBuilder.Path = pathToAppend;
             return this;
@@ -42,6 +44,8 @@ namespace Webservice.UriBuilding
         /// <returns>Same Obj for method chaining</returns>
         public SqUriBuilder AppendToQuery(string queryToAppend)
         {
+            if (queryToAppend == null || queryToAppend == "")
+                return this;
             if (uriBuilder.Query != null && uriBuilder.Query.Length > 1)
                 uriBuilder.Query = uriBuilder.Query.Substring(1) + "&" + queryToAppend;
             else
@@ -57,6 +61,9 @@ namespace Webservice.UriBuilding
         /// <returns>Same Obj for method chaining</returns>
         public SqUriBuilder UserCredentials(string username, string password)
         {
+            if (username == null || password == null || username == "" || password == "")
+                return this;
+
             uriBuilder.Password = password;
             uriBuilder.UserName = username;
             return this;
