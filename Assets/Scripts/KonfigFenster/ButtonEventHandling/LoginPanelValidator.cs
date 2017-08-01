@@ -30,7 +30,10 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// A reference to textLabel, to show error message for the user.
         /// </summary>
         private GameObject errorCodeLabel;
-
+        /// <summary>
+        /// A reference to the LoginCredentials script, to get the last saved user datas.
+        /// </summary>
+        private LoginCredentials loginCredentials;
 
         /// <summary>
         /// urlInput saves the input from the textlabel URI.
@@ -58,10 +61,16 @@ namespace ConfigurationWindow.ButtonEventHandling
         {
             errorCodeLabel = GameObject.FindGameObjectWithTag("ErrorCodeLabel");
             errorCodeLabel.GetComponent<Text>().color = Color.red;
+
+            loginCredentials = GetComponent<LoginCredentials>();
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             panelHandler = GameObject.FindGameObjectWithTag("PanelExchanger");
             inputField = GetComponentsInChildren<InputField>();
             checkButton = GameObject.FindGameObjectWithTag("CheckButton");
+
+            urlInput = loginCredentials.GetLastURL();
+            usernameInput = loginCredentials.GetLastUserName();
+
             foreach(InputField input in inputField)
             {
                 input.onEndEdit.AddListener(delegate { CheckInput(input); });
@@ -84,6 +93,7 @@ namespace ConfigurationWindow.ButtonEventHandling
         public void ControlAuthentication()
         {
             Debug.Log("Test");
+            Debug.Log(urlInput);
             if (String.IsNullOrEmpty(urlInput))
                 result = false;
             else

@@ -44,6 +44,23 @@ namespace ConfigurationWindow
                 urlInputField.text = PlayerPrefs.GetString(urlKey);
         }
 
+        /// <summary>
+        /// Get the saved URL from the user input.
+        /// </summary>
+        /// <returns>Returns an url as a string.</returns>
+        public string GetLastURL()
+        {
+            return PlayerPrefs.GetString(urlKey);
+        }
+        /// <summary>
+        /// Get the last saved username from the user input.
+        /// </summary>
+        /// <returns>Returns an username as a string.</returns>
+        public string GetLastUserName()
+        {
+            return PlayerPrefs.GetString(usernameKey);
+        }
+
         public void SaveCredentials()
         {
             if (PlayerPrefs.HasKey(usernameKey))
