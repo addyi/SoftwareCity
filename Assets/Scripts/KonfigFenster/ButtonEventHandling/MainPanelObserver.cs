@@ -31,9 +31,11 @@ namespace ConfigurationWindow.ButtonEventHandling
         // Use this for initialization
         void Start()
         {
+
             orchestrator = GameObject.FindGameObjectWithTag("Orchestrator");
             //TODO Check if LocalProject exist.
             deactivateButton = GameObject.FindGameObjectWithTag("Extern");
+            deactivateButton.GetComponent<Button>().interactable = false;
             RefreshDisplay();
         }
 
@@ -53,9 +55,11 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// </summary>
         public void SelectLocalProject()
         {
+            /*
             OverviewElements.InsertElement(localProject.Name);
             isLocal = true;
             orchestrator.GetComponent<Orchestrator.Orchestrator>().SelectLocalProject(localProject.Key);
+            */
         }
 
         /// <summary>
@@ -88,7 +92,9 @@ namespace ConfigurationWindow.ButtonEventHandling
         /// </summary>
         private void DisableButton(bool disable = true)
         {
+            /*
             deactivateButton.GetComponent<Button>().interactable = disable;
+            */
         }
 
     }

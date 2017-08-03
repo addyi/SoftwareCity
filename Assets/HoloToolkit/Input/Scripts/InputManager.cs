@@ -238,7 +238,7 @@ namespace HoloToolkit.Unity.InputModule
             if (modalInputStack.Count > 0)
             {
                 GameObject modalInput = modalInputStack.Peek();
-                /*
+
                 // If there is a focused object in the hierarchy of the modal handler, start the event
                 // bubble there
                 if (focusedObject != null && focusedObject.transform.IsChildOf(modalInput.transform))
@@ -252,12 +252,11 @@ namespace HoloToolkit.Unity.InputModule
                 // Otherwise, just invoke the event on the modal handler itself
                 else
                 {
-                */
                     if (ExecuteEvents.ExecuteHierarchy(modalInput, eventData, eventHandler))
                     {
                         return;
                     }
-                //}
+                }
             }
 
             // If event was not handled by modal, pass it on to the current focused object
