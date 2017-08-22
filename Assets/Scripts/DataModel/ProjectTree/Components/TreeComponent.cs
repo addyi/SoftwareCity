@@ -109,18 +109,25 @@ namespace DataModel.ProjectTree.Components
         protected List<TreeMetric> TransformToTreeMetrics(List<Measure> measures)
         {
             List<TreeMetric> m = new List<TreeMetric>();
+            Dictionary<string, DiskIO.AvailableMetrics.Metric> am = Model.GetInstance().GetAvailableMetricsAsDictionary();
             foreach (Measure measure in measures)
             {
                 try
                 {
+                    string name = measure.metric;
+                    if (am.ContainsKey(measure.metric))
+                    {
+                        name = am[measure.metric].name;
+                    }
                     double d = Convert.ToDouble(measure.value);
-                    m.Add(new TreeMetric(measure.metric, (float)d));
+                    m.Add(new TreeMetric(name, measure.metric, (float)d));
                 }
                 catch (Exception e)
                 {
                     Debug.Log(e.Message);
                 }
             }
+            m.Sort();
             return m;
         }
 

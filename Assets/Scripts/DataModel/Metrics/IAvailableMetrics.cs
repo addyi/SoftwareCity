@@ -14,6 +14,11 @@ namespace DataModel.Metrics
         /// <returns>List of available metrics</returns>
         List<Metric> GetAvailableMetrics();
         /// <summary>
+        /// Returns a dictionary of available metrics with the metric key as key
+        /// </summary>
+        /// <returns>Dictionary of available metrics</returns>
+        Dictionary<string, Metric> GetAvailableMetricsAsDictionary();
+        /// <summary>
         /// Sets the AvailableMetrics list e.g. if the 
         /// list is read from the config file
         /// </summary>
