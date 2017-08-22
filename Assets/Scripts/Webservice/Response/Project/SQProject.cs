@@ -6,7 +6,7 @@ namespace Webservice.Response.Project
     /// This is a POCO for JOSN deserialization of SQProjects
     /// </summary>
     [Serializable]
-    public class SQProject
+    public class SQProject : IComparable
     {
         /// <summary>
         /// Key of the project
@@ -17,6 +17,19 @@ namespace Webservice.Response.Project
         /// Name of the project
         /// </summary>
         public string nm;
+
+        public int CompareTo(object obj)
+        {
+            if (this == obj)
+            {
+                return 0;
+            }
+            if (!(this is SQProject))
+            {
+                return -1;
+            }
+            return this.nm.CompareTo(((SQProject)obj).nm);
+        }
 
         /// <summary>
         /// As the name suggests this method returns a representation of this class as string

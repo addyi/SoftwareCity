@@ -97,7 +97,9 @@ namespace Orchestrator
                (res, err) =>
                {
                    Debug.Log("LoadProjectList ResponseCode: " + err);
-                   callback(new List<SQProject>(res.array), err);
+                   List<SQProject> projects = new List<SQProject>(res.array);
+                   projects.Sort();
+                   callback(projects, err);
                }));
         }
 
