@@ -27,6 +27,8 @@ namespace SoftwareCity.Rendering.Utils.Information
         public override string ToString()
         {
             string metricString = "";
+            //TODO ADDYI
+            //metrics.Sort();
             foreach (TreeMetric metric in metrics)
             {
                 metricString += "   " + metric.Key + ": <b>" + metric.Value + "</b>\n";

@@ -30,7 +30,7 @@ namespace SoftwareCity.Rendering.Utils.Information
         public override string ToString()
         {
             return 
-                "The " + qualifier + " contains follow components: <size=40pt>\n" + this.childString + "</size>";
+                "The " + ((qualifier == SqQualifier.UNDEFINED)?SqQualifier.DIRECTORY.ToString():qualifier.ToString()) + " contains follow components: <size=40pt>\n" + this.childString + "</size>";
         }
     }
 }
