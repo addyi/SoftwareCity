@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using DataModel.ProjectTree.Components;
 using DataModel.ProjectTree;
@@ -97,6 +97,21 @@ namespace DataModel
         public List<Metric> GetAvailableMetrics()
         {
             return availableMetrics;
+        }
+
+        /// <summary>
+        /// Returns a dictionary of available metrics with the metric key as key
+        /// </summary>
+        /// <returns>Dictionary of available metrics</returns>
+        public Dictionary<string, Metric> GetAvailableMetricsAsDictionary()
+        {
+            List<Metric> metrics = GetAvailableMetrics();
+            Dictionary<string, Metric> dictionary = new Dictionary<string, Metric>();
+            foreach (Metric m in metrics)
+            {
+                dictionary.Add(m.key, m);
+            }
+            return dictionary;
         }
 
         /// <summary>

@@ -6,8 +6,12 @@ namespace DataModel.Metrics
     /// POCO for SonarQube metrics inside the tree
     /// </summary>
     [Serializable]
-    public class TreeMetric
+    public class TreeMetric : IComparable
     {
+        /// <summary>
+        /// Metirc Name
+        /// </summary>
+        public string Name;
         /// <summary>
         /// Metric Key
         /// </summary>
@@ -25,12 +29,27 @@ namespace DataModel.Metrics
         /// <summary>
         /// It's a constructor
         /// </summary>
+        /// <param name="Name">Metric Name</param>
         /// <param name="Key">Metric Key</param>
         /// <param name="Value">Metric Value</param>
-        public TreeMetric(string Key, float Value)
+        public TreeMetric(string Name, string Key, float Value)
         {
+            this.Name = Name;
             this.Key = Key;
             this.Value = Value;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (this == obj)
+            {
+                return 0;
+            }
+            if (!(this is TreeMetric))
+            {
+                return -1;
+            }
+            return this.Name.CompareTo(((TreeMetric)obj).Name);
         }
 
         /// <summary>
@@ -39,7 +58,7 @@ namespace DataModel.Metrics
         /// <returns>The representation of this class as string</returns>
         public override string ToString()
         {
-            return string.Format("(TreeMetric Key={0}, Value={1})", Key, Value);
+            return string.Format("(TreeMetric Name={0}, Key={1}, Value={2})", Name, Key, Value);
         }
     }
 }

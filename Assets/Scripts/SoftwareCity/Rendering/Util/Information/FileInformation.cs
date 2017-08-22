@@ -27,11 +27,10 @@ namespace SoftwareCity.Rendering.Utils.Information
         public override string ToString()
         {
             string metricString = "";
-            //TODO ADDYI
-            //metrics.Sort();
+            metrics.Sort();
             foreach (TreeMetric metric in metrics)
             {
-                metricString += "   " + metric.Key + ": <b>" + metric.Value + "</b>\n";
+                metricString += "   " + metric.Name + ": <b>" + metric.Value + "</b>\n";
             }
 
             return
