@@ -76,8 +76,7 @@ namespace DataModel
             if (baseComponent == null || components == null)
                 return null;
 
-            if (project == null)
-                project = new ProjectComponent(baseComponent);
+            project = new ProjectComponent(baseComponent);
 
             lock (project)
             {
